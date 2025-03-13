@@ -1,0 +1,162 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: url('back.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    z-index: -1;
+}
+
+/* Layout Container */
+.container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    max-width: 1200px;
+    gap: 60px;
+}
+
+/* Welcome Section */
+.welcome-section {
+    color: white;
+    text-align: left;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    animation: fadeInLeft 1.5s ease-in-out;
+}
+
+.welcome-section h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Logo */
+.logo {
+    width: 500px;
+    height: 400px;
+    margin-bottom: 15px;
+    border-radius: 50px;
+}
+
+/* Login Box */
+.container {
+    background: white;
+    width: 400px;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    animation: fadeInRight 1.5s ease-in-out;
+}
+
+/* Form Title */
+.form-title {
+    font-size: 1.7rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Input Fields */
+.input-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    padding-left: 40px; /* Make room for icons */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.3);
+}
+
+.input-group i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #666;
+}
+
+/* Buttons */
+.btn {
+    font-size: 1rem;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    background: linear-gradient(to right, #4a90e2, #007bff);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+/* Links */
+.Links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 1.2rem;
+    font-weight: bold;
+}
+
+.Links a {
+    color: #4a90e2;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.Links a:hover {
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}

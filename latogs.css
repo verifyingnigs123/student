@@ -1,0 +1,288 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    
+    
+}
+
+body {
+  
+    background:url(back.jpg) no-repeat;
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow-y: auto;
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #243B85, #3A5899);
+    padding: 15px 50px;
+    color: white;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 15px;
+    border-radius: 50%;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main {
+    text-align: left;
+    padding: 50px;
+}
+
+.welcome {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    backdrop-filter: blur(10px);
+    position: relative;
+    width: 300px;
+    left: 15%; /* Adjusts position slightly to the right */
+}
+
+
+.welcome h2 {
+    font-size:15px;
+    font-weight: bold;
+    color: black;
+}
+
+.welcome h1 {
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+}
+
+.welcome span {
+    font-size: 40px;
+    font-weight: bold;
+    color: #243B85;
+}
+
+.images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+
+.illustration {
+    width: 300px;
+    height: 300px;
+}
+
+.students {
+    width: 250px;
+    border-radius: 10px;
+}
+
+#about {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #ffffff;
+    animation: fadeInLeft 1s ease-in-out;
+    
+}
+
+#about h2 {
+    font-size: 50px;
+    margin-bottom: 10px;
+    position: relative;
+    color: #555;
+}
+
+#about h2::before, #about h2::after {
+    content: "";
+    display: inline-block;
+    width: 400px;
+    height: 2px;
+    background-color:black;
+    margin: 0 10px;
+    vertical-align: middle;
+}
+
+#about p {
+    max-width: 800px;
+    margin: auto;
+    color: #555;
+}
+
+
+/* Feature Boxes */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.feature-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.feature-box:hover {
+    transform: scale(1.05);
+}
+
+.feature-box i {
+    font-size: 40px;
+    color: blue;
+    margin-bottom: 10px;
+}
+
+.feature-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.feature-box p {
+    font-size: 1rem;
+    color: #444;
+}
+
+.scroll-animation {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-animation.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+#MissionAndVission {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #ffffff;
+    animation: fadeInLeft 1s ease-in-out;
+    
+}
+
+#MissionAndVission h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+    position: relative;
+    color: #555;
+}
+
+#MissionAndVission h2::before, #MissionAndVission h2::after {
+    content: "";
+    display: inline-block;
+    width: 300px;
+    height: 2px;
+    background-color:black;
+    margin: 0 10px;
+    vertical-align: middle;
+}
+.features1 {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.feature1-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.feature1-box:hover {
+    transform: scale(1.05);
+}
+
+.feature1-box i {
+    font-size: 40px;
+    color: blue;
+    margin-bottom: 10px;
+}
+
+.feature1-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.feature1-box p {
+    font-size: 1rem;
+    color: #444;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
