@@ -75,7 +75,7 @@
             </table>
 
             <button type="submit" class="submit-btn">Submit</button>
-            <button type="button" class="back-btn" onclick="window.location.href='Signin.html';">Back</button>
+            <button type="button" class="back-btn" onclick="window.location.href='Signin.php';">Back</button>
 
         </form>
     </div>
