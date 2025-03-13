@@ -3,7 +3,7 @@ session_start();
 
 // Check if the user is logged in
 if (!isset($_SESSION['student_id'])) {
-    header("Location: index.php");
+    header("Location: Signin.php");
     exit();
 }
 
@@ -26,7 +26,7 @@ $student_id = $_SESSION['student_id'];
   
     <div class="sidebar">
         <div class="logo">
-            <img src="logos.png" alt="Lathougs Uni Logo">
+            <img src="log1.jpg" alt="Lathougs Uni Logo">
             <h2>Lathougs.univ</h2>
         </div>
         <button class="menu-btn"><span class="icon">⏹</span> Overview</button>
@@ -59,7 +59,7 @@ $student_id = $_SESSION['student_id'];
 
     <script>
         function logout() {
-            window.location.href = "index.php"; 
+            window.location.href = "Signin.php"; 
         }
     </script>
 </body>
