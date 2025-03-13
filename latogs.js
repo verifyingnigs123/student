@@ -76,5 +76,5 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     document.getElementById("login-link").addEventListener("click", function() {
-        window.location.href = "Signin.html";
+        window.location.href = "Signin.php";
     });
