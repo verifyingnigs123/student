@@ -55,11 +55,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: dashboard.php");
             exit();
         } else {
-            echo "<script>alert('Student ID not found. Please try again.'); window.location.href='index.php';</script>";
+            echo "<script>alert('Student ID not found. Please try again.'); window.location.href='Signin.php';</script>";
         }
 
     } else {
-        echo "<script>alert('Incorrect password.'); window.location.href='index.php';</script>";
+        echo "<script>alert('Incorrect password.'); window.location.href='Signin.php';</script>";
     }
 }
 

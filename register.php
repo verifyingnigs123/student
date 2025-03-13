@@ -37,7 +37,7 @@ if ($conn->connect_error) {
     $stmt->bind_param("sssssssssssss", $first_name, $middle_name, $last_name, $birthdate, $student_id, $street_address, $city, $state_province, $country, $zip_code, $email, $strand, $level);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Registration successful!'); window.location.href='index.php';</script>";
+        echo "<script>alert('Registration successful!'); window.location.href='Signin.php';</script>";
     } else {
         echo "<script>alert('Error: " . $stmt->error . "');</script>";
     }
