@@ -25,6 +25,7 @@ if ($conn->connect_error) {
     $email = $_POST['email'] ?? "";
     $strand = $_POST['strand'] ?? "";
     $level = $_POST['level'] ?? "";
+    $role = $_POST['role'] ?? "";
 
     // Check for required fields
     if (empty($first_name) || empty($last_name) || empty($birthdate) || empty($student_id) || empty($email) || empty($strand) || empty($level)) {
@@ -32,9 +33,9 @@ if ($conn->connect_error) {
         exit;
     }
 
-    $stmt = $conn->prepare("INSERT INTO students (first_name, middle_name, last_name, birthdate, student_id, street_address, city, state_province, country, zip_code, email, strand, level) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssssssssss", $first_name, $middle_name, $last_name, $birthdate, $student_id, $street_address, $city, $state_province, $country, $zip_code, $email, $strand, $level);
+    $stmt = $conn->prepare("INSERT INTO students (first_name, middle_name, last_name, birthdate, student_id, street_address, city, state_province, country, zip_code, email, strand, level, role) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssssssssss", $first_name, $middle_name, $last_name, $birthdate, $student_id, $street_address, $city, $state_province, $country, $zip_code, $email, $strand, $level, $role);
 
     if ($stmt->execute()) {
         echo "<script>alert('Registration successful!'); window.location.href='Signin.php';</script>";
