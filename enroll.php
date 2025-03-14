@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,6 +51,8 @@
                 <tr>
                     <th>Strand</th>
                     <th>Level</th>
+                    <th>role</th>
+
                 </tr>
                 <tr>
                     <td>
@@ -71,14 +72,23 @@
                             <option value="Grade 12">Grade 12</option>
                         </select>
                     </td>
+                    <td>
+                        <select name="role" required>
+                            <option value="" disabled selected>Select role</option>
+                            <option value="user">User</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </td>
                 </tr>
             </table>
 
-            <button type="submit" class="submit-btn">Submit</button>
-            <button type="button" class="back-btn" onclick="window.location.href='Signin.php';">Back</button>
-
+            <div class="button-group">
+                <button type="submit" class="submit-btn">Submit</button>
+                <button type="button" class="back-btn" onclick="window.location.href='Signin.php'">Back</button>
+            </div>
         </form>
     </div>
+    <script src="enroll.js"></script>
 
 </body>
 </html>
