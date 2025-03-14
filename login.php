@@ -48,19 +48,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $insertStmt->close();
             }
 
-            $checkStmt->close();
+         /*   $checkStmt->close();
             $stmt->close();
 
             // Redirect to dashboard
             header("Location: dashboard.php");
-            exit();
-        } else {
+            exit();*/
+        }
+    }
+}
+       /* } else {
             echo "<script>alert('Student ID not found. Please try again.'); window.location.href='Signin.php';</script>";
         }
 
     } else {
         echo "<script>alert('Incorrect password.'); window.location.href='Signin.php';</script>";
     }
+}*/
+
+if(isset($_POST['submit'])){
+    $student_id = $_POST['studentID'];
+    $password = $_POST['password'];
+
+    $result = $conn->query("SELECT * FROM students WHERE student_id = '$student_id'");
+    if($result -> num_rows > 0) { 
+        $user = $result -> fetch_assoc();
+        $password_input = $_POST['password'] ?? "";
+            $_SESSION['student_id'] = $user['student_id'];
+            $default_password = "Lathougs";
+
+            if($user['role'] == 'admin') {
+                header("Location: adminpage.php");
+            }else{
+                header("Location: userpage.php");
+            }
+            exit();
+        
+    }
+
 }
 
 $conn->close();

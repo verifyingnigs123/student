@@ -160,3 +160,10 @@ body::before {
     from { opacity: 0; transform: translateX(30px); }
     to { opacity: 1; transform: translateX(0); }
 }
+
+h1{
+    font-size: 50px;
+}
+span{
+    color: #007bff;
+}

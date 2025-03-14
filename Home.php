@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LATHOUGSMAIN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="latogs.css">
+    <link rel="stylesheet" href="Home.css">
 </head>
 <body>
     <header>
@@ -90,7 +90,7 @@
 
     </section>
 
-    <script src="latogs.js"></script>
+    <script src="Home.js"></script>
 
 
 </body>

@@ -9,7 +9,7 @@
 }
 
 html, body {
-    height: 100%;
+    height: 100%; /* Ensure the body and HTML take up 100% height */
     margin: 0;
 }
 
@@ -34,21 +34,19 @@ body::before {
     z-index: -1;
 }
 
-/* Adjusted container size */
 .container {
     background: white;
-    width: 90%; /* Increased width */
-    max-width: 1100px; /* Increased max width */
-    padding: 30px 40px; /* Increased padding */
+    width: 70%;
+    max-width: 800px; /* Limit the max width for large screens */
+    padding: 20px 30px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-height: 95vh; /* Adjusted height */
-    overflow-y: auto;
+    max-height: 90vh; /* Adjust the container height */
+    overflow-y: auto; /* Allow scrolling if content exceeds */
     display: flex;
     flex-direction: column;
 }
 
-/* Form Header */
 .form-header {
     text-align: center;
     margin-bottom: 20px;
@@ -58,8 +56,8 @@ body::before {
 }
 
 .logo {
-    width: 120px; /* Increased logo size */
-    height: 120px;
+    width: 100px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: left;
@@ -70,44 +68,53 @@ body::before {
 }
 
 .logo img {
-    width: 100%; 
+    width: 80%; 
     height: auto;
     object-fit: contain;
 }
 
 h1 {
     color: #333;
-    font-size: 28px; /* Increased font size */
+    font-size: 24px;
     margin: 10px 0;
 }
 
 p {
     color: #555;
-    font-size: 16px; /* Increased font size */
+    font-size: 14px;
 }
 
 /* Form Styling */
 h2 {
     color: #444;
-    font-size: 20px; /* Increased font size */
+    font-size: 18px;
     margin: 20px 0 10px;
 }
 
 .form-group {
     display: flex;
-    gap: 15px; /* Increased spacing */
+    gap: 10px;
     margin-bottom: 15px;
 }
 
 .form-group input {
     flex: 1;
-    padding: 12px; /* Increased padding */
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px; /* Increased font size */
+    font-size: 14px;
 }
 
-/* Table */
+.add-record {
+    background: #0066cc;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -116,9 +123,8 @@ table {
 
 table th, table td {
     border: 1px solid #ddd;
-    padding: 10px; /* Increased padding */
+    padding: 8px;
     text-align: center;
-    font-size: 16px; /* Increased font size */
 }
 
 table th {
@@ -126,41 +132,19 @@ table th {
     color: white;
 }
 
-/* Button Styling */
-.button-group {
-    display: flex;
-    gap: 15px; /* Increased spacing */
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.submit-btn, .back-btn {
-    flex: 1;
-    padding: 14px; /* Increased padding */
-    border: none;
-    border-radius: 5px;
-    font-size: 18px; /* Increased font size */
-    font-weight: bold;
-    cursor: pointer;
-    text-align: center;
-}
-
-/* Submit Button */
 .submit-btn {
     background: linear-gradient(to right, #8A2BE2, #4169E1);
     color: white;
+    padding: 12px;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
 }
 
 .submit-btn:hover {
     background: linear-gradient(to right, #7A1BE2, #3159E1);
-}
-
-/* Back Button */
-.back-btn {
-    background: linear-gradient(to right, #FF4500, #FF6347);
-    color: white;
-}
-
-.back-btn:hover {
-    background: linear-gradient(to right, #E03E00, #E55B47);
 }
