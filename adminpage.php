@@ -70,7 +70,8 @@ $address = $_SESSION['address'];
         <button class="menu-btn"><span class="icon">📅</span> Class Schedule & Subjects</button>
         <button class="menu-btn"><span class="icon">💰</span> Account & Balance</button>
         <button class="menu-btn"><span class="icon">📝</span> Permits</button>
-        <button class="menu-btn"><span class="icon">📝</span> Approval</button>
+        <button class="menu-btn"><span class="icon">➕🎓</span> Add Students</button>
+        <button class="menu-btn"><span class="icon">✅</span> Approval</button>
     </div>
     <div class="main-content">
     <div class="header">
@@ -96,10 +97,6 @@ $address = $_SESSION['address'];
     </div>
 </div>
 
-    <script>
-        function logout() {
-            window.location.href = "Signin.php"; 
-        }
-    </script>
+    <script src = "admin.js"></script>
 </body>
 </html>
