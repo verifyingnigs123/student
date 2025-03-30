@@ -1,4 +1,3 @@
-
 <?php
 session_start(); 
 
@@ -14,78 +13,63 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $student_id = $_POST['studentID'] ?? "";
+    $user_input = $_POST['studentID'] ?? "";
     $password_input = $_POST['password'] ?? "";
 
-    // Default password
-    $default_password = "Lathougs";
+    // Default admin credentials
+    $default_admin_username = "admin";
+    $default_admin_password = "admin123";
 
-    // Check if the entered password matches the default password
-    if ($password_input === $default_password) {
-        
-        // Verify if Student ID exists in the `students` table
-        $stmt = $conn->prepare("SELECT * FROM students WHERE student_id = ?");
-        $stmt->bind_param("s", $student_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
+    // Default student password
+    $default_student_password = "Lathougs";
 
-        if ($result->num_rows > 0) {
-            $user = $result->fetch_assoc();
+    // Check if the user is an admin (login with username instead of student ID)
+    if ($user_input === $default_admin_username && $password_input === $default_admin_password) {
+        $_SESSION['user_id'] = $default_admin_username;
+        $_SESSION['role'] = "admin";
+        header("Location: admindashboard.php");
+        exit();
+    }
 
-            $_SESSION['student_id'] = $user['student_id'];
+    // Check if the user is a student
+    $stmt = $conn->prepare("SELECT * FROM students WHERE student_id = ?");
+    $stmt->bind_param("s", $user_input);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        $_SESSION['student_id'] = $user['student_id'];
+
+        // If password matches default password
+        if ($password_input === $default_student_password) {
+            
             // Check if student ID already exists in `login` table
             $checkStmt = $conn->prepare("SELECT * FROM login WHERE student_id = ?");
-            $checkStmt->bind_param("s", $student_id);
+            $checkStmt->bind_param("s", $user_input);
             $checkStmt->execute();
             $checkResult = $checkStmt->get_result();
 
             if ($checkResult->num_rows === 0) {
-                // If student ID doesn't exist, insert new record
+                // Insert new student record into login table
                 $insertStmt = $conn->prepare("INSERT INTO login (student_id, password) VALUES (?, ?)");
-                $insertStmt->bind_param("ss", $student_id, $default_password);
+                $insertStmt->bind_param("ss", $user_input, $default_student_password);
                 $insertStmt->execute();
                 $insertStmt->close();
             }
 
-         /*   $checkStmt->close();
-            $stmt->close();
-
-            // Redirect to dashboard
-            header("Location: dashboard.php");
-            exit();*/
-        }
-    }
-}
-       /* } else {
-            echo "<script>alert('Student ID not found. Please try again.'); window.location.href='Signin.php';</script>";
-        }
-
-    } else {
-        echo "<script>alert('Incorrect password.'); window.location.href='Signin.php';</script>";
-    }
-}*/
-
-if(isset($_POST['submit'])){
-    $student_id = $_POST['studentID'];
-    $password = $_POST['password'];
-
-    $result = $conn->query("SELECT * FROM students WHERE student_id = '$student_id'");
-    if($result -> num_rows > 0) { 
-        $user = $result -> fetch_assoc();
-        $password_input = $_POST['password'] ?? "";
-            $_SESSION['student_id'] = $user['student_id'];
-            $default_password = "Lathougs";
-
-            if($user['role'] == 'admin') {
-                header("Location: adminpage.php");
-            }else{
-                header("Location: userpage.php");
-            }
+            // Redirect based on role
+            $_SESSION['role'] = "user";
+            header("Location: userdashboard.php");
             exit();
-        
+        } else {
+            echo "<script>alert('Incorrect password.'); window.location.href='Signin.php';</script>";
+        }
+    } else {
+        echo "<script>alert('Student ID not found.'); window.location.href='Signin.php';</script>";
     }
 
+    $stmt->close();
 }
 
 $conn->close();

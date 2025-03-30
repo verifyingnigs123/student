@@ -11,7 +11,8 @@ $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $first_name = $_POST['fName'] ?? "";
     $middle_name = $_POST['mName'] ?? "";
     $last_name = $_POST['lName'] ?? "";
@@ -25,7 +26,7 @@ if ($conn->connect_error) {
     $email = $_POST['email'] ?? "";
     $strand = $_POST['strand'] ?? "";
     $level = $_POST['level'] ?? "";
-    $role = $_POST['role'] ?? "";
+    $role = "user"; // Automatically set role as 'user'
 
     // Check for required fields
     if (empty($first_name) || empty($last_name) || empty($birthdate) || empty($student_id) || empty($email) || empty($strand) || empty($level)) {

@@ -51,7 +51,7 @@
                 <tr>
                     <th>Strand</th>
                     <th>Level</th>
-                    <th>role</th>
+                   
 
                 </tr>
                 <tr>
@@ -72,13 +72,7 @@
                             <option value="Grade 12">Grade 12</option>
                         </select>
                     </td>
-                    <td>
-                        <select name="role" required>
-                            <option value="" disabled selected>Select role</option>
-                            <option value="user">User</option>
-                            <option value="Admin">Admin</option>
-                        </select>
-                    </td>
+                    
                 </tr>
             </table>
 

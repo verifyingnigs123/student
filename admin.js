@@ -1,63 +1,50 @@
-    
-    document.addEventListener("DOMContentLoaded", function() {
-        const menuButtons = document.querySelectorAll(".menu-btn");
-
-        // Function to handle menu button clicks
-        menuButtons.forEach(button => {
-            button.addEventListener("click", function() {
-                // Remove active class from all buttons
-                menuButtons.forEach(btn => btn.classList.remove("active"));
-                
-                // Add active class to the clicked button
-                this.classList.add("active");
-
-                // Define page navigation (adjust href links accordingly)
-                let targetPage = "";
-                switch (this.innerText.trim()) {
-                    case "Overview":
-                        targetPage = "overview.php";
-                        break;
-                    case "Admin Profile":
-                        targetPage = "admin_profile.php";
-                        break;
-                    case "View Grades":
-                        targetPage = "grades.php";
-                        break;
-                    case "Class Schedule & Subjects":
-                        targetPage = "schedule.php";
-                        break;
-                    case "Account & Balance":
-                        targetPage = "account.php";
-                        break;
-                    case "Permits":
-                        targetPage = "permits.php";
-                        break;
-                    case "Add Students":
-                        targetPage = "add_students.php";
-                        break;
-                    case "Approval":
-                        targetPage = "approval.php";
-                        break;
-                }
-
-                // Redirect to the chosen page
-                if (targetPage) {
-                    window.location.href = targetPage;
-                }
-            });
-        });
-
-        if (logoutButton) {
-            logoutButton.addEventListener("click", function() {
-                logout();
-            });
-        }
-    });
-    
-    // Function to log out the user
-    function logout() {
-        window.location.href = "Signin.php"; // Ensure logout.php exists and clears session
+function loadPage(page) {
+    // Highlight the active menu button
+    document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
+    const activeBtn = document.querySelector(`.menu-btn[onclick="loadPage('${page}')"]`);
+    if (activeBtn) {
+        activeBtn.classList.add('active');
     }
+    
+    // Navigate to the selected page
+    switch (page) {
+        case 'dashboard':
+            window.location.href = 'dashboard.php';
+            break;
+        case 'adminprofile':
+            window.location.href = 'adminprofile.php';
+            break;
+        case 'grades':
+            window.location.href = 'grades.php';
+            break;
+        case 'schedule':
+            window.location.href = 'schedule.php';
+            break;
+        case 'balance':
+            window.location.href = 'balance.php';
+            break;
+        case 'permits':
+            window.location.href = 'permits.php';
+            break;
+        case 'add_users':
+            window.location.href = 'add_users.php';
+            break;
+        case 'approvals':
+            window.location.href = 'approvals.php';
+            break;
+        default:
+            alert('Page not found');
+    }
+}
 
+function profile() {
+    if (confirm('Do you want to go to the admin profile?')) {
+        window.location.href = "adminprofile.php";
+    }
+}
 
-
+function logout() {
+    if (confirm('Are you sure you want to logout?')) {
+        window.location.href = 'logout.php';
+    }
+}
