@@ -68,13 +68,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    document.getElementById("admission-link").addEventListener("click", function() {
-        const admissionSection = document.getElementById("admission");
-        if (admissionSection) {
-            admissionSection.scrollIntoView({ behavior: "smooth" });
-        }
+    document.getElementById("admission-link").addEventListener("click", function(event) {
+        event.preventDefault();
+        window.location.href = "adminsign.php";
     });
 
-    document.getElementById("login-link").addEventListener("click", function() {
+    document.getElementById("login-link").addEventListener("click", function(event) {
+        event.preventDefault();
         window.location.href = "Signin.php";
     });
