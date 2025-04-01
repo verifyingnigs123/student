@@ -32,23 +32,24 @@ if (!isset($_SESSION['student_id'])) {
 </head>
 <body>
 
-    <div class="sidebar">
-        <div class="logo">
-            <img src="log1.jpg" alt="Lathougs Univ Logo">
-            <h2>Lathougs Univ</h2>
-        </div>
-        <div class="menu">
-            <button class="menu-btn" ><span class="icon">🏠</span> Dashboard</button>
-            <button class="menu-btn" ><span class="icon">👤</span> Admin Profile</button>
-            <button class="menu-btn" ><span class="icon">📖</span> View Grades</button>
-            <button class="menu-btn" ><span class="icon">📅</span> Class Schedule & Subjects</button>
-            <button class="menu-btn" ><span class="icon">💰</span> Account & Balance</button>
-            <button class="menu-btn" ><span class="icon">📝</span> Permits</button>
-            <button class="menu-btn" ><span class="icon">➕</span> Add Users</button>
-            <button class="menu-btn" ><span class="icon">✅</span> Approvals</button>
-            <button class="menu-btn logout" onclick="logout()"><span class="icon">🚪</span> Logout</button>
-        </div>
+<div class="sidebar">
+    <div class="logo">
+        <img src="log1.jpg" alt="Lathougs Univ Logo">
+        <h2>Lathougs Univ</h2>
     </div>
+    <div class="menu">
+        <button class="menu-btn" onclick="loadPage('dashboard')"><span class="icon">🏠</span> Dashboard</button>
+        <button class="menu-btn" onclick="loadPage('adminprofile')"><span class="icon">👤</span> Admin Profile</button>
+        <button class="menu-btn" onclick="loadPage('grades')"><span class="icon">📖</span> View Grades</button>
+        <button class="menu-btn" onclick="loadPage('schedule')"><span class="icon">📅</span> Class Schedule & Subjects</button>
+        <button class="menu-btn" onclick="loadPage('balance')"><span class="icon">💰</span> Account & Balance</button>
+        <button class="menu-btn" onclick="loadPage('permits')"><span class="icon">📝</span> Permits</button>
+        <button class="menu-btn" onclick="loadPage('add_users')"><span class="icon">➕</span> Add Users</button>
+        <button class="menu-btn" onclick="loadPage('approvals')"><span class="icon">✅</span> Approvals</button>
+        <button class="menu-btn logout" onclick="logout()"><span class="icon">🚪</span> Logout</button>
+    </div>
+</div>
+
 
     <div class="main-content">
         <div class="header">

@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Default admin credentials
     $default_admin_username = "admin";
-    $default_admin_password = "admin123";
+    $default_admin_password = "Lathougs";
 
     // Default student password
     $default_student_password = "Lathougs";
