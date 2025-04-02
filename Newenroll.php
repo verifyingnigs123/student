@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Registration Form</title>
-    <link rel="stylesheet" href="enroll.css">
+    <link rel="stylesheet" href="enrol.css">
 </head>
 <body>
 
@@ -13,7 +13,7 @@
             <div class="logo">
                 <img src="log1.jpg" alt="School Logo" width="150">
             </div>
-            <h1>Student Registration Form</h1>
+            <h1> Student Registration Form</h1>
             <p>Fill out the form to access the SMS and view your records.</p>
         </div>
         <form action="register.php" method="POST">
@@ -22,11 +22,23 @@
                 <input type="text" name="fName" placeholder="First Name" required>
                 <input type="text" name="mName" placeholder="Middle Name">
                 <input type="text" name="lName" placeholder="Last Name" required>
+                <input type="text" name="extName" placeholder="Extension (Jr., III, etc.)">
+                <input type="date" name="birthdate" id= "birthdate"required>
+                <input type="number" name="age" placeholder= "Age" required>
             </div>
             <div class="form-group">
-                <input type="date" name="birthdate" required>
-                <input type="text" name="studentID" placeholder="Student ID" required>
+                <input type="text" name="place" placeholder= "Place of Birth" required>
+                <input type="text" name="studentID" placeholder="LRN" pattern="\d{12}" title="LRN must be exactly 12 digits" required>
+                <input type="text" name="religion" placeholder= "Religion" required>
             </div>
+            <td>
+                <select name="gender" required>
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </td>
+          
 
             <h2>Address</h2>
             <div class="form-group">
@@ -44,6 +56,7 @@
             <h2>Contact Information</h2>
             <div class="form-group">
                 <input type="email" name="email" placeholder="E-mail" required>
+                <input type="text" name="contactNumber" placeholder="Contact Number" pattern="(\+63\s?9\d{2}\s?\d{3}\s?\d{4}|09\d{9})" required>
             </div>
 
             <h2>Strand</h2>
@@ -69,7 +82,6 @@
                         <select name="level" required>
                             <option value="" disabled selected>Select Level</option>
                             <option value="Grade 11">Grade 11</option>
-                            <option value="Grade 12">Grade 12</option>
                         </select>
                     </td>
                     
@@ -78,11 +90,11 @@
 
             <div class="button-group">
                 <button type="submit" class="submit-btn">Submit</button>
-                <button type="button" class="back-btn" onclick="window.location.href='Signin.php'">Back</button>
+                <button type="button" class="close-btn" onclick="window.location.href='Option.php'">&times;</button>
             </div>
         </form>
     </div>
-    <script src="enroll.js"></script>
+    <script src="enrol.js"></script>
 
 </body>
 </html>

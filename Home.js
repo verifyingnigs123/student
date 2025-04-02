@@ -77,3 +77,19 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault();
         window.location.href = "Signin.php";
     });
+    function toggleDropdown() {
+        document.querySelector('.dropdown-menu').style.display = 
+            document.querySelector('.dropdown-menu').style.display === 'block' ? 'none' : 'block';
+    }
+
+    function selectGender(value) {
+        document.getElementById("selected-text").textContent = value;
+        document.querySelector('.dropdown-menu').style.display = "none";
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function(event) {
+        if (!document.querySelector(".dropdown").contains(event.target)) {
+            document.querySelector(".dropdown-menu").style.display = "none";
+        }
+    });
