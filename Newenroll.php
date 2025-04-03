@@ -13,7 +13,7 @@
             <div class="logo">
                 <img src="log1.jpg" alt="School Logo" width="150">
             </div>
-            <h1> Student Registration Form</h1>
+            <h1>New Student Registration Form</h1>
             <p>Fill out the form to access the SMS and view your records.</p>
         </div>
         <form action="register.php" method="POST">
