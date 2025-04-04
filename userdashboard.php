@@ -31,7 +31,7 @@ if ($result->num_rows === 1) {
     $user = $result->fetch_assoc();
     
     // Store fetched values in session for later use
-    $_SESSION['first_name'] = $user['first_name'] ?? "User";
+    $_SESSION['first_name'] = $user['first_name'] ?? "";
     $_SESSION['last_name'] = $user['last_name'] ?? "";
     $_SESSION['email'] = $user['email'] ?? "Not Available";
     $_SESSION['birthdate'] = $user['birthdate'] ?? "Not Available";

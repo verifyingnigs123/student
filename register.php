@@ -39,14 +39,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    $stmt = $conn->prepare("INSERT INTO students (fName, mName, lName, extName, birthdate, age, place, studentID, religion, gender, street, city, state, country, zip, email, contactNumber, strand, level, role) 
+    $checkEmail = $conn->prepare("SELECT email FROM students WHERE email = ?");
+    $checkEmail->bind_param("s", $email);
+    $checkEmail->execute();
+    $checkEmail->store_result();
+    if ($checkEmail->num_rows > 0) {
+        echo "<script>alert('Email already exists. Please use a different one.'); window.history.back();</script>";
+        exit;
+    }
+    $checkEmail->close();
+
+    // Check for existing contact number
+    $checkContact = $conn->prepare("SELECT contactNumber FROM students WHERE contactNumber = ?");
+    $checkContact->bind_param("s", $contact_number);
+    $checkContact->execute();
+    $checkContact->store_result();
+    if ($checkContact->num_rows > 0) {
+        echo "<script>alert('Contact number already exists. Please use a different one.'); window.history.back();</script>";
+        exit;
+    }
+    $checkContact->close();
+
+    // Proceed with insert
+    $stmt = $conn->prepare("INSERT INTO students (fName, mName, lName, extName, birthdate, age, place, student_id, religion, gender, street, city, state, country, zip, email, contactNumber, strand, level, role) 
                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("ssssssssssssssssssss", $first_name, $middle_name, $last_name, $ext_name, $birthdate, $age, $place_of_birth, $student_id, $religion, $gender, $street_address, $city, $state_province, $country, $zip_code, $email, $contact_number, $strand, $level, $role);
 
     if ($stmt->execute()) {
         echo "<script>alert('Registration successful!'); window.location.href='Signin.php';</script>";
     } else {
-        echo "<script>alert('Error: " . $stmt->error . "');</script>";
+        echo "<script>alert('Error: " . $stmt->error . "'); window.history.back();</script>";
     }
 
     $stmt->close();

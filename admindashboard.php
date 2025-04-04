@@ -12,11 +12,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if the user is logged in
-if (!isset($_SESSION['student_id'])) {
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: Signin.php");
     exit();
 }
+
 
 
 ?>
