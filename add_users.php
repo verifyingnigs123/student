@@ -33,9 +33,9 @@ $result = $conn->query("SELECT * FROM students");
             <?php while ($row = $result->fetch_assoc()): ?>
             <tr>
                 <td><?= htmlspecialchars($row['id']) ?></td>
-                <td><?= htmlspecialchars($row['first_name']) ?></td>
-                <td><?= htmlspecialchars($row['middle_name']) ?></td>
-                <td><?= htmlspecialchars($row['last_name']) ?></td>
+                <td><?= htmlspecialchars($row['fName']) ?></td>
+                <td><?= htmlspecialchars($row['mName']) ?></td>
+                <td><?= htmlspecialchars($row['lName']) ?></td>
                 <td><?= htmlspecialchars($row['student_id']) ?></td>
                 <td><?= htmlspecialchars($row['email']) ?></td>
                 <td><?= htmlspecialchars($row['strand']) ?></td>
