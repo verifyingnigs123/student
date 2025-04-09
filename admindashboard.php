@@ -40,7 +40,7 @@ if (!isset($_SESSION['student_id'])) {
     <div class="menu">
         <button class="menu-btn" onclick="loadPage('dashboard')"><span class="icon">🏠</span> Dashboard</button>
         <button class="menu-btn" onclick="loadPage('adminprofile')"><span class="icon">👤</span> Admin Profile</button>
-        <button class="menu-btn" onclick="loadPage('grades')"><span class="icon">📖</span> View Grades</button>
+        <button class="menu-btn" onclick="loadPage('grades')"><span class="icon">📖</span> Grades</button>
         <button class="menu-btn" onclick="loadPage('schedule')"><span class="icon">📅</span> Class Schedule & Subjects</button>
         <button class="menu-btn" onclick="loadPage('balance')"><span class="icon">💰</span> Account & Balance</button>
         <button class="menu-btn" onclick="loadPage('permits')"><span class="icon">📝</span> Permits</button>
@@ -53,7 +53,7 @@ if (!isset($_SESSION['student_id'])) {
 
     <div class="main-content">
         <div class="header">
-            <h1> Dash Board</h1>
+            <h1> DashBoard</h1>
         </div>
 
         

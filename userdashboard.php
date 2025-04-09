@@ -77,7 +77,7 @@ $address = $_SESSION['address'];
             <div class="profile-section">
                 <div>
                 <h3><?php echo htmlspecialchars($first_name . " " . $last_name); ?></h3>
-                <p>Student ID: <?php echo htmlspecialchars($student_id); ?></p>
+                <p>LRN: <?php echo htmlspecialchars($student_id); ?></p>
                 <p>Email: <?php echo htmlspecialchars($email); ?></p>
                 <p>Birthdate: <?php echo htmlspecialchars($birthdate); ?></p>
                 <p>Address: <?php echo htmlspecialchars($address); ?></p>
