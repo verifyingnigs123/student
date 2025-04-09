@@ -31,10 +31,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contact_number = $_POST['contactNumber'] ?? "";
     $strand = $_POST['strand'] ?? "";
     $level = $_POST['level'] ?? "";
+    $semester = $_POST['semester']??"";
+    $schoolyear = $_POST['school_year']??"";
     $role = "user";// Automatically set role as 'user'
 
     // Check for required fields
-    if (empty($first_name) || empty($last_name) || empty($birthdate) || empty($student_id) || empty($email) || empty($strand) || empty($level)) {
+    if (empty($first_name) || empty($last_name) || empty($birthdate) || empty($student_id) || empty($email) || empty($strand) || empty($level) || empty($semester)) {
         echo "<script>alert('Error: Required fields are missing.');</script>";
         exit;
     }
@@ -61,9 +63,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $checkContact->close();
 
     // Proceed with insert
-    $stmt = $conn->prepare("INSERT INTO students (fName, mName, lName, extName, birthdate, age, place, student_id, religion, gender, street, city, state, country, zip, email, contactNumber, strand, level, role) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssssssssssssssss", $first_name, $middle_name, $last_name, $ext_name, $birthdate, $age, $place_of_birth, $student_id, $religion, $gender, $street_address, $city, $state_province, $country, $zip_code, $email, $contact_number, $strand, $level, $role);
+    $stmt = $conn->prepare("INSERT INTO students (fName, mName, lName, extName, birthdate, age, place, student_id, religion, gender, street, city, state, country, zip, email, contactNumber, strand, level, semester, school_year, role) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+    $stmt->bind_param("ssssssssssssssssssssss", $first_name, $middle_name, $last_name, $ext_name, $birthdate, $age, $place_of_birth, $student_id, $religion, $gender, $street_address, $city, $state_province, $country, $zip_code, $email, $contact_number, $strand, $level, $semester, $schoolyear , $role);
 
     if ($stmt->execute()) {
         echo "<script>alert('Registration successful!'); window.location.href='Signin.php';</script>";
