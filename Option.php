@@ -95,20 +95,18 @@
 
         // Click event for selection
         function selectType(type) {
-            alert("You selected: " + type);
-            window.location.href = "Newenroll.php";
-            // Redirect logic can be added here, e.g., window.location.href = "new_student.php";
-        }
-        function selectType(type) {
-            alert("You selected: " + type);
-            window.location.href = "Oldenroll.php";
-            // Redirect logic can be added here, e.g., window.location.href = "new_student.php";
-        }
-        function selectType(type) {
-            alert("You selected: " + type);
-            window.location.href = "transfereEnroll.php";
-            // Redirect logic can be added here, e.g., window.location.href = "new_student.php";
-        }
+    alert("You selected: " + type);
+    
+    if (type === "New Student") {
+        window.location.href = "new_student.php";
+    } else if (type === "Old Student") {
+        window.location.href = "Oldenroll.php";
+    } else if (type === "Transferee Student") {
+        window.location.href = "transfereEnroll.php";
+    } else {
+        alert("Invalid selection");
+    }
+}
     </script>
 </body>
 </html>

@@ -30,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <h1>Edit Student List</h1>
     <form method="POST">
-        <input type="text" name="fName" value="<?= $row['first_name'] ?>" required>
-        <input type="text" name="mName" value="<?= $row['middle_name'] ?>">
-        <input type="text" name="lName" value="<?= $row['last_name'] ?>" required>
+        <input type="text" name="fName" value="<?= $row['fName'] ?>" required>
+        <input type="text" name="mName" value="<?= $row['mName'] ?>">
+        <input type="text" name="lName" value="<?= $row['lName'] ?>" required>
         <select name="strand">
             <option value="<?= $row['strand'] ?>"><?= $row['strand'] ?></option>
             <option value="ABM">ABM</option>

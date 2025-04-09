@@ -89,3 +89,97 @@ body {
         margin-left: 210px;
     }
 }
+
+
+/* ========== STUDENT CRUD STYLES ========== */
+.student-crud-container {
+    background: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.student-crud-container h2 {
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 24px;
+    color: #2C3E50;
+}
+
+.student-crud-container .add-btn {
+    background-color: #2980B9;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.student-crud-container .add-btn:hover {
+    background-color: #1A5276;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.student-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.student-table th,
+.student-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.student-table th {
+    background-color: #ecf0f1;
+    color: #2C3E50;
+    font-weight: bold;
+}
+
+.btn {
+    padding: 6px 10px;
+    margin: 2px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.edit-btn {
+    background-color: #27ae60;
+}
+
+.edit-btn:hover {
+    background-color: #1e8449;
+}
+
+.delete-btn {
+    background-color: #c0392b;
+}
+
+.delete-btn:hover {
+    background-color: #a93226;
+}
+
+/* Mobile responsive table */
+@media (max-width: 768px) {
+    .student-table {
+        font-size: 12px;
+    }
+
+    .btn {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+}

@@ -13,16 +13,23 @@
             <div class="logo">
                 <img src="log1.jpg" alt="School Logo" width="150">
             </div>
-            <h1> Student Registration Form</h1>
+            <h1>New Student Registration Form</h1>
             <p>Fill out the form to access the SMS and view your records.</p>
         </div>
         <form action="register.php" method="POST">
             <h2>Student Information</h2>
             <div class="form-group">
-                <input type="text" name="fName" placeholder="First Name" required>
-                <input type="text" name="mName" placeholder="Middle Name">
-                <input type="text" name="lName" placeholder="Last Name" required>
+                <input type="text" name="fName" placeholder="First Name" 
+                pattern="^[A-Za-z\s]+$" title="First name must contain only letters and spaces." required>
+
+                <input type="text" name="mName" placeholder="Middle Name"
+                pattern="^[A-Za-z\s]*$" title="Middle name must contain only letters and spaces.">
+
+                <input type="text" name="lName" placeholder="Last Name" 
+                pattern="^[A-Za-z\s]+$" title="Last name must contain only letters and spaces."  required>
+
                 <input type="text" name="extName" placeholder="Extension (Jr., III, etc.)">
+
                 <input type="date" name="birthdate" id= "birthdate"required>
                 <input type="number" name="age" placeholder= "Age" required>
             </div>
@@ -55,8 +62,13 @@
 
             <h2>Contact Information</h2>
             <div class="form-group">
-                <input type="email" name="email" placeholder="E-mail" required>
-                <input type="text" name="contactNumber" placeholder="Contact Number" pattern="(\+63\s?9\d{2}\s?\d{3}\s?\d{4}|09\d{9})" required>
+                <input type="email" name="email" placeholder="E-mail" 
+                pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" 
+                title="Please enter a valid Gmail address only (e.g., yourname@gmail.com)"  required>
+
+                <input type="text" name="contactNumber" placeholder="Contact Number" 
+                 pattern="(\+63\s?9\d{2}\s?\d{3}\s?\d{4}|09\d{9})" 
+                 title="Enter a valid Philippine mobile number (e.g., 09123456789 or +639123456789)" required>
             </div>
 
             <h2>Strand</h2>

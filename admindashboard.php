@@ -12,11 +12,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if the user is logged in
-if (!isset($_SESSION['student_id'])) {
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: Signin.php");
     exit();
 }
+
 
 
 ?>
@@ -44,7 +44,7 @@ if (!isset($_SESSION['student_id'])) {
         <button class="menu-btn" onclick="loadPage('schedule')"><span class="icon">📅</span> Class Schedule & Subjects</button>
         <button class="menu-btn" onclick="loadPage('balance')"><span class="icon">💰</span> Account & Balance</button>
         <button class="menu-btn" onclick="loadPage('permits')"><span class="icon">📝</span> Permits</button>
-        <button class="menu-btn" onclick="loadPage('add_users')"><span class="icon">➕</span> Add Users</button>
+        <button class="menu-btn" onclick="loadPage('add_users')"><span class="icon">🎓</span> Student List</button>
         <button class="menu-btn" onclick="loadPage('approvals')"><span class="icon">✅</span> Approvals</button>
         <button class="menu-btn logout" onclick="logout()"><span class="icon">🚪</span> Logout</button>
     </div>
@@ -56,6 +56,10 @@ if (!isset($_SESSION['student_id'])) {
             <h1> DashBoard</h1>
         </div>
 
+        <div class="page-content">
+        <?php include 'add_users.php'; ?>
+    </div>
+</div>
         
 
         <script src="admin.js"></script>
