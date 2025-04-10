@@ -13,7 +13,8 @@
             <div class="logo">
                 <img src="log1.jpg" alt="School Logo" width="150">
             </div>
-            <h1>New Student Registration Form</h1>
+            <h1>Welcome Student</h1>
+            <h3>New Student Registration Form</h3>
             <p>Fill out the form to access the SMS and view your records.</p>
         </div>
         <form action="register.php" method="POST">
@@ -28,15 +29,24 @@
                 <input type="text" name="lName" placeholder="Last Name" 
                 pattern="^[A-Za-z\s]+$" title="Last name must contain only letters and spaces."  required>
 
-                <input type="text" name="extName" placeholder="Extension (Jr., III, etc.)">
+                <input type="text" name="extName" placeholder="Extension (Jr., III, etc.)"
+                pattern="^(Jr\.?|Sr\.?|II|III|IV|V)?$" 
+                title="Valid extensions: Jr, Sr, II, III, IV, V (leave blank if none)">
 
                 <input type="date" name="birthdate" id= "birthdate"required>
                 <input type="number" name="age" placeholder= "Age" required>
             </div>
             <div class="form-group">
-                <input type="text" name="place" placeholder= "Place of Birth" required>
-                <input type="text" name="studentID" placeholder="LRN" pattern="\d{12}" title="LRN must be exactly 12 digits" required>
-                <input type="text" name="religion" placeholder= "Religion" required>
+                <input type="text" name="place" placeholder= "Place of Birth" 
+                pattern="^[A-Za-z\s\-\.]{2,100}$" 
+                title="Enter a valid place of birth (letters, spaces, dots, hyphens only)" required>
+
+                <input type="text" name="studentID" placeholder="LRN"
+                 pattern="\d{12}" title="LRN must be exactly 12 digits" required>
+
+                <input type="text" name="religion" placeholder= "Religion"
+                pattern="^[A-Za-z\s\-]{2,50}$" 
+                title="Enter a valid religion (letters and spaces only)" required>
             </div>
             <td>
                 <select name="gender" required>
@@ -49,15 +59,26 @@
 
             <h2>Address</h2>
             <div class="form-group">
-                <input type="text" name="street" placeholder="Street Address" required>
+                <input type="text" name="street" placeholder="Street Address"
+                pattern="^[0-9A-Za-z\s\.,#\-]{5,100}$" 
+                title="Enter a valid street address (letters, numbers, ., #, -, ,)"  required>
             </div>
             <div class="form-group">
-                <input type="text" name="city" placeholder="City" required>
-                <input type="text" name="state" placeholder="State / Province" required>
+                <input type="text" name="city" placeholder="City"
+                pattern="^[A-Za-z\s\-\.]{2,50}$"
+                 title="Enter a valid city name (letters, spaces, hyphens)"  required>
+
+                <input type="text" name="state" placeholder="State / Province"
+                pattern="^[A-Za-z\s\-]{2,50}$" 
+                title="Enter a valid state or province (letters, spaces, hyphens)"  required>
             </div>
             <div class="form-group">
-                <input type="text" name="country" placeholder="Country" required>
-                <input type="text" name="zip" placeholder="ZIP Code" required>
+                <input type="text" name="country" placeholder="Country"
+                pattern="^[A-Za-z\s]{2,56}$" 
+                title="Enter a valid country name (letters and spaces only)"  required>
+
+                <input type="text" name="zip" placeholder="ZIP Code" 
+                pattern="^\d{4}$" title="Please enter a 4-digit ZIP code" required>
             </div>
 
             <h2>Contact Information</h2>
@@ -73,11 +94,11 @@
 
             <h2>Strand</h2>
             <table>
-                <tr>
+            <tr>
                     <th>Strand</th>
                     <th>Level</th>
-                   
-
+                    <th>Semester</th>
+                    <th>School Year</th>
                 </tr>
                 <tr>
                     <td>
@@ -96,6 +117,18 @@
                             <option value="Grade 11">Grade 11</option>
                         </select>
                     </td>
+                    <td>
+                        <select name="semester" required>
+                            <option value="" disabled selected>Select Semester</option>
+                            <option value="1st Semester">1st Semester</option>
+                            <option value="2nd Semester">2nd Semester</option>
+                        </select>
+                    </td>
+                    <td>
+                        <label for="schoolYear">School Year:</label>
+                        <select id="schoolYear" name="school_year" required>
+                        </select>
+                    </td>
                     
                 </tr>
             </table>
@@ -110,3 +143,31 @@
 
 </body>
 </html>
+
+
+
+
+<script>
+        // Function to set up the school years in the dropdown
+        function setSchoolYears() {
+            const currentYear = new Date().getFullYear();
+            const schoolYearSelect = document.getElementById("schoolYear");
+
+            // Populate school years for the next 5 years (adjust as needed)
+            for (let i = 0; i < 5; i++) {
+                const startYear = currentYear + i;
+                const endYear = startYear + 1;
+                const option = document.createElement("option");
+                option.value = `${startYear}-${endYear}`;
+                option.textContent = `${startYear}-${endYear}`;
+                schoolYearSelect.appendChild(option);
+            }
+
+            // Automatically select the current school year
+            const currentSchoolYear = `${currentYear}-${currentYear + 1}`;
+            schoolYearSelect.value = currentSchoolYear;
+        }
+
+        // Call the function when the page loads
+        window.onload = setSchoolYears;
+    </script>
