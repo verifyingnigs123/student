@@ -56,10 +56,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             <h1> DashBoard</h1>
         </div>
 
-        <div class="page-content">
-        <?php include 'add_users.php'; ?>
-    </div>
-</div>
+
         
 
         <script src="admin.js"></script>

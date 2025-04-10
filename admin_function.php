@@ -5,9 +5,9 @@ function addGrade($conn, $student_id, $subject, $grade) {
     return $stmt->execute();
 }
 
-function addScheduleAndSubject($conn, $class_name, $subject, $day, $time) {
-    $stmt = $conn->prepare("INSERT INTO schedules (class_name, subject, day, time) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $class_name, $subject, $day, $time);
+function addScheduleAndSubject($conn,$subject, $day, $time) {
+    $stmt = $conn->prepare("INSERT INTO schedules (subject, day, time) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss",$subject, $day, $time);
     return $stmt->execute();
 }
 
