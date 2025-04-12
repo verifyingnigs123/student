@@ -22,16 +22,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
 
 // UPDATE
 if (isset($_POST['update'])) {
-    $id = $_POST['id'];
     $student_id = $_POST['student_id'];
-    $subject = $_POST['subject'];
-    $day = $_POST['day'];
-    $time = $_POST['time'];
+    $subjects = $_POST['subject'];
+    $days = $_POST['day'];
+    $times = $_POST['time'];
 
-    $sql = "UPDATE schedules SET 
-            student_id='$student_id', subject='$subject', day='$day', time='$time' 
-            WHERE id=$id";
-    $conn->query($sql);
+    // Update each schedule for the given student_id
+    for ($i = 0; $i < count($subjects); $i++) {
+        $subject = $conn->real_escape_string($subjects[$i]);
+        $day = $conn->real_escape_string($days[$i]);
+        $time = $conn->real_escape_string($times[$i]);
+
+        // Update the respective schedule
+        $sql = "UPDATE schedules SET subject='$subject', day='$day', time='$time' 
+                WHERE student_id='$student_id' AND subject='$subject'";
+        $conn->query($sql);
+    }
 }
 
 // DELETE
@@ -96,7 +102,7 @@ function addMore() {
                 <td>{$row['day']}</td>
                 <td>{$row['time']}</td>
                 <td>
-                    <a href='?edit={$row['id']}'>Edit</a> | 
+                    <a href='?edit={$row['student_id']}'>Edit</a> | 
                     <a href='?delete={$row['id']}' onclick=\"return confirm('Delete this schedule?')\">Delete</a>
                 </td>
               </tr>";
@@ -105,25 +111,44 @@ function addMore() {
 </table>
 
 <?php
-// Show Edit Form
+// Show Edit Form for all schedules by student_id
 if (isset($_GET['edit'])) {
-    $id = $_GET['edit'];
-    $editResult = $conn->query("SELECT * FROM schedules WHERE id=$id");
-    $data = $editResult->fetch_assoc();
+    $student_id = $_GET['edit'];
+    $stmt = $conn->prepare("SELECT * FROM schedules WHERE student_id=?");
+    $stmt->bind_param("s", $student_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Fetch all schedules for the student_id
+    $schedules = [];
+    while ($row = $result->fetch_assoc()) {
+        $schedules[] = $row;
+    }
+    $stmt->close();
+
+    if (count($schedules) > 0):
 ?>
     <div class="edit-form">
-        <h3>Edit Schedule</h3>
+        <h3>Edit Schedule for LRN: <?php echo htmlspecialchars($student_id); ?></h3>
         <form method="POST" action="schedule.php">
             <input type="hidden" name="update" value="1">
-            <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
-            LRN: <input type="text" name="student_id" value="<?php echo $data['student_id']; ?>" required><br>
-            Subject: <input type="text" name="subject" value="<?php echo $data['subject']; ?>" required><br>
-            Day: <input type="text" name="day" value="<?php echo $data['day']; ?>" required><br>
-            Time: <input type="text" name="time" value="<?php echo $data['time']; ?>" required><br><br>
-            <input type="submit" value="Update Schedule">
+            <input type="hidden" name="student_id" value="<?php echo htmlspecialchars($student_id); ?>">
+
+            <div id="editSubjects">
+                <?php foreach ($schedules as $schedule): ?>
+                <div>
+                    Subject: <input type="text" name="subject[]" value="<?php echo htmlspecialchars($schedule['subject']); ?>" required>
+                    Day: <input type="text" name="day[]" value="<?php echo htmlspecialchars($schedule['day']); ?>" required>
+                    Time: <input type="text" name="time[]" value="<?php echo htmlspecialchars($schedule['time']); ?>" required>
+                </div>
+                <br>
+                <?php endforeach; ?>
+            </div>
+
+            <input type="submit" value="Update All Schedules">
         </form>
     </div>
-<?php } ?>
+<?php endif; } ?>
 
 </body>
 </html>
