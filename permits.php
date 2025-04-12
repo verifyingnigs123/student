@@ -41,11 +41,26 @@ if (isset($_GET['delete'])) {
 $permits = $conn->query("SELECT * FROM permits");
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permits</title>
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
+</head>
+<body>
+
 <h2>Add Permit</h2>
 <form method="POST" action="permits.php">
     <input type="hidden" name="add" value="1">
     LRN: <input type="text" name="student_id" required><br>
-    Permit Type: <input type="text" name="permit_type" required><br>
+    Permit Type: 
+    <select name="permit_type" required>
+        <option value="Prelim">Prelim</option>
+        <option value="Midterm">Midterm</option>
+        <option value="Final">Final</option>
+    </select><br>
     Status: 
     <select name="status" required>
         <option value="Approved">Approved</option>
@@ -81,9 +96,14 @@ if (isset($_GET['edit'])) {
     <form method="POST" action="permits.php">
         <input type="hidden" name="update" value="1">
         <input type="hidden" name="student_id" value="<?php echo htmlspecialchars($edit_permit['student_id']); ?>">
-        LRN : <input type="text" value="<?php echo htmlspecialchars($edit_permit['student_id']); ?>" readonly><br>
-        Permit Type: <input type="text" name="permit_type" value="<?php echo htmlspecialchars($edit_permit['permit_type']); ?>" required><br>
-        Status: 
+        LRN: <input type="text" value="<?php echo htmlspecialchars($edit_permit['student_id']); ?>" readonly><br>
+        Permit Type:
+        <select name="permit_type" required>
+            <option value="Prelim" <?php echo ($edit_permit['permit_type'] == 'Prelim') ? 'selected' : ''; ?>>Prelim</option>
+            <option value="Midterm" <?php echo ($edit_permit['permit_type'] == 'Midterm') ? 'selected' : ''; ?>>Midterm</option>
+            <option value="Final" <?php echo ($edit_permit['permit_type'] == 'Final') ? 'selected' : ''; ?>>Final</option>
+        </select><br>
+        Status:
         <select name="status" required>
             <option value="Approved" <?php echo ($edit_permit['status'] == 'Approved') ? 'selected' : ''; ?>>Approved</option>
             <option value="Pending" <?php echo ($edit_permit['status'] == 'Pending') ? 'selected' : ''; ?>>Pending</option>
@@ -92,3 +112,6 @@ if (isset($_GET['edit'])) {
         <input type="submit" value="Update Permit">
     </form>
 <?php } ?>
+
+</body>
+</html>

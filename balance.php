@@ -32,6 +32,18 @@ if (isset($_GET['delete'])) {
     $conn->query("DELETE FROM account_balance WHERE student_id='$student_id'");
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Balances</title>
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
+</head>
+<body>
+    
+</body>
+</html>
 
 <h2>Add Account Balance</h2>
 <form method="POST" action="balance.php">

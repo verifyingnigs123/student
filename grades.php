@@ -55,6 +55,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
 <html>
 <head>
     <title>Grades Management</title>
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
     <style>
         body { font-family: Arial; padding: 20px; }
         input[type="text"] { margin: 5px; }

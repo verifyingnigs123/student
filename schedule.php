@@ -51,6 +51,7 @@ if (isset($_GET['delete'])) {
 <html>
 <head>
     <title>Schedules & Subjects</title>
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
     <style>
         body { font-family: Arial; padding: 20px; }
         input[type="text"] { margin: 5px; }

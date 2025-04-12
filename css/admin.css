@@ -1,0 +1,154 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f0f4f8;
+    color: #2c3e50;
+    margin: 0;
+    padding: 30px;
+    line-height: 1.6;
+}
+
+/* Headings */
+h2, h3 {
+    color: #1e3a8a;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 22px;
+}
+
+/* Main Container */
+.container {
+    max-width: 960px;
+    margin: auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Inputs */
+input[type="text"] {
+    width: 100%;
+    padding: 12px 14px;
+    margin: 12px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #fff;
+}
+
+input[type="text"]:focus {
+    border-color: #0077b6;
+    outline: none;
+}
+
+/* Buttons */
+button {
+    padding: 12px 24px;
+    background-color: #0077b6;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+button:hover {
+    background-color: #005f87;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Add More Button */
+button.add-more {
+    background-color: #38b000;
+}
+
+button.add-more:hover {
+    background-color: #2d8600;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
+}
+
+th {
+    background-color: #0077b6;
+    color: #fff;
+}
+
+tr:hover td {
+    background-color: #f1faff;
+}
+
+/* Edit Form */
+.edit-form {
+    background: #ffffff;
+    padding: 25px;
+    margin-top: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Subject Fields */
+.subject-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.subject-row input {
+    flex: 1;
+}
+
+/* Links */
+a {
+    color: #0077b6;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .subject-row {
+        flex-direction: column;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    th, td {
+        font-size: 14px;
+    }
+}
