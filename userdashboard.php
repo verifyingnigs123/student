@@ -64,12 +64,15 @@ $address = $_SESSION['address'];
             <img src="log1.jpg" alt="Lathougs Uni Logo">
             <h2>Lathougs.univ</h2>
         </div>
-        <button class="menu-btn"><span class="icon">⏹</span> Overview</button>
-        <button class="menu-btn active"><span class="icon">👤</span> Student Profile</button>
-        <button class="menu-btn"><span class="icon">📖</span> View Grades</button>
-        <button class="menu-btn"><span class="icon">📅</span> Class Schedule & Subjects</button>
-        <button class="menu-btn"><span class="icon">💰</span> Account & Balance</button>
-        <button class="menu-btn"><span class="icon">📝</span> Permits</button>
+        <div class="menu">
+    <button class="menu-btn" onclick="loadPage('overview')"><span class="icon">⏹</span> Overview</button>
+    <button class="menu-btn" onclick="loadPage('student_profile')"><span class="icon">👤</span> Student Profile</button>
+    <button class="menu-btn" onclick="loadPage('view_grades')"><span class="icon">📖</span> View Grades</button>
+    <button class="menu-btn" onclick="loadPage('view_schedule')"><span class="icon">📅</span> Class Schedule & Subjects</button>
+    <button class="menu-btn" onclick="loadPage('view_balance')"><span class="icon">💰</span> Account & Balance</button>
+    <button class="menu-btn" onclick="loadPage('view_permits')"><span class="icon">📝</span> Permits</button>
+</div>
+
     </div>
 
     <div class="main-content">
@@ -77,15 +80,10 @@ $address = $_SESSION['address'];
             <div class="profile-section">
                 <div>
                 <h3><?php echo htmlspecialchars($first_name . " " . $last_name); ?></h3>
-                <p>LRN: <?php echo htmlspecialchars($student_id); ?></p>
-                <p>Email: <?php echo htmlspecialchars($email); ?></p>
-                <p>Birthdate: <?php echo htmlspecialchars($birthdate); ?></p>
-                <p>Address: <?php echo htmlspecialchars($address); ?></p>
-                <p>Role: <?php echo htmlspecialchars($role); ?></p>
+                
                 </div>
             </div>
             <div class="header-buttons">
-                <button class="edit-profile">Edit Profile</button>
                 <button class="logout-btn" onclick="logout()">Logout</button>
             </div>
         </div>
@@ -101,5 +99,6 @@ $address = $_SESSION['address'];
             window.location.href = "Signin.php"; 
         }
     </script>
+       <script src="user.js"></script>
 </body>
 </html>

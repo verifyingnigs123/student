@@ -7,9 +7,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
     $student_id = $_POST['student_id'];
     $permit_type = $_POST['permit_type'];
     $status = $_POST['status'];
+    $issue_date = $_POST['issue_date'];
+    $expiration_date = $_POST['expiration_date'];
 
     // Insert permit into the database
-    $sql = "INSERT INTO permits (student_id, permit_type, status) VALUES ('$student_id', '$permit_type', '$status')";
+    $sql = "INSERT INTO permits (student_id, permit_type, status, issue_date, expiration_date) VALUES ('$student_id', '$permit_type', '$status', '$issue_date', '$expiration_date')";
     if ($conn->query($sql) === TRUE) {
         echo "Permit added successfully!";
     } else {
@@ -22,8 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
     $student_id = $_POST['student_id'];
     $permit_type = $_POST['permit_type'];
     $status = $_POST['status'];
+    $issue_date = $_POST['issue_date'];
+    $expiration_date = $_POST['expiration_date'];
 
-    $sql = "UPDATE permits SET permit_type='$permit_type', status='$status' WHERE student_id='$student_id'";
+    $sql = "UPDATE permits SET permit_type='$permit_type', status='$status', issue_date='$issue_date', expiration_date='$expiration_date' WHERE student_id='$student_id'";
     if ($conn->query($sql) === TRUE) {
         echo "Permit updated successfully!";
     } else {
@@ -67,17 +71,21 @@ $permits = $conn->query("SELECT * FROM permits");
         <option value="Pending">Pending</option>
         <option value="Denied">Denied</option>
     </select><br>
+    Issue Date: <input type="date" name="issue_date" required><br>
+    Expiration Date: <input type="date" name="expiration_date" required><br>
     <input type="submit" value="Add Permit">
 </form>
 
 <h3>Existing Permits</h3>
 <table border="1" cellpadding="5">
-    <tr><th>LRN</th><th>Permit Type</th><th>Status</th><th>Actions</th></tr>
+    <tr><th>LRN</th><th>Permit Type</th><th>Status</th><th>Issue Date</th><th>Expiration Date</th><th>Actions</th></tr>
     <?php while($row = $permits->fetch_assoc()) { ?>
         <tr>
             <td><?php echo $row['student_id']; ?></td>
             <td><?php echo $row['permit_type']; ?></td>
             <td><?php echo $row['status']; ?></td>
+            <td><?php echo $row['issue_date']; ?></td>
+            <td><?php echo $row['expiration_date']; ?></td>
             <td>
                 <a href="permits.php?edit=<?php echo $row['student_id']; ?>">Edit</a> | 
                 <a href="permits.php?delete=<?php echo $row['student_id']; ?>" onclick="return confirm('Delete this permit?')">Delete</a>
@@ -109,6 +117,8 @@ if (isset($_GET['edit'])) {
             <option value="Pending" <?php echo ($edit_permit['status'] == 'Pending') ? 'selected' : ''; ?>>Pending</option>
             <option value="Denied" <?php echo ($edit_permit['status'] == 'Denied') ? 'selected' : ''; ?>>Denied</option>
         </select><br>
+        Issue Date: <input type="date" name="issue_date" value="<?php echo htmlspecialchars($edit_permit['issue_date']); ?>" required><br>
+        Expiration Date: <input type="date" name="expiration_date" value="<?php echo htmlspecialchars($edit_permit['expiration_date']); ?>" required><br>
         <input type="submit" value="Update Permit">
     </form>
 <?php } ?>

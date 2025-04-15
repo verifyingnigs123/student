@@ -22,8 +22,8 @@
         
         <div class="input-group">
           <i class="fas fa-id-card"></i>
-          <input type="text" name="studentID" id="studentIDLogin" placeholder="LRN" required>
-          <label for="studentIDLogin">LRN</label>
+          <input type="text" name="studentID" id="studentIDLogin" placeholder="Username" required>
+          <label for="studentIDLogin">Username</label>
         </div>
 
         <div class="input-group">
