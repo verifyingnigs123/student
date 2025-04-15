@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!isset($_SESSION['student_id'])) {
+    header("Location: Signin.php");
+    exit();
+}
+$studentId = $_SESSION['student_id'];
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,42 +14,36 @@
     <style>
         body { font-family: Arial; padding: 20px; }
         h2 { margin-bottom: 10px; }
-        input[type="text"] { padding: 5px; margin-right: 10px; }
-        button { padding: 6px 12px; }
         #message { margin-top: 15px; color: red; }
         #balance { margin-top: 20px; font-size: 18px; color: green; }
     </style>
 </head>
 <body>
 
-<h2>Enter Student ID to View Balance</h2>
-<input type="text" id="studentIdInput" placeholder="Enter Student ID">
-<button onclick="fetchBalance()">View Balance</button>
+<h2>Your Account Balance</h2>
 
 <p id="message"></p>
 <p id="balance"></p>
 
 <script>
+const studentId = <?php echo json_encode($studentId); ?>;
+
+document.addEventListener('DOMContentLoaded', fetchBalance);
+
 function fetchBalance() {
-    const studentId = document.getElementById('studentIdInput').value.trim();
     const message = document.getElementById('message');
     const balance = document.getElementById('balance');
     balance.textContent = '';
     message.textContent = 'Loading...';
 
-    if (studentId === '') {
-        message.textContent = 'Please enter a Student ID.';
-        return;
-    }
-
     fetch('view_balance_api.php?student_id=' + studentId)
         .then(response => response.json())
         .then(data => {
             if (data.balance !== undefined) {
-                balance.textContent = 'Balance: ' + data.balance;
+                balance.textContent = 'Balance: ₱' + parseFloat(data.balance).toFixed(2);
                 message.textContent = '';
             } else {
-                message.textContent = data.error || 'No balance found for this Student ID.';
+                message.textContent = data.error || 'No balance found for your account.';
             }
         })
         .catch(error => {

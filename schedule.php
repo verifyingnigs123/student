@@ -8,14 +8,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
     $subjects = $_POST['subject'];
     $days = $_POST['day'];
     $times = $_POST['time'];
+    $rooms = $_POST['room']; // New line for room data
 
     for ($i = 0; $i < count($subjects); $i++) {
         $subject = $conn->real_escape_string($subjects[$i]);
         $day = $conn->real_escape_string($days[$i]);
         $time = $conn->real_escape_string($times[$i]);
+        $room = $conn->real_escape_string($rooms[$i]); // New line for room data
 
-        $sql = "INSERT INTO schedules (student_id, subject, day, time)
-                VALUES ('$student_id', '$subject', '$day', '$time')";
+        $sql = "INSERT INTO schedules (student_id, subject, day, time, room)
+                VALUES ('$student_id', '$subject', '$day', '$time', '$room')"; // Modified query to include room
         $conn->query($sql);
     }
 }
@@ -26,16 +28,18 @@ if (isset($_POST['update'])) {
     $subjects = $_POST['subject'];
     $days = $_POST['day'];
     $times = $_POST['time'];
+    $rooms = $_POST['room']; // New line for room data
 
     // Update each schedule for the given student_id
     for ($i = 0; $i < count($subjects); $i++) {
         $subject = $conn->real_escape_string($subjects[$i]);
         $day = $conn->real_escape_string($days[$i]);
         $time = $conn->real_escape_string($times[$i]);
+        $room = $conn->real_escape_string($rooms[$i]); // New line for room data
 
         // Update the respective schedule
-        $sql = "UPDATE schedules SET subject='$subject', day='$day', time='$time' 
-                WHERE student_id='$student_id' AND subject='$subject'";
+        $sql = "UPDATE schedules SET subject='$subject', day='$day', time='$time', room='$room' 
+                WHERE student_id='$student_id' AND subject='$subject'"; // Modified query to include room
         $conn->query($sql);
     }
 }
@@ -71,7 +75,8 @@ if (isset($_GET['delete'])) {
         <div>
             Subject: <input type="text" name="subject[]" required>
             Day: <input type="text" name="day[]" required>
-            Time: <input type="text" name="time[]" required><br><br>
+            Time: <input type="text" name="time[]" required>
+            Room: <input type="text" name="room[]" required><br><br> <!-- Added room input -->
         </div>
     </div>
     <button type="button" onclick="addMore()">Add More Subject</button><br><br>
@@ -85,7 +90,8 @@ function addMore() {
     newGroup.innerHTML = `
         Subject: <input type="text" name="subject[]" required>
         Day: <input type="text" name="day[]" required>
-        Time: <input type="text" name="time[]" required><br><br>
+        Time: <input type="text" name="time[]" required>
+        Room: <input type="text" name="room[]" required><br><br> <!-- Added room input -->
     `;
     container.appendChild(newGroup);
 }
@@ -93,7 +99,7 @@ function addMore() {
 
 <h3>Existing Schedules</h3>
 <table>
-    <tr><th>LRN</th><th>Subject</th><th>Day</th><th>Time</th><th>Actions</th></tr>
+    <tr><th>LRN</th><th>Subject</th><th>Day</th><th>Time</th><th>Room</th><th>Actions</th></tr>
     <?php
     $result = $conn->query("SELECT * FROM schedules");
     while($row = $result->fetch_assoc()) {
@@ -102,6 +108,7 @@ function addMore() {
                 <td>{$row['subject']}</td>
                 <td>{$row['day']}</td>
                 <td>{$row['time']}</td>
+                <td>{$row['room']}</td> <!-- Display room data -->
                 <td>
                     <a href='?edit={$row['student_id']}'>Edit</a> | 
                     <a href='?delete={$row['id']}' onclick=\"return confirm('Delete this schedule?')\">Delete</a>
@@ -141,6 +148,7 @@ if (isset($_GET['edit'])) {
                     Subject: <input type="text" name="subject[]" value="<?php echo htmlspecialchars($schedule['subject']); ?>" required>
                     Day: <input type="text" name="day[]" value="<?php echo htmlspecialchars($schedule['day']); ?>" required>
                     Time: <input type="text" name="time[]" value="<?php echo htmlspecialchars($schedule['time']); ?>" required>
+                    Room: <input type="text" name="room[]" value="<?php echo htmlspecialchars($schedule['room']); ?>" required> <!-- Added room input -->
                 </div>
                 <br>
                 <?php endforeach; ?>

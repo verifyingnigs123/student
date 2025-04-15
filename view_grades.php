@@ -1,48 +1,77 @@
+<?php
+session_start();
+if (!isset($_SESSION['student_id'])) {
+    header("Location: Signin.php");
+    exit();
+}
+$studentId = $_SESSION['student_id'];
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>Student Grade Viewer</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h2 { margin-bottom: 10px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; display: none; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    #message { margin-top: 15px; color: red; }
+  </style>
 </head>
 <body>
-  <h2>View Your Grades</h2>
-  <label>Enter Student ID (LRN):</label>
-  <input type="text" id="studentId">
-  <button onclick="loadGrades()">View Grades</button>
 
-  <table border="1" style="margin-top: 20px;">
-    <thead>
-      <tr><th>Subject</th><th>Grade</th></tr>
-    </thead>
-    <tbody id="gradesTable">
-      <!-- Grades will be loaded here -->
-    </tbody>
-  </table>
+<h2>Your Grades</h2>
 
-  <script>
-    function loadGrades() {
-      const studentId = document.getElementById("studentId").value;
-      fetch(`view_grades_api.php?student_id=${studentId}`)
-        .then(response => response.json())
-        .then(data => {
-          const table = document.getElementById("gradesTable");
-          table.innerHTML = ""; // Clear previous results
+<p id="message"></p>
 
-          if (data.length === 0 || data.error) {
-            table.innerHTML = "<tr><td colspan='2'>No grades found or invalid ID.</td></tr>";
-            return;
-          }
+<table id="gradesTable">
+  <thead>
+    <tr><th>Subject</th><th>Grade</th></tr>
+  </thead>
+  <tbody>
+    <!-- Grades will be inserted here -->
+  </tbody>
+</table>
 
-          data.forEach(row => {
-            const tr = document.createElement("tr");
-            tr.innerHTML = `<td>${row.subject}</td><td>${row.grade}</td>`;
-            table.appendChild(tr);
-          });
-        })
-        .catch(err => {
-          console.error(err);
-          alert("Failed to load grades.");
+<script>
+  const studentId = <?php echo json_encode($studentId); ?>;
+
+  document.addEventListener("DOMContentLoaded", loadGrades);
+
+  function loadGrades() {
+    const table = document.getElementById("gradesTable");
+    const tbody = table.querySelector("tbody");
+    const message = document.getElementById("message");
+
+    tbody.innerHTML = "";
+    message.textContent = "Loading...";
+    table.style.display = "none";
+
+    fetch(`view_grades_api.php?student_id=${studentId}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.length === 0 || data.error) {
+          message.textContent = "No grades found for your account.";
+          return;
+        }
+
+        data.forEach(row => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `<td>${row.subject}</td><td>${row.grade}</td>`;
+          tbody.appendChild(tr);
         });
-    }
-  </script>
+
+        message.textContent = "";
+        table.style.display = "table";
+      })
+      .catch(error => {
+        console.error(error);
+        message.textContent = "Failed to load grades.";
+      });
+  }
+</script>
+
 </body>
 </html>

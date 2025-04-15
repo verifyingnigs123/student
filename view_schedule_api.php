@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 if (isset($_GET['student_id'])) {
     $student_id = $_GET['student_id'];
 
-    $stmt = $conn->prepare("SELECT subject, day, time FROM schedules WHERE student_id = ?");
+    $stmt = $conn->prepare("SELECT subject, day, time,room FROM schedules WHERE student_id = ?");
     $stmt->bind_param("s", $student_id);
     $stmt->execute();
     $result = $stmt->get_result();

@@ -10,6 +10,7 @@ if (!isset($_SESSION['student_id'])) {
 // Retrieve session values
 $first_name = $_SESSION['first_name'] ?? "Student";
 $last_name = $_SESSION['last_name'] ?? "";
+$student_id = $_SESSION['student_id'] ?? "Not Provided";
 $email = $_SESSION['email'] ?? "Not Provided";
 $birthdate = $_SESSION['birthdate'] ?? "Not Provided";
 $address = $_SESSION['address'] ?? "Not Provided";
@@ -30,6 +31,7 @@ $role = $_SESSION['role'] ?? "User";
         <div class="header">
             <div class="profile-section">
                 <h3><?php echo htmlspecialchars($first_name . " " . $last_name); ?> 
+                <p><?php echo htmlspecialchars($student_id); ?></p>
                 <p><?php echo htmlspecialchars($email); ?></p>
             </div>
             <div class="header-buttons">
