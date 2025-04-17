@@ -54,6 +54,9 @@ if (isset($_GET['delete'])) {
 </form>
 
 <h3>Existing Account Balances</h3>
+
+<input type="text" id="searchInput" placeholder="Search" style="margin-top: 20px; padding: 5px; width: 300px;">
+
 <table border="1" cellpadding="5">
     <tr><th>LRN</th><th>Balance</th><th>Actions</th></tr>
     <?php
@@ -86,3 +89,21 @@ if (isset($_GET['edit'])) {
         <input type="submit" value="Update Balance">
     </form>
 <?php } ?>
+
+<script>
+document.getElementById('searchInput').addEventListener('keyup', function() {
+    const filter = this.value.toUpperCase();
+    const rows = document.querySelectorAll('table tr:not(:first-child)');
+
+    rows.forEach(row => {
+        const lrn = row.cells[0].textContent.toUpperCase();
+        const balance = row.cells[1].textContent.toUpperCase();
+        if (lrn.includes(filter) || balance.includes(filter)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+</script>
+

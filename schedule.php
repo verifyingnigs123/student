@@ -98,6 +98,10 @@ function addMore() {
 </script>
 
 <h3>Existing Schedules</h3>
+<div style="margin: 20px 0;">
+    <input type="text" id="searchInput" placeholder="Search" 
+           style="padding: 8px; width: 300px; border: 1px solid #ccc; border-radius: 4px;">
+</div>
 <table>
     <tr><th>LRN</th><th>Subject</th><th>Day</th><th>Time</th><th>Room</th><th>Actions</th></tr>
     <?php
@@ -158,6 +162,24 @@ if (isset($_GET['edit'])) {
         </form>
     </div>
 <?php endif; } ?>
+
+<script>
+document.getElementById('searchInput').addEventListener('keyup', function() {
+    const filter = this.value.toUpperCase();
+    const rows = document.querySelectorAll('table tr:not(:first-child)');
+
+    rows.forEach(row => {
+        const lrn = row.cells[0].textContent.toUpperCase();
+        const subject = row.cells[1].textContent.toUpperCase();
+        if (lrn.includes(filter) || subject.includes(filter)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+</script>
+
 
 </body>
 </html>

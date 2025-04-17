@@ -77,6 +77,9 @@ $permits = $conn->query("SELECT * FROM permits");
 </form>
 
 <h3>Existing Permits</h3>
+
+<input type="text" id="searchInput" placeholder="Search" style="margin-top: 20px; padding: 5px; width: 300px;">
+
 <table border="1" cellpadding="5">
     <tr><th>LRN</th><th>Permit Type</th><th>Status</th><th>Issue Date</th><th>Expiration Date</th><th>Actions</th></tr>
     <?php while($row = $permits->fetch_assoc()) { ?>
@@ -122,6 +125,24 @@ if (isset($_GET['edit'])) {
         <input type="submit" value="Update Permit">
     </form>
 <?php } ?>
+
+<script>
+document.getElementById('searchInput').addEventListener('keyup', function() {
+    const filter = this.value.toUpperCase();
+    const rows = document.querySelectorAll('table tr:not(:first-child)');
+
+    rows.forEach(row => {
+        const lrn = row.cells[0].textContent.toUpperCase();
+        const permitType = row.cells[1].textContent.toUpperCase();
+        const status = row.cells[2].textContent.toUpperCase();
+        if (lrn.includes(filter) || permitType.includes(filter) || status.includes(filter)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+</script>
 
 </body>
 </html>

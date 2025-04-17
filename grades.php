@@ -81,6 +81,9 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
 </form>
 
 <h3>Existing Grades</h3>
+
+<input type="text" id="searchInput" placeholder="Search" style="margin-top: 20px; padding: 5px; width: 300px;">
+
 <table>
     <tr><th>LRN</th><th>Subject</th><th>Grade</th><th>Actions</th></tr>
     <?php
@@ -149,6 +152,21 @@ function addMore() {
     `;
     document.getElementById("addSubjects").appendChild(div);
 }
+document.getElementById("searchInput").addEventListener("keyup", function () {
+    const filter = this.value.toLowerCase();
+    const rows = document.querySelectorAll("table tr:not(:first-child)");
+
+    rows.forEach(row => {
+        const lrn = row.cells[0].textContent.toLowerCase();
+        const subject = row.cells[1].textContent.toLowerCase();
+        if (lrn.includes(filter) || subject.includes(filter)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+});
+
 </script>
 
 </body>
