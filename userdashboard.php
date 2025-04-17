@@ -7,12 +7,11 @@ $database = "student_registration";
 
 $conn = new mysqli($servername, $username, $password, $database);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if the user is logged in
 if (!isset($_SESSION['student_id'])) {
     header("Location: Signin.php");
     exit();
@@ -30,22 +29,14 @@ $result = $stmt->get_result();
 if ($result->num_rows === 1) {
     $user = $result->fetch_assoc();
     
-    // Store fetched values in session for later use
-    $_SESSION['first_name'] = $user['first_name'] ?? "";
-    $_SESSION['last_name'] = $user['last_name'] ?? "";
-    $_SESSION['email'] = $user['email'] ?? "Not Available";
-    $_SESSION['birthdate'] = $user['birthdate'] ?? "Not Available";
-    $_SESSION['role'] = $user['role'] ?? "User"; // Default to User if no role is found
-    $_SESSION['address'] = ($user['street_address'] ?? "Unknown") . ', ' . ($user['city'] ?? "Unknown") . ', ' . ($user['state_province'] ?? "Unknown");
+
+    $_SESSION['first_name'] = $user['fName'] ?? "";
+    $_SESSION['last_name'] = $user['lName'] ?? "";
+
 }
 
-// Assign session values to variables
 $first_name = $_SESSION['first_name'];
 $last_name = $_SESSION['last_name'];
-$email = $_SESSION['email'];
-$birthdate = $_SESSION['birthdate'];
-$role = $_SESSION['role'];
-$address = $_SESSION['address'];
 ?>
 
 <!DOCTYPE html>
@@ -65,22 +56,20 @@ $address = $_SESSION['address'];
             <h2>Lathougs.univ</h2>
         </div>
         <div class="menu">
-    <button class="menu-btn" onclick="loadPage('overview')"><span class="icon">⏹</span> Overview</button>
-    <button class="menu-btn" onclick="loadPage('student_profile')"><span class="icon">👤</span> Student Profile</button>
-    <button class="menu-btn" onclick="loadPage('view_grades')"><span class="icon">📖</span> View Grades</button>
-    <button class="menu-btn" onclick="loadPage('view_schedule')"><span class="icon">📅</span> Class Schedule & Subjects</button>
-    <button class="menu-btn" onclick="loadPage('view_balance')"><span class="icon">💰</span> Account & Balance</button>
-    <button class="menu-btn" onclick="loadPage('view_permits')"><span class="icon">📝</span> Permits</button>
-</div>
-
+            <button class="menu-btn" onclick="loadPage('overview')"><span class="icon">⏹</span> Overview</button>
+            <button class="menu-btn" onclick="loadPage('student_profile')"><span class="icon">👤</span> Student Profile</button>
+            <button class="menu-btn" onclick="loadPage('view_grades')"><span class="icon">📖</span> View Grades</button>
+            <button class="menu-btn" onclick="loadPage('view_schedule')"><span class="icon">📅</span> Class Schedule & Subjects</button>
+            <button class="menu-btn" onclick="loadPage('view_balance')"><span class="icon">💰</span> Account & Balance</button>
+            <button class="menu-btn" onclick="loadPage('view_permits')"><span class="icon">📝</span> Permits</button>
+        </div>
     </div>
 
     <div class="main-content">
         <div class="header">
             <div class="profile-section">
                 <div>
-                <h3><?php echo htmlspecialchars($first_name . " " . $last_name); ?></h3>
-                
+                    <h3><?php echo htmlspecialchars($first_name . " " . $last_name); ?></h3>
                 </div>
             </div>
             <div class="header-buttons">
@@ -89,7 +78,7 @@ $address = $_SESSION['address'];
         </div>
 
         <div class="dashboard-content">
-        <h1>Welcome, <?php echo htmlspecialchars(ucwords($last_name)); ?>! 🎉</h1>
+            <h1>Welcome, <?php echo htmlspecialchars($last_name); ?>! 🎉</h1>
             <p>Manage your academic journey with ease.</p>
         </div>
     </div>
@@ -99,6 +88,7 @@ $address = $_SESSION['address'];
             window.location.href = "Signin.php"; 
         }
     </script>
-       <script src="user.js"></script>
+
+    <script src="user.js"></script>
 </body>
 </html>

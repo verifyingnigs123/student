@@ -34,7 +34,7 @@
                 title="Valid extensions: Jr, Sr, II, III, IV, V (leave blank if none)">
 
                 <input type="date" name="birthdate" id= "birthdate"required>
-                <input type="number" name="age" placeholder= "Age" required>
+                <input type="number" name="age" placeholder= "Age">
             </div>
             <div class="form-group">
                 <input type="text" name="place" placeholder= "Place of Birth" 
