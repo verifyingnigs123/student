@@ -66,7 +66,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare("INSERT INTO students (fName, mName, lName, extName, birthdate, age, place, student_id, religion, gender, street, city, state, country, zip, email, contactNumber, strand, level, semester, school_year, role) 
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    $stmt->bind_param("ssssssssssssssssssssss", $first_name, $middle_name, $last_name, $ext_name, $birthdate, $age, $place_of_birth, $student_id, $religion, $gender, $street_address, $city, $state_province, $country, $zip_code, $email, $contact_number, $strand, $level, $semester, $schoolyear , $role);
+                        
+if (!$stmt) {
+    die("Prepare failed: " . $conn->error);
+}
+
+    $stmt->bind_param("ssssssssssssssssssssss", $first_name, $middle_name, $last_name, $ext_name, $birthdate, $age, $place_of_birth, $student_id, $religion, $gender, $street_address, $city, $state_province, $country, $zip_code, $email, $contact_number, $strand, $level, $semester, $school_year , $role);
 
     if ($stmt->execute()) {
         echo "<script>alert('Registration successful!'); window.location.href='Signin.php';</script>";

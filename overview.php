@@ -1,20 +1,40 @@
 <?php
 session_start();
 
-// Redirect if not logged in
 if (!isset($_SESSION['student_id'])) {
     header("Location: Signin.php");
     exit();
 }
 
-// Retrieve session values
-$first_name = $_SESSION['first_name'] ?? "Student";
-$last_name = $_SESSION['last_name'] ?? "";
-$student_id = $_SESSION['student_id'] ?? "Not Provided";
-$email = $_SESSION['email'] ?? "Not Provided";
-$birthdate = $_SESSION['birthdate'] ?? "Not Provided";
-$address = $_SESSION['address'] ?? "Not Provided";
-$role = $_SESSION['role'] ?? "User";
+$student_id = $_SESSION['student_id'];
+
+// Connect to DB
+$mysqli = new mysqli("localhost", "root", "", "student_registration");
+if ($mysqli->connect_error) {
+    die("Database connection failed: " . $mysqli->connect_error);
+}
+
+
+$sql = "SELECT * FROM students WHERE student_id = ?";
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param("s", $student_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 1) {
+    $student = $result->fetch_assoc();
+} else {
+    echo "Student record not found.";
+    exit();
+}
+
+
+$first_name = $student['fName'];
+$last_name = $student['lName'];
+$email = $student['email'];
+$birthdate = $student['birthdate'];
+$address = $student['street'] . ', ' . $student['city'] . ', ' . $student['state'] . ', ' . $student['country'] . ', ' . $student['zip'];
+$role = $student['role'];
 ?>
 
 <!DOCTYPE html>
@@ -31,8 +51,7 @@ $role = $_SESSION['role'] ?? "User";
         <div class="header">
             <div class="profile-section">
                 <h3><?php echo htmlspecialchars($first_name . " " . $last_name); ?> 
-                <p><?php echo htmlspecialchars($student_id); ?></p>
-                <p><?php echo htmlspecialchars($email); ?></p>
+                 <p><?php echo htmlspecialchars($student_id); ?></p>
             </div>
             <div class="header-buttons">
                 <a href="userdashboard.php" class="back-btn">✖️</a>
