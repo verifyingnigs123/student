@@ -28,6 +28,7 @@ $result = $conn->query("SELECT * FROM students");
                 <th>Email</th>
                 <th>Strand</th>
                 <th>Level</th>
+                <th>School Year</th>
                 <th>Actions</th>
             </tr>
             <?php while ($row = $result->fetch_assoc()): ?>
@@ -40,6 +41,7 @@ $result = $conn->query("SELECT * FROM students");
                 <td><?= htmlspecialchars($row['email']) ?></td>
                 <td><?= htmlspecialchars($row['strand']) ?></td>
                 <td><?= htmlspecialchars($row['level']) ?></td>
+                <td><?= htmlspecialchars($row['school_year']) ?></td>
                 <td>
                     <a href="edit_student.php?id=<?= $row['id'] ?>" class="btn edit-btn">Edit</a>
                     <a href="delete_student.php?id=<?= $row['id'] ?>" class="btn delete-btn" onclick="return confirm('Are you sure?')">Delete</a>

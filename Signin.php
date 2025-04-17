@@ -17,7 +17,7 @@
 
     <!-- Login Form -->
     <div class="container box" id="signIn">
-      <h1 class="form-title">Welcome To Lathoug's University!</h1>
+      <h1 class="form-title">Lathoug's University!</h1>
       <form method="post" action="login.php">
         
         <div class="input-group">
