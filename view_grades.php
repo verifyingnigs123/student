@@ -18,11 +18,25 @@ $studentId = $_SESSION['student_id'];
     th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
     th { background-color: #f2f2f2; }
     #message { margin-top: 15px; color: red; }
+
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px; 
+      font-size: 24px;
+      background-color: transparent;
+      border: none;
+      color: #000;
+      cursor: pointer;
+    }
+    
   </style>
 </head>
 <body>
 
-<h2>Your Grades</h2>
+<h2>Your Grades</h2> 
+
+<button class="back-btn" onclick="window.history.back();">X</button>
 
 <p id="message"></p>
 

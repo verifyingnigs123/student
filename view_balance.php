@@ -16,12 +16,24 @@ $studentId = $_SESSION['student_id'];
         h2 { margin-bottom: 10px; }
         #message { margin-top: 15px; color: red; }
         #balance { margin-top: 20px; font-size: 18px; color: green; }
+
+        .back-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px; /* Move the button to the right side */
+      font-size: 24px;
+      background-color: transparent;
+      border: none;
+      color: #000;
+      cursor: pointer;
+    }
+    
     </style>
 </head>
 <body>
 
 <h2>Your Account Balance</h2>
-
+<button class="back-btn" onclick="window.history.back();">X</button>
 <p id="message"></p>
 <p id="balance"></p>
 

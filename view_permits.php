@@ -14,6 +14,7 @@ $studentId = $_SESSION['student_id'];
 <html>
 <head>
     <title>View Permits</title>
+    <button class="back-btn" onclick="window.history.back();">X</button>
     <style>
         body { font-family: Arial; padding: 20px; }
         h2 { margin-bottom: 10px; }
@@ -21,6 +22,18 @@ $studentId = $_SESSION['student_id'];
         th, td { border: 1px solid #888; padding: 10px; text-align: left; }
         th { background-color: #f2f2f2; }
         #message { margin-top: 15px; color: red; }
+
+        .back-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px; /* Move the button to the right side */
+      font-size: 24px;
+      background-color: transparent;
+      border: none;
+      color: #000;
+      cursor: pointer;
+    }
+    
     </style>
 </head>
 <body>
