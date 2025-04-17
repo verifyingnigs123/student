@@ -107,7 +107,7 @@ $role = $student['role'];
 
         .overview-card {
             background: #f9f9f9;
-            padding: 20px;
+            padding: 30px;
             border-radius: 12px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             flex: 1 1 250px;
