@@ -26,7 +26,7 @@ if (isset($_GET['student_id'])) {
     if (count($permits) > 0) {
         echo json_encode($permits);
     } else {
-        echo json_encode(["error" => "No permit found for this Student ID"]);
+        echo json_encode(["error" => "No permit found for your account"]);
     }
 } else {
     echo json_encode(["error" => "Student ID not provided"]);

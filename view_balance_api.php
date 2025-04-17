@@ -24,7 +24,7 @@ if (isset($_GET['student_id'])) {
         echo json_encode(["balance" => $row['balance']]);
     } else {
         // If no balance is found, return an error
-        echo json_encode(["error" => "Student ID not found"]);
+        echo json_encode(["error" => "No account balance found for your account"]);
     }
 } else {
     echo json_encode(["error" => "Student ID not provided"]);
