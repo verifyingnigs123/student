@@ -17,7 +17,7 @@
             <h3>transferee Student Registration Form</h3>
             <p>Fill out the form to access the SMS and view your records.</p>
         </div>
-        <form action="register.php" method="POST">
+        <form action="register_old.php" method="POST">
             <h2>Student Information</h2>
             <div class="form-group">
                 <input type="text" name="fName" placeholder="First Name" 
