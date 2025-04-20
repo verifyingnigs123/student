@@ -58,6 +58,5 @@ if ($result->num_rows === 1) {
         <p><strong>Semester:</strong> <?php echo htmlspecialchars($student['semester']); ?></p>
         <p><strong>School Year:</strong> <?php echo htmlspecialchars($student['school_year']); ?></p>
         <p><strong>Role:</strong> <?php echo htmlspecialchars($student['role']); ?></p>
-        <p><strong>Registered At:</strong> <?php echo htmlspecialchars($student['registered_at']); ?></p>
     </div>
 </div>
