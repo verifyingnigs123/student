@@ -34,7 +34,7 @@ $last_name = $student['lName'];
 $email = $student['email'];
 $birthdate = $student['birthdate'];
 $address = $student['street'] . ', ' . $student['city'] . ', ' . $student['state'] . ', ' . $student['country'] . ', ' . $student['zip'];
-$role = $student['role'];
+$student_type = $student['student_type'];
 ?>
 
 <!DOCTYPE html>
@@ -80,8 +80,8 @@ $role = $student['role'];
                     <p><?php echo htmlspecialchars($address); ?></p>
                 </div>
                 <div class="overview-card">
-                    <h3>🧾 Role</h3>
-                    <p><?php echo htmlspecialchars($role); ?></p>
+                    <h3>🧾 Student Type</h3>
+                    <p><?php echo htmlspecialchars($student_type); ?></p>
                 </div>
             </div>
 

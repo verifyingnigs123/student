@@ -17,10 +17,12 @@ $result = $conn->query("SELECT * FROM students");
 <body>
     <div class="container">
         <h1>Student List</h1>
-        <a href="insert_student.php"><button class="btn" style="background: #007bff;">Add New Student</button></a>
+        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search by Last Name or Student ID..." style="margin-bottom: 15px; padding: 8px; width: 100%; font-size: 16px;">
+
         <table>
             <tr>
                 <th>ID</th>
+                <th>Student Type</th>
                 <th>First Name</th>
                 <th>Middle Name</th>
                 <th>Last Name</th>
@@ -28,12 +30,14 @@ $result = $conn->query("SELECT * FROM students");
                 <th>Email</th>
                 <th>Strand</th>
                 <th>Level</th>
+                <th>Semester</th>
                 <th>School Year</th>
                 <th>Actions</th>
             </tr>
             <?php while ($row = $result->fetch_assoc()): ?>
             <tr>
                 <td><?= htmlspecialchars($row['id']) ?></td>
+                <td><?= htmlspecialchars($row['student_type']) ?></td>
                 <td><?= htmlspecialchars($row['fName']) ?></td>
                 <td><?= htmlspecialchars($row['mName']) ?></td>
                 <td><?= htmlspecialchars($row['lName']) ?></td>
@@ -41,6 +45,7 @@ $result = $conn->query("SELECT * FROM students");
                 <td><?= htmlspecialchars($row['email']) ?></td>
                 <td><?= htmlspecialchars($row['strand']) ?></td>
                 <td><?= htmlspecialchars($row['level']) ?></td>
+                <td><?= htmlspecialchars($row['semester']) ?></td>
                 <td><?= htmlspecialchars($row['school_year']) ?></td>
                 <td>
                     <a href="edit_student.php?id=<?= $row['id'] ?>" class="btn edit-btn">Edit</a>
@@ -50,5 +55,24 @@ $result = $conn->query("SELECT * FROM students");
             <?php endwhile; ?>
         </table>
     </div>
+
+    <script>
+function filterTable() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const rows = document.querySelectorAll("table tr:not(:first-child)"); // exclude header row
+
+    rows.forEach(row => {
+        const lastName = row.cells[4]?.textContent.toLowerCase(); // Last Name column
+        const studentID = row.cells[5]?.textContent.toLowerCase(); // Student ID column
+
+        if (lastName.includes(input) || studentID.includes(input)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+}
+</script>
+
 </body>
 </html>

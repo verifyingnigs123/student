@@ -45,7 +45,7 @@
     <script>
         // Redirect to enroll.php when "Enroll" button is clicked
         document.getElementById("signUpButton").addEventListener("click", function() {
-            window.location.href = "Option.php";
+            window.location.href = "enroll.php";
         });
     </script>
 
