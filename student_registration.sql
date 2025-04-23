@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2025 at 04:32 PM
+-- Generation Time: Apr 23, 2025 at 04:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -43,7 +43,8 @@ INSERT INTO `account_balance` (`id`, `student_id`, `balance`) VALUES
 (3, 2311600104, '1200.00'),
 (4, 2311600101, '19000.00'),
 (5, 2311600100, '2000.00'),
-(6, 123412131313, '1100.00');
+(6, 123412131313, '1100.00'),
+(7, 231160010211, '500.00');
 
 -- --------------------------------------------------------
 
@@ -70,8 +71,10 @@ INSERT INTO `grades` (`id`, `student_id`, `subject`, `grade`) VALUES
 (22, 2311600101, 'Arts', '81'),
 (23, 2311600101, 'PE', '86'),
 (24, 123456, 'Math', '75'),
-(25, 123412131313, 'Math', '89'),
-(26, 231160010212, 'Math', '89');
+(26, 231160010212, 'Math', '89'),
+(27, 123412131313, 'Math', '90'),
+(28, 231160010213, 'Arts', '89'),
+(29, 231160010213, 'Religon', '75');
 
 -- --------------------------------------------------------
 
@@ -98,7 +101,8 @@ INSERT INTO `login` (`id`, `student_id`, `password`) VALUES
 (6, '231160010325', 'Lathougs'),
 (7, '123412131313', 'Lathougs'),
 (8, '231160010212', 'Lathougs'),
-(9, '231160010213', 'Lathougs');
+(9, '231160010213', 'Lathougs'),
+(10, '231160010211', 'Lathougs');
 
 -- --------------------------------------------------------
 
@@ -157,6 +161,7 @@ INSERT INTO `schedules` (`id`, `student_id`, `subject`, `day`, `time`, `room`) V
 
 CREATE TABLE `students` (
   `id` int(11) NOT NULL,
+  `student_type` varchar(50) DEFAULT NULL,
   `fName` varchar(50) DEFAULT NULL,
   `mName` varchar(50) DEFAULT NULL,
   `lName` varchar(50) DEFAULT NULL,
@@ -178,7 +183,6 @@ CREATE TABLE `students` (
   `level` varchar(20) DEFAULT NULL,
   `semester` varchar(20) DEFAULT NULL,
   `school_year` varchar(20) DEFAULT NULL,
-  `role` varchar(20) DEFAULT 'user',
   `registered_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -186,9 +190,15 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `fName`, `mName`, `lName`, `extName`, `birthdate`, `age`, `place`, `student_id`, `religion`, `gender`, `street`, `city`, `state`, `country`, `zip`, `email`, `contactNumber`, `strand`, `level`, `semester`, `school_year`, `role`, `registered_at`) VALUES
-(1, 'Rence', 'Diamoda', 'Lagsil', '', '2003-08-12', 18, 'pol', '123412131313', 'ambot', 'Male', 'Polomolok, South Cotabato', 'Polomolok', 'South Cotabato', 'Philippines', '9504', 'lagsilrence@gmail.com', '09071787238', 'HUMSS', 'Grade 11', '2nd Semester', '2026-2027', 'user', '2025-04-17 08:00:33'),
-(22, 'Justine', 'laso', 'moril', '', '2004-08-12', 0, 'Polomolok', '231160010213', 'ambot', 'Male', 'Polomolok, South Cotabato', 'Polomolok', 'South Cotabato', 'Philippines', '9504', 'fauzi@gmail.com', '09071787239', 'TVL', 'Grade 11', '1st Semester', NULL, 'user', '2025-04-17 11:50:03');
+INSERT INTO `students` (`id`, `student_type`, `fName`, `mName`, `lName`, `extName`, `birthdate`, `age`, `place`, `student_id`, `religion`, `gender`, `street`, `city`, `state`, `country`, `zip`, `email`, `contactNumber`, `strand`, `level`, `semester`, `school_year`, `registered_at`) VALUES
+(1, 'New Student', 'Justine', '', 'Moril', '', '2003-08-12', 12, 'Polomolok', '231160010213', 'ambot', 'Male', 'Polomolok, South Cotabato', 'Polomolok', 'South Cotabato', 'Philippines', '9504', 'ffauzi@gmail.com', '09071787237', 'ABM', 'Grade 11', '1st Semester', '2025-2026', '2025-04-23 11:16:47'),
+(2, 'New Student', 'Justine', 'Diamoda', 'moril', '', '2003-08-12', 12, 'Polomolok', '231160010213', 'ambot', 'Male', 'Polomolok, South Cotabato', 'Polomolok', 'South Cotabato', 'Philippines', '9504', 'ffauzi@gmail.com', '09071787237', 'ABM', 'Grade 11', '1st Semester', '2025-2026', '2025-04-23 11:17:00'),
+(3, 'Old Student', 'Justine', '', 'moril', '', '0000-00-00', 0, '', '231160010212', '', '', '', '', '', '', '', 'ffauzi@gmail.com', '09071787237', 'STEM', 'Grade 11', '1st Semester', '', '2025-04-23 11:22:12'),
+(4, 'Old Student', 'Johar', '', 'Gogo', '', '2003-08-12', 20, 'Polomolok', '231160010211', 'ambot', 'Male', 'Brgy. Poblacion', 'Polomolok', 'South Cotabato', 'Philippines', '9504', 'ffauzi@gmail.com', '09071787237', 'GAS', 'Grade 12', '1st Semester', '2025-2026', '2025-04-23 11:27:33'),
+(5, 'Old Student', 'hehe', '', 'Gogor', '', '0000-00-00', 0, '', '231160010210', '', '', '', '', '', '', '', 'ffauzi@gmail.com', '09071787237', 'STEM', 'Grade 11', '1st Semester', '', '2025-04-23 11:31:21'),
+(6, 'Old Student', 'hehe', '', 'Gogor', '', '2003-08-12', 0, '', '231160010210', '', '', '', '', '', '', '', 'ffauzi@gmail.com', '09071787237', 'HUMSS', 'Grade 11', '1st Semester', '', '2025-04-23 11:34:16'),
+(7, 'Transferee Student', 'Raph', 'Sho', 'Visayas', '', '2003-08-12', 21, 'Polomolok', '231160010213', 'ambot', 'Male', 'Polomolok, South Cotabato', 'Polomolok', 'South Cotabato', 'Philippines', '9504', 'fauzi@gmail.com', '09071787237', 'HUMSS', 'Grade 11', '2nd Semester', '2025-2026', '2025-04-23 11:35:58'),
+(8, 'Old Student', 'Raph', '', 'Visayas', '', '0000-00-00', 21, '', '231160010201', '', '', '', '', '', '', '', 'fauzi@gmail.com', '09071787237', 'STEM', 'Grade 12', '1st Semester', '', '2025-04-23 11:40:48');
 
 --
 -- Indexes for dumped tables
@@ -228,10 +238,7 @@ ALTER TABLE `schedules`
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `student_id` (`student_id`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `contactNumber` (`contactNumber`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -241,19 +248,19 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `account_balance`
 --
 ALTER TABLE `account_balance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `grades`
 --
 ALTER TABLE `grades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `permits`
@@ -271,7 +278,7 @@ ALTER TABLE `schedules`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
