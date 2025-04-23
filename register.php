@@ -25,26 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'semester', 'school_year'
     ];
 
-    // Prepare SQL and bind parameters
-    $sql = "INSERT INTO students (student_type, fName, mName, lName, extName, birthdate, age, place, student_id, religion, gender, street, city, state, country, zip, email, contactNumber, strand, level, semester, school_year)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    
-    $stmt = $conn->prepare($sql);
+    // Assign contact number to variable for checking
+    $contact_number = $_POST['contactNumber'] ?? '';
 
-    if (!$stmt) {
-        die("Prepare failed: " . $conn->error);
-    }
-
-    // Dynamically bind parameters
-    $params = [];
-    foreach ($fields as $field) {
-        $params[] = $_POST[$field] ?? '';
-    }
-
-<<<<<<< HEAD
-    // Bind all 22 strings (change types if necessary, e.g., 'i' for integer)
-    $stmt->bind_param(str_repeat('s', count($params)), ...$params);
-=======
     // Check for existing contact number
     $checkContact = $conn->prepare("SELECT contactNumber FROM students WHERE contactNumber = ?");
     $checkContact->bind_param("s", $contact_number);
@@ -56,19 +39,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $checkContact->close();
 
-    // Proceed with insert
-    $stmt = $conn->prepare("INSERT INTO students (fName, mName, lName, extName, birthdate, age, place, student_id, religion, gender, street, city, state, country, zip, email, contactNumber, strand, level, semester, school_year, role) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    // Prepare SQL
+    $sql = "INSERT INTO students (student_type, fName, mName, lName, extName, birthdate, age, place, student_id, religion, gender, street, city, state, country, zip, email, contactNumber, strand, level, semester, school_year)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-                        
-if (!$stmt) {
-    die("Prepare failed: " . $conn->error);
-}
+    $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
+    }
 
-    $stmt->bind_param("ssssssssssssssssssssss", $first_name, $middle_name, $last_name, $ext_name, $birthdate, $age, $place_of_birth, $student_id, $religion, $gender, $street_address, $city, $state_province, $country, $zip_code, $email, $contact_number, $strand, $level, $semester, $schoolyear , $role);
->>>>>>> cd3c65d95d1205791ecba911535382ceb8f9bac7
+    // Bind parameters
+    $params = [];
+    foreach ($fields as $field) {
+        $params[] = $_POST[$field] ?? '';
+    }
 
-    // Execute and check result
+    $stmt->bind_param(str_repeat('s', count($params)), ...$params);
+
+    // Execute and redirect
     if ($stmt->execute()) {
         echo "<script>
                 alert('New record created successfully');
