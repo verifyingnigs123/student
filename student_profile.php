@@ -28,6 +28,7 @@ if ($result->num_rows === 1) {
 }
 ?>
 
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -196,6 +197,37 @@ if ($result->num_rows === 1) {
             <div class="info-item"><strong>School Year</strong><?php echo htmlspecialchars($student['school_year']); ?></div>
             <div class="info-item"><strong>Registered At</strong><?php echo htmlspecialchars($student['registered_at']); ?></div>
         </div>
+=======
+<div class="profile-section">
+    <h2>Student Profile</h2>
+    <div>
+        <h3>
+            <?php echo htmlspecialchars($student['fName'] . ' ' . $student['mName'] . ' ' . $student['lName'] . ' ' . $student['extName']); ?>
+        </h3>
+        <p><strong>LRN:</strong> <?php echo htmlspecialchars($student['student_id']); ?></p>
+        <p><strong>Email:</strong> <?php echo htmlspecialchars($student['email']); ?></p>
+        <p><strong>Contact Number:</strong> <?php echo htmlspecialchars($student['contactNumber']); ?></p>
+        <p><strong>Birthdate:</strong> <?php echo htmlspecialchars($student['birthdate']); ?></p>
+        <p><strong>Age:</strong> <?php echo htmlspecialchars($student['age']); ?></p>
+        <p><strong>Gender:</strong> <?php echo htmlspecialchars($student['gender']); ?></p>
+        <p><strong>Place of Birth:</strong> <?php echo htmlspecialchars($student['place']); ?></p>
+        <p><strong>Religion:</strong> <?php echo htmlspecialchars($student['religion']); ?></p>
+        <p><strong>Address:</strong> 
+            <?php 
+                echo htmlspecialchars($student['street'] . ', ' . 
+                                      $student['city'] . ', ' . 
+                                      $student['state'] . ', ' . 
+                                      $student['country'] . ', ' . 
+                                      $student['zip']); 
+            ?>
+        </p>
+        <p><strong>Strand:</strong> <?php echo htmlspecialchars($student['strand']); ?></p>
+        <p><strong>Grade Level:</strong> <?php echo htmlspecialchars($student['level']); ?></p>
+        <p><strong>Semester:</strong> <?php echo htmlspecialchars($student['semester']); ?></p>
+        <p><strong>School Year:</strong> <?php echo htmlspecialchars($student['school_year']); ?></p>
+        <p><strong>Role:</strong> <?php echo htmlspecialchars($student['role']); ?></p>
+        <p><strong>Registered At:</strong> <?php echo htmlspecialchars($student['created_at']); ?></p>
+>>>>>>> cd3c65d95d1205791ecba911535382ceb8f9bac7
     </div>
 </div>
 
