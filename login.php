@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Default student password
     $default_student_password = "Lathougs";
 
-    // Check if the user is an admin (login with username instead of student ID)
+    // Admin login
     if ($user_input === $default_admin_username && $password_input === $default_admin_password) {
         $_SESSION['user_id'] = $default_admin_username;
         $_SESSION['role'] = "admin";
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Check if the user is a student
+    // Student login
     $stmt = $conn->prepare("SELECT * FROM students WHERE student_id = ?");
     $stmt->bind_param("s", $user_input);
     $stmt->execute();
@@ -39,11 +39,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        $_SESSION['student_id'] = $user['student_id'];
 
-        // If password matches default password
+        // Check if user is approved
+        if ($user['is_approved'] == 0) {
+            echo "<script>alert('Your account is still pending approval. Please wait for admin approval.'); window.location.href='Signin.php';</script>";
+            exit();
+        }
+
+        // Password check
         if ($password_input === $default_student_password) {
-            
+            $_SESSION['student_id'] = $user['student_id'];
+
             // Check if student ID already exists in `login` table
             $checkStmt = $conn->prepare("SELECT * FROM login WHERE student_id = ?");
             $checkStmt->bind_param("s", $user_input);
@@ -51,22 +57,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $checkResult = $checkStmt->get_result();
 
             if ($checkResult->num_rows === 0) {
-                // Insert new student record into login table
+                // Insert into login table
                 $insertStmt = $conn->prepare("INSERT INTO login (student_id, password) VALUES (?, ?)");
                 $insertStmt->bind_param("ss", $user_input, $default_student_password);
                 $insertStmt->execute();
                 $insertStmt->close();
             }
 
-            // Redirect based on role
+            // Redirect to user dashboard
             $_SESSION['role'] = "user";
             header("Location: userdashboard.php");
             exit();
         } else {
             echo "<script>alert('Incorrect password.'); window.location.href='Signin.php';</script>";
+            exit();
         }
     } else {
         echo "<script>alert('Student ID not found.'); window.location.href='Signin.php';</script>";
+        exit();
     }
 
     $stmt->close();

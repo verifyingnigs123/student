@@ -39,27 +39,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $checkContact->close();
 
-    // Prepare SQL
-    $sql = "INSERT INTO students (student_type, fName, mName, lName, extName, birthdate, age, place, student_id, religion, gender, street, city, state, country, zip, email, contactNumber, strand, level, semester, school_year)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    // Prepare SQL without 'status' (since you have 'is_approved' column)
+    $sql = "INSERT INTO students (
+        student_type, fName, mName, lName, extName, birthdate, age, place, student_id,
+        religion, gender, street, city, state, country, zip, email, contactNumber, strand,
+        level, semester, school_year, is_approved
+    ) VALUES (
+        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+    )";
 
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
 
-    // Bind parameters
+    // Add is_approved default value (0)
     $params = [];
     foreach ($fields as $field) {
         $params[] = $_POST[$field] ?? '';
     }
+    $params[] = 0; // is_approved default to 0 (Pending approval)
 
-    $stmt->bind_param(str_repeat('s', count($params)), ...$params);
+    // Bind all parameters (string type for most, but is_approved is integer)
+    $types = str_repeat('s', count($fields)) . 'i'; // 22 's' + 1 'i'
+
+    $stmt->bind_param($types, ...$params);
 
     // Execute and redirect
     if ($stmt->execute()) {
         echo "<script>
-                alert('New record created successfully');
+                alert('Registration successful! Please wait for admin approval.');
                 window.location.href = 'Signin.php';
               </script>";
     } else {
