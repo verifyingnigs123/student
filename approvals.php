@@ -24,7 +24,7 @@ if (isset($_GET['approve'])) {
     }
 
     // Redirect back with the success or error message
-    header("Location: approval.php?message=$message&type=$message_type");
+    header("Location: approvals.php?message=$message&type=$message_type");
     exit();
 }
 
@@ -45,7 +45,7 @@ if (isset($_GET['reject'])) {
     }
 
     // Redirect back with the success or error message
-    header("Location: approval.php?message=$message&type=$message_type");
+    header("Location: approvals.php?message=$message&type=$message_type");
     exit();
 }
 
@@ -108,8 +108,8 @@ if (isset($_GET['message']) && isset($_GET['type'])) {
                     echo "<td class='px-6 py-4'>" . htmlspecialchars($row['strand']) . "</td>";
                     echo "<td class='px-6 py-4'>" . htmlspecialchars($row['email']) . "</td>";
                     echo "<td class='px-6 py-4 space-x-2'>
-                            <a href='approval.php?approve=" . $row['id'] . "' class='bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600'>Approve</a>
-                            <a href='approval.php?reject=" . $row['id'] . "' class='bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600'>Reject</a>
+                            <a href='approvals.php?approve=" . $row['id'] . "' class='bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600'>Approve</a>
+                            <a href='approvals.php?reject=" . $row['id'] . "' class='bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600'>Reject</a>
                           </td>";
                     echo "</tr>";
                 }

@@ -31,51 +31,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Student login
-    $stmt = $conn->prepare("SELECT * FROM students WHERE student_id = ?");
-    $stmt->bind_param("s", $user_input);
-    $stmt->execute();
-    $result = $stmt->get_result();
+   // Student login
+$stmt = $conn->prepare("SELECT * FROM students WHERE student_id = ?");
+$stmt->bind_param("s", $user_input);
+$stmt->execute();
+$result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
 
-        // Check if user is approved
-        if ($user['is_approved'] == 0) {
-            echo "<script>alert('Your account is still pending approval. Please wait for admin approval.'); window.location.href='Signin.php';</script>";
-            exit();
-        }
-
-        // Password check
-        if ($password_input === $default_student_password) {
-            $_SESSION['student_id'] = $user['student_id'];
-
-            // Check if student ID already exists in `login` table
-            $checkStmt = $conn->prepare("SELECT * FROM login WHERE student_id = ?");
-            $checkStmt->bind_param("s", $user_input);
-            $checkStmt->execute();
-            $checkResult = $checkStmt->get_result();
-
-            if ($checkResult->num_rows === 0) {
-                // Insert into login table
-                $insertStmt = $conn->prepare("INSERT INTO login (student_id, password) VALUES (?, ?)");
-                $insertStmt->bind_param("ss", $user_input, $default_student_password);
-                $insertStmt->execute();
-                $insertStmt->close();
-            }
-
-            // Redirect to user dashboard
-            $_SESSION['role'] = "user";
-            header("Location: userdashboard.php");
-            exit();
-        } else {
-            echo "<script>alert('Incorrect password.'); window.location.href='Signin.php';</script>";
-            exit();
-        }
-    } else {
-        echo "<script>alert('Student ID not found.'); window.location.href='Signin.php';</script>";
+  
+    if ($password_input !== $default_student_password) {
+        echo "<script>alert('Incorrect password.'); window.location.href='Signin.php';</script>";
         exit();
     }
+
+    if ($user['is_approved'] == 0) {
+        echo "<script>alert('Your account is still pending approval. Please wait for admin approval.'); window.location.href='Signin.php';</script>";
+        exit();
+    }
+
+    $_SESSION['student_id'] = $user['student_id'];
+
+ 
+    $checkStmt = $conn->prepare("SELECT * FROM login WHERE student_id = ?");
+    $checkStmt->bind_param("s", $user_input);
+    $checkStmt->execute();
+    $checkResult = $checkStmt->get_result();
+
+    if ($checkResult->num_rows === 0) {
+       
+        $insertStmt = $conn->prepare("INSERT INTO login (student_id, password) VALUES (?, ?)");
+        $insertStmt->bind_param("ss", $user_input, $default_student_password);
+        $insertStmt->execute();
+        $insertStmt->close();
+    }
+
+    $_SESSION['role'] = "user";
+    header("Location: userdashboard.php");
+    exit();
+
+} else {
+    echo "<script>alert('LRN not found.'); window.location.href='Signin.php';</script>";
+    exit();
+}
 
     $stmt->close();
 }
