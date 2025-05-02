@@ -1,4 +1,6 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;700&display=swap');
+* 
+{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -203,30 +205,31 @@ html {
     scroll-behavior: smooth;
 }
 
-#MissionAndVission {
+#MissionAndVision {
     text-align: center;
-    padding: 50px 20px;
-    background-color: #ffffff;
-    animation: fadeInLeft 1s ease-in-out;
-    
+    padding: 60px 20px;
+    background: #f8f9fa;
+    color: #333;
+    border-radius: 10px;
+    max-width: 90%;
+    margin: auto;
 }
 
-#MissionAndVission h2 {
-    font-size: 30px;
-    margin-bottom: 10px;
-    position: relative;
+#MissionAndVision h2 {
+    font-size: 2.5rem;
+    color: #243B85;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+#MissionAndVision p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 20px;
+    line-height: 1.6;
     color: #555;
 }
 
-#MissionAndVission h2::before, #MissionAndVission h2::after {
-    content: "";
-    display: inline-block;
-    width: 300px;
-    height: 2px;
-    background-color:black;
-    margin: 0 10px;
-    vertical-align: middle;
-}
 .features1 {
     display: flex;
     justify-content: center;
@@ -236,35 +239,128 @@ html {
 }
 
 .feature1-box {
-    background: white;
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
     padding: 20px;
+    background: white;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
 }
 
 .feature1-box:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .feature1-box i {
     font-size: 40px;
-    color: blue;
+    color: #243B85;
     margin-bottom: 10px;
 }
 
 .feature1-box h3 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin-bottom: 10px;
+    font-weight: bold;
+    color: #222;
 }
 
 .feature1-box p {
     font-size: 1rem;
     color: #444;
+    line-height: 1.5;
 }
 
+#admission {
+    text-align: center;
+    padding: 60px 20px;
+    background: #f8f9fa; /* Matches a light professional theme */
+    color: #333; /* Ensures readability */
+    border-radius: 10px;
+    max-width: 90%;
+    margin: auto;
+}
+
+#admission h2 {
+    font-size: 2.5rem;
+    color: #243B85; /* Matching with a deep blue */
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+#admission p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 20px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.admission-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.step-box {
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+}
+
+.step-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.step-box i {
+    font-size: 40px;
+    color: #243B85;
+    margin-bottom: 10px;
+}
+
+.step-box h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #222;
+}
+
+.step-box p {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+.apply-btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 24px;
+    background: #243B85;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.apply-btn:hover {
+    background: #1b2f6b;
+
+}
 @keyframes fadeInLeft {
     from {
         opacity: 0;
