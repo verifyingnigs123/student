@@ -12,7 +12,7 @@
     
     <header>
         <div class="logo">
-            <img src="logos.png" alt="Lathougs University Logo">
+            <img src="log1.jpg" alt="Lathougs University Logo">
             <h1>Lathougs University</h1>
         </div>
         <nav>
