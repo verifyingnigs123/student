@@ -51,7 +51,6 @@ $student_type = $student['student_type'];
         <div class="header">
             <div class="profile-section">
                 <h3><?php echo htmlspecialchars($first_name . " " . $last_name); ?> 
-                 <p><?php echo htmlspecialchars($student_id); ?></p>
             </div>
             <div class="header-buttons">
                 <a href="userdashboard.php" class="back-btn">✖️</a>
