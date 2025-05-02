@@ -46,11 +46,11 @@ if ($result->num_rows > 0) {
         exit();
     }
 
-    if ($user['is_approved'] == 0) {
-        echo "<script>alert('Your account is still pending approval. Please wait for admin approval.'); window.location.href='Signin.php';</script>";
+    if (strtolower($user['is_approved']) !== 'approved') {
+        echo "<script>alert('Your account is still pending. Please wait for admin approval.'); window.location.href='Signin.php';</script>";
         exit();
     }
-
+    
     $_SESSION['student_id'] = $user['student_id'];
 
  
