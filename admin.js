@@ -26,6 +26,9 @@ function loadPage(page) {
         case 'permits':
             window.location.href = 'permits.php';
             break;
+        case 'add_teachers':
+            window.location.href = 'teachers.php';
+            break;
         case 'add_users':
             window.location.href = 'add_users.php';
             break;

@@ -44,6 +44,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         <button class="menu-btn" onclick="loadPage('schedule')"><span class="icon">📅</span> Class Schedule & Subjects</button>
         <button class="menu-btn" onclick="loadPage('balance')"><span class="icon">💰</span> Account & Balance</button>
         <button class="menu-btn" onclick="loadPage('permits')"><span class="icon">📝</span> Permits</button>
+        <button class="menu-btn" onclick="loadPage('add_teachers')"><span class="icon">👩‍🏫</span> Teacher List</button>
         <button class="menu-btn" onclick="loadPage('add_users')"><span class="icon">🎓</span> Student List</button>
         <button class="menu-btn" onclick="loadPage('approvals')"><span class="icon">✅</span> Approvals</button>
         <button class="menu-btn logout" onclick="logout()"><span class="icon">🚪</span> Logout</button>
