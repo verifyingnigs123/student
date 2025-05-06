@@ -34,6 +34,7 @@ if ($result->num_rows === 1) {
     <meta charset="UTF-8">
     <title>Student Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- FontAwesome for the icon -->
     <style>
         * {
             margin: 0;
@@ -92,6 +93,7 @@ if ($result->num_rows === 1) {
             display: flex;
             align-items: center;
             margin-bottom: 30px;
+            position: relative;
         }
 
         .profile-header img {
@@ -110,6 +112,18 @@ if ($result->num_rows === 1) {
             color: white;
             border: none;
             border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .profile-header .btn-settings {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px;
+            background: #34495e;
+            color: white;
+            border: none;
+            border-radius: 50%;
             cursor: pointer;
         }
 
@@ -167,7 +181,7 @@ if ($result->num_rows === 1) {
         
 
 <div class="main">
-<button class="back-btn" onclick="window.history.back();">X</button>
+<button class="back-btn" onclick="window.location.href='userdashboard.php';">X</button>
     <div class="card">
         <div class="profile-header">
             <img src="profile.png" alt="Profile Picture">
@@ -177,7 +191,10 @@ if ($result->num_rows === 1) {
                 </h2>
                 <p><?php echo htmlspecialchars($student['email']); ?></p>
             </div>
-            <button class="btn-edit" onclick="window.location.href='edit_profile.php'">Edit Profile</button>
+    
+            <button class="btn-settings" onclick="window.location.href='settings.php'">
+                <i class="fas fa-cogs"></i> 
+            </button>
         </div>
 
         <div class="info-grid">
@@ -202,3 +219,4 @@ if ($result->num_rows === 1) {
 
 </body>
 </html>
+

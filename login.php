@@ -41,11 +41,28 @@ if ($result->num_rows > 0) {
     $user = $result->fetch_assoc();
 
   
-    if ($password_input !== $default_student_password) {
-        echo "<script>alert('Incorrect password.'); window.location.href='Signin.php';</script>";
-        exit();
+    $loginStmt = $conn->prepare("SELECT password FROM login WHERE student_id = ?");
+    $loginStmt->bind_param("s", $user_input);
+    $loginStmt->execute();
+    $loginResult = $loginStmt->get_result();
+    
+    if ($loginResult->num_rows === 1) {
+        $loginData = $loginResult->fetch_assoc();
+    
+        if ($password_input !== $loginData['password']) {
+            echo "<script>alert('Incorrect password.'); window.location.href='Signin.php';</script>";
+            exit();
+        }
+    } else {
+        // Allow login if password matches default for first-time users
+        if ($password_input !== $default_student_password) {
+            echo "<script>alert('Incorrect password.'); window.location.href='Signin.php';</script>";
+            exit();
+        }
+    
     }
-
+    
+    
     if (strtolower($user['is_approved']) !== 'approved') {
         echo "<script>alert('Your account is still pending. Please wait for admin approval.'); window.location.href='Signin.php';</script>";
         exit();
