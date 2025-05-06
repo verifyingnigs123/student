@@ -1,78 +1,89 @@
 <?php
-include 'db.php'; // Database connection
+include 'db.php'; // Include your database connection
 
-// Fetch all students from the database
+// Fetch all students
 $result = $conn->query("SELECT * FROM students");
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student List</title>
-    <link rel="stylesheet" href="addstudent.css">
-
+  <meta charset="UTF-8">
+  <title>Student List</title>
+  <link rel="stylesheet" href="addstudent.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Student List</h1>
-        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search by Last Name or Student ID..." style="margin-bottom: 15px; padding: 8px; width: 100%; font-size: 16px;">
 
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Student Type</th>
-                <th>First Name</th>
-                <th>Middle Name</th>
-                <th>Last Name</th>
-                <th>Student ID</th>
-                <th>Email</th>
-                <th>Strand</th>
-                <th>Level</th>
-                <th>Semester</th>
-                <th>School Year</th>
-                <th>Actions</th>
-            </tr>
-            <?php while ($row = $result->fetch_assoc()): ?>
-            <tr>
-                <td><?= htmlspecialchars($row['id']) ?></td>
-                <td><?= htmlspecialchars($row['student_type']) ?></td>
-                <td><?= htmlspecialchars($row['fName']) ?></td>
-                <td><?= htmlspecialchars($row['mName']) ?></td>
-                <td><?= htmlspecialchars($row['lName']) ?></td>
-                <td><?= htmlspecialchars($row['student_id']) ?></td>
-                <td><?= htmlspecialchars($row['email']) ?></td>
-                <td><?= htmlspecialchars($row['strand']) ?></td>
-                <td><?= htmlspecialchars($row['level']) ?></td>
-                <td><?= htmlspecialchars($row['semester']) ?></td>
-                <td><?= htmlspecialchars($row['school_year']) ?></td>
-                <td>
-                    <a href="edit_student.php?id=<?= $row['id'] ?>" class="btn edit-btn">Edit</a>
-                    <a href="delete_student.php?id=<?= $row['id'] ?>" class="btn delete-btn" onclick="return confirm('Are you sure?')">Delete</a>
-                </td>
-            </tr>
-            <?php endwhile; ?>
-        </table>
+  <div class="container">
+   <a href="admindashboard.php" class="close-btn" title="Back to Dashboard">×</a>
+    <h2>Student List</h2>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search by Last Name or LRN" onkeyup="searchTable()">
     </div>
 
-    <script>
-function filterTable() {
-    const input = document.getElementById("searchInput").value.toLowerCase();
-    const rows = document.querySelectorAll("table tr:not(:first-child)"); // exclude header row
+    <table id="studentTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Firstname</th>
+          <th>Middlename</th>
+          <th>Lastname</th>
+          <th>Student LRN</th>
+          <th>Email</th>
+          <th>Strand</th>
+          <th>Level</th>
+          <th>Semester</th>
+          <th>School Year</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php while ($row = $result->fetch_assoc()): ?>
+        <tr>
+          <td><?= htmlspecialchars($row['id']) ?></td>
+          <td><?= htmlspecialchars($row['fName']) ?></td>
+          <td><?= htmlspecialchars($row['mName']) ?></td>
+          <td><?= htmlspecialchars($row['lName']) ?></td>
+          <td><?= htmlspecialchars($row['student_id']) ?></td>
+          <td><?= htmlspecialchars($row['email']) ?></td>
+          <td><?= htmlspecialchars($row['strand']) ?></td>
+          <td><?= htmlspecialchars($row['level']) ?></td>
+          <td><?= htmlspecialchars($row['semester']) ?></td>
+          <td><?= htmlspecialchars($row['school_year']) ?></td>
+          <td>
+            <a href="edit_student.php?id=<?= $row['id'] ?>" class="btn btn-edit">Edit</a>
+            <a href="delete_student.php?id=<?= $row['id'] ?>" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this student?')">Delete</a>
+          </td>
+        </tr>
+        <?php endwhile; ?>
+      </tbody>
+    </table>
+  </div>
 
-    rows.forEach(row => {
-        const lastName = row.cells[4]?.textContent.toLowerCase(); // Last Name column
-        const studentID = row.cells[5]?.textContent.toLowerCase(); // Student ID column
+  <script>
+    function searchTable() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const table = document.getElementById("studentTable");
+      const rows = table.getElementsByTagName("tr");
 
-        if (lastName.includes(input) || studentID.includes(input)) {
-            row.style.display = "";
-        } else {
-            row.style.display = "none";
+      for (let i = 1; i < rows.length; i++) {
+        const lastNameCell = rows[i].getElementsByTagName("td")[3];
+        const lrnCell = rows[i].getElementsByTagName("td")[4];
+
+        if (lastNameCell && lrnCell) {
+          const lastName = lastNameCell.textContent.toLowerCase();
+          const lrn = lrnCell.textContent.toLowerCase();
+
+          if (lastName.includes(input) || lrn.includes(input)) {
+            rows[i].style.display = "";
+          } else {
+            rows[i].style.display = "none";
+          }
         }
-    });
-}
-</script>
+      }
+    }
+  </script>
 
 </body>
 </html>

@@ -1,40 +1,94 @@
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 20px;
-}
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-table, th, td {
-    border: 1px solid black;
-}
-th, td {
-    padding: 10px;
-    text-align: center;
-}
-th {
-    background-color: #f2f2f2;
-}
-.btn {
-    padding: 5px 10px;
-    text-decoration: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-.edit-btn {
-    background-color: #4CAF50;
-}
-.delete-btn {
-    background-color: #f44336;
-}
-.btn:hover {
-    opacity: 0.8;
-}
-.container {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+
+  .container {
     max-width: 1200px;
     margin: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .search-bar {
+    margin-bottom: 20px;
+    text-align: right;
+  }
+
+  .search-bar input {
+    padding: 8px 12px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+
+  th {
+    background-color: #007BFF;
+    color: white;
+  }
+
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  .btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+  }
+
+  .btn-edit {
+    background-color: #28a745;
+  }
+
+  .btn-delete {
+    background-color: #dc3545;
+  }
+  .close-btn {
+position: absolute;
+top: 30px;
+right: 30px;
+font-size: 24px;
+font-weight: bold;
+color: #dc3545;
+text-decoration: none;
+background: none;
+border: 2px solidrgb(245, 234, 235);
+border-radius: 10%;
+width: 36px;
+height: 36px;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: background 0.2s ease;
+}
+
+.close-btn:hover {
+background-color: #dc3545;
+color: white;
+}
+.container {
+position: relative;
 }
