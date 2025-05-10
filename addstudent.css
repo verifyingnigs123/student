@@ -92,3 +92,17 @@ color: white;
 .container {
 position: relative;
 }
+
+.btn-add-teacher {
+  display: inline-block;
+  padding: 10px 16px;
+  margin: 10px 0;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn-add-teacher:hover {
+  background-color: #0056b3;
+}
