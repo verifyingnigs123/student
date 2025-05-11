@@ -2,7 +2,7 @@
 include 'db.php'; // Include your database connection
 
 // Fetch all students
-$result = $conn->query("SELECT * FROM students");
+$result = $conn->query("SELECT * FROM teachers");
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ $result = $conn->query("SELECT * FROM students");
 
     <h2>Teacher List</h2>
 
-    <a href="addteacher.php" class="btn btn-add-teacher">Add Teacher</a>
+    <a href="add_teacher.php" class="btn btn-add-teacher">Add Teacher</a>
 
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Search by Last Name or LRN" onkeyup="searchTable()">
@@ -32,12 +32,9 @@ $result = $conn->query("SELECT * FROM students");
           <th>Firstname</th>
           <th>Middlename</th>
           <th>Lastname</th>
-          <th>Student LRN</th>
           <th>Email</th>
-          <th>Strand</th>
-          <th>Level</th>
-          <th>Semester</th>
-          <th>School Year</th>
+          <th>Contact no.</th>
+          <th>Subject/Strand</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -48,12 +45,9 @@ $result = $conn->query("SELECT * FROM students");
           <td><?= htmlspecialchars($row['fName']) ?></td>
           <td><?= htmlspecialchars($row['mName']) ?></td>
           <td><?= htmlspecialchars($row['lName']) ?></td>
-          <td><?= htmlspecialchars($row['student_id']) ?></td>
           <td><?= htmlspecialchars($row['email']) ?></td>
-          <td><?= htmlspecialchars($row['strand']) ?></td>
-          <td><?= htmlspecialchars($row['level']) ?></td>
-          <td><?= htmlspecialchars($row['semester']) ?></td>
-          <td><?= htmlspecialchars($row['school_year']) ?></td>
+          <td><?= htmlspecialchars($row['contact']) ?></td>
+          <td><?= htmlspecialchars($row['subject']) ?></td>
           <td>
             <a href="edit_student.php?id=<?= $row['id'] ?>" class="btn btn-edit">Edit</a>
             <a href="delete_student.php?id=<?= $row['id'] ?>" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this student?')">Delete</a>
