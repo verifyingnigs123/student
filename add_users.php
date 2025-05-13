@@ -70,8 +70,8 @@ $result = $conn->query("SELECT * FROM students");
       const rows = table.getElementsByTagName("tr");
 
       for (let i = 1; i < rows.length; i++) {
-        const lastNameCell = rows[i].getElementsByTagName("td")[3];
-        const lrnCell = rows[i].getElementsByTagName("td")[4];
+        const lastNameCell = rows[i].getElementsByTagName("td")[4];
+        const lrnCell = rows[i].getElementsByTagName("td")[5];
 
         if (lastNameCell && lrnCell) {
           const lastName = lastNameCell.textContent.toLowerCase();
