@@ -26,6 +26,7 @@ $result = $conn->query("SELECT * FROM students");
       <thead>
         <tr>
           <th>ID</th>
+          <th>Student Type</th>
           <th>Firstname</th>
           <th>Middlename</th>
           <th>Lastname</th>
@@ -42,6 +43,7 @@ $result = $conn->query("SELECT * FROM students");
         <?php while ($row = $result->fetch_assoc()): ?>
         <tr>
           <td><?= htmlspecialchars($row['id']) ?></td>
+          <td><?= htmlspecialchars($row['student_type']) ?></td>
           <td><?= htmlspecialchars($row['fName']) ?></td>
           <td><?= htmlspecialchars($row['mName']) ?></td>
           <td><?= htmlspecialchars($row['lName']) ?></td>
