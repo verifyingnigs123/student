@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Admin Dashboard</title>
  
-    <link rel="stylesheet" href="adminn.css" 
+    <link rel="stylesheet" href="admin.css" 
 
 </head>
 <body>
