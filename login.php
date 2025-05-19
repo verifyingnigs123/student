@@ -16,18 +16,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_input = $_POST['studentID'] ?? "";
     $password_input = $_POST['password'] ?? "";
 
-    // Default admin credentials
-    $default_admin_username = "admin";
-    $default_admin_password = "admin123";
-
     // Default student password
     $default_student_password = "Lathougs";
 
     // Admin login
+    $default_admin_username = "admin";
+    $default_admin_password = "admin123";
+
+
     if ($user_input === $default_admin_username && $password_input === $default_admin_password) {
         $_SESSION['user_id'] = $default_admin_username;
         $_SESSION['role'] = "admin";
-        header("Location: teacherdashboard.php");
+        header("Location: loading.php?redirect=admindashboard.php");
+        exit();
+    }
+    //teacher login
+    $default_teacher_username = "teacher";
+    $default_teacher_password = "Lathougs";
+
+       if ($user_input === $default_teacher_username && $password_input === $default_teacher_password) {
+        $_SESSION['user_id'] = $default_teacher_username;
+        $_SESSION['role'] = "admin";
+        header("Location: loading.php?redirect=teacherdashboard.php");
         exit();
     }
 
@@ -85,7 +95,7 @@ if ($result->num_rows > 0) {
     }
 
     $_SESSION['role'] = "user";
-    header("Location: userdashboard.php");
+    header("Location: loading.php?redirect=userdashboard.php");
     exit();
 
 } else {

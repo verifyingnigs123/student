@@ -54,9 +54,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             <h1> DashBoard</h1>
         </div>
 
-
-        
-
         <script src="admin.js"></script>
 </body>
 </html>
