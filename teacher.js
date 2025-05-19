@@ -11,8 +11,8 @@ function loadPage(page) {
         case 'dashboard':
             window.location.href = 'dashboard.php';
             break;
-        case 'adminprofile':
-            window.location.href = 'adminprofile.php';
+        case 'teacherprofile':
+            window.location.href = 'teacherprofile.php';
             break;
         case 'grades':
             window.location.href = 'grades.php';
