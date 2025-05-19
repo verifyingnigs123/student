@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($user_input === $default_admin_username && $password_input === $default_admin_password) {
         $_SESSION['user_id'] = $default_admin_username;
         $_SESSION['role'] = "admin";
-        header("Location: admindashboard.php");
+        header("Location: teacherdashboard.php");
         exit();
     }
 

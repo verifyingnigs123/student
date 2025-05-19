@@ -15,7 +15,7 @@ $result = $conn->query("SELECT * FROM students");
 <body>
 
   <div class="container">
-   <a href="admindashboard.php" class="close-btn" title="Back to Dashboard">×</a>
+   <a href="teacherdashboard.php" class="close-btn" title="Back to Dashboard">×</a>
     <h2>Student List</h2>
 
     <div class="search-bar">
