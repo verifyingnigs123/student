@@ -33,7 +33,7 @@
         </div>
 
         <div class="forgot-password">
-       <a href="forgot.php" id="ForgotPasswordButton">Forgot Password?</a>
+       <a href="forgot_password.php" id="ForgotPasswordButton">Forgot Password?</a>
         </div>
 
         <input type="submit" class="btn" value="Log In" name="submit"> 
@@ -59,10 +59,10 @@
             window.location.href = "loading.php?redirect=enroll.php";
         });
 
-        document.getElementById("ForgotPasswordButton").addEventListener("click", function () {
-    window.location.href = "loading.php?redirect=forgot_password.php";
+        document.getElementById("ForgotPasswordButton").addEventListener("click", function (e) {
+            e.preventDefault();
+           window.location.href = "loading.php?redirect=forgot_password.php";
         });
-
     </script>
 </body>
 </html>
