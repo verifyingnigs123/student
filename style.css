@@ -162,3 +162,22 @@ body {
   background: #0a59c2;
   color: white;
 }
+
+
+.forgot-password {
+  width: 70%;
+  margin: 5px auto 20px;
+  text-align: right;
+}
+
+#ForgotPasswordButton {
+  color: #0a59c2;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+#ForgotPasswordButton:hover {
+  color: #003f91;
+  text-decoration: underline;
+}

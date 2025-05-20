@@ -32,6 +32,10 @@
           <label for="passwordLogin">Password</label>
         </div>
 
+        <div class="forgot-password">
+       <a href="forgot.php" id="ForgotPasswordButton">Forgot Password?</a>
+        </div>
+
         <input type="submit" class="btn" value="Log In" name="submit"> 
 
       </form>
@@ -40,7 +44,6 @@
   <p>Don't have an account?</p>
   <div class="link-buttons">
     <button id="signUpButton">Enroll</button>
-    <button id="ForgotPasswordButton" class="link-button">Forgot Password</button>
   </div>
 </div>
             <footer style="text-align: center; padding: 5px 0; background-color: #f8f9fa; color: #555; font-size: 14px; margin-top: 20px;">
