@@ -57,7 +57,7 @@
         });
 
         document.getElementById("ForgotPasswordButton").addEventListener("click", function () {
-    window.location.href = "forgot_password.php";
+    window.location.href = "loading.php?redirect=forgot_password.php";
         });
 
     </script>
