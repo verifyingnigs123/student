@@ -132,20 +132,30 @@ body {
 
 /* Links Section */
 .Links {
-  text-align: center;
+  text-align: left;
   margin-top: 20px;
   color: #444;
 }
 
-.Links button {
-  background: transparent;
-  border: 2px solid #0a59c2;
-  color: #0a59c2;
-  padding: 8px 16px;
+.link-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.link-buttons button {
+  width: 48%; /* Or adjust as needed */
+  padding: 8px 12px;
+   background: #0a59c2;
+   color: white;
+   border: none;
+   padding: 7px;
+   border-radius: 8px;
+    width: 48%;
   font-size: 14px;
-  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s;
 }
 
 .Links button:hover {

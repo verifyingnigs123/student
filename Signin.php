@@ -12,7 +12,7 @@
         
     <div class="welcome-section">
         <img src="log1.jpg" alt="Lathougs Univ." class="logo">
-        <h1>Welcome to <br> Lathougs University</h1>
+        <h1>Welcome to <br> Lathoug's University</h1>
     </div>
 
     <!-- Login Form -->
@@ -22,7 +22,7 @@
         
         <div class="input-group">
           <i class="fas fa-id-card"></i>
-          <input type="text" name="studentID" id="studentIDLogin" placeholder="Student ID" required>
+          <input type="text" name="studentID" id="studentIDLogin" placeholder="Username" required>
           <label for="studentIDLogin">Username</label>
         </div>
 
@@ -37,18 +37,25 @@
       </form>
 
       <div class="Links">
-        <p>Don't have an account?</p>
-        <button id="signUpButton">Enroll</button>  
-        <button id = ForgotPasswordButton>Forgot</button>
+  <p>Don't have an account?</p>
+  <div class="link-buttons">
+    <button id="signUpButton">Enroll</button>
+    <button id="ForgotPasswordButton">Forgot Password</button>
+  </div>
+</div>
+            <footer style="text-align: center; padding: 5px 0; background-color: #f8f9fa; color: #555; font-size: 14px; margin-top: 20px;">
+      <p>&copy; 2025 Lathoug's University. All rights reserved.</p>
+    </footer>
+  </div>
       </div>
     </div>
-
+  
     <script>
         // Redirect to enroll.php when "Enroll" button is clicked
         document.getElementById("signUpButton").addEventListener("click", function() {
             window.location.href = "loading.php?redirect=enroll.php";
         });
-    </script>
 
+    </script>
 </body>
 </html>
