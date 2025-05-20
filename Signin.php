@@ -22,7 +22,7 @@
         
         <div class="input-group">
           <i class="fas fa-id-card"></i>
-          <input type="text" name="studentID" id="studentIDLogin" placeholder="Username" required>
+          <input type="text" name="studentID" id="studentIDLogin" placeholder="Student ID" required>
           <label for="studentIDLogin">Username</label>
         </div>
 
@@ -39,6 +39,7 @@
       <div class="Links">
         <p>Don't have an account?</p>
         <button id="signUpButton">Enroll</button>  
+        <button id = ForgotPasswordButton>Forgot</button>
       </div>
     </div>
 
