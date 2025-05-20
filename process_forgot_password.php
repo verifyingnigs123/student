@@ -3,14 +3,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"]);
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Invalid email format.";
+        echo "<script>alert('Invalid email format.'); window.history.back();</script>";
         exit();
     }
 
     $conn = new mysqli("localhost", "root", "", "student_registration");
 
     if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+        echo "<script>alert('Database connection failed.'); window.history.back();</script>";
+        exit();
     }
 
     // Step 1: Get the student_id from the students table using email
@@ -24,25 +25,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $student_id = $row["student_id"];
 
         // Step 2: Update password in the login table
-        $defaultPassword = "Lathougs"; // Use password_hash if security is needed
+        $defaultPassword = "Lathougs";
 
         $updateStmt = $conn->prepare("UPDATE login SET password = ? WHERE student_id = ?");
         $updateStmt->bind_param("ss", $defaultPassword, $student_id);
 
         if ($updateStmt->execute()) {
-            echo "The password for student ID <strong>$student_id</strong> has been reset to default: <strong>Lathougs</strong>.";
+            echo "<script>
+                alert('Password has been reset to default!');
+                window.location.href = 'Signin.php';
+            </script>";
         } else {
-            echo "Failed to reset the password in the login table.";
+            echo "<script>alert('Failed to reset the password.'); window.history.back();</script>";
         }
 
         $updateStmt->close();
     } else {
-        echo "This email is not registered in our system.";
+        echo "<script>alert('This email is not registered in our system.'); window.history.back();</script>";
     }
 
     $stmt->close();
     $conn->close();
 } else {
-    echo "Invalid request method.";
+    echo "<script>alert('Invalid request method.'); window.history.back();</script>";
 }
 ?>
