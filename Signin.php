@@ -40,7 +40,7 @@
   <p>Don't have an account?</p>
   <div class="link-buttons">
     <button id="signUpButton">Enroll</button>
-    <button id="ForgotPasswordButton">Forgot Password</button>
+    <button id="ForgotPasswordButton" class="link-button">Forgot Password</button>
   </div>
 </div>
             <footer style="text-align: center; padding: 5px 0; background-color: #f8f9fa; color: #555; font-size: 14px; margin-top: 20px;">
@@ -54,6 +54,10 @@
         // Redirect to enroll.php when "Enroll" button is clicked
         document.getElementById("signUpButton").addEventListener("click", function() {
             window.location.href = "loading.php?redirect=enroll.php";
+        });
+
+        document.getElementById("ForgotPasswordButton").addEventListener("click", function () {
+    window.location.href = "forgot_password.php";
         });
 
     </script>
