@@ -13,17 +13,23 @@ if ($conn->connect_error) {
 if (isset($_GET['student_id'])) {
     $student_id = $_GET['student_id'];
 
-    // Query to fetch balance from the account_balance table
-    $stmt = $conn->prepare("SELECT balance FROM account_balance WHERE student_id = ?");
+    // Query to fetch all required fields from the account_balance table
+    $stmt = $conn->prepare("
+        SELECT student_id, balance, description, semester, school_year, grade_level, strand, date_updated
+        FROM account_balance
+        WHERE student_id = ?
+        ORDER BY date_updated DESC
+        LIMIT 1
+    ");
     $stmt->bind_param("s", $student_id);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($row = $result->fetch_assoc()) {
-        // Return the balance if found
-        echo json_encode(["balance" => $row['balance']]);
+        // Return the fetched data as JSON
+        echo json_encode($row);
     } else {
-        // If no balance is found, return an error
+        // No record found
         echo json_encode(["error" => "No account balance found for your account"]);
     }
 } else {
