@@ -177,13 +177,13 @@
     const contentMap = {
       dashboard: `
         <div class="dashboard-cards">
-          <div class="card card-events" onclick="location.href='teacher-login.html'">
+          <div class="card card-events" onclick="location.href='teachers.php'">
             <div class="card-content">
               <i class="fas fa-chalkboard-teacher"></i>
               <div class="card-label">Manage Teachers</div>
             </div>
           </div>
-          <div class="card card-payments" onclick="location.href='student-login.html'">
+          <div class="card card-payments" onclick="location.href='add_users.php'">
             <div class="card-content">
               <i class="fas fa-user-graduate"></i>
               <div class="card-label">Manage Students</div>
@@ -276,24 +276,29 @@
       sidebar.classList.toggle('collapsed');
     });
 
-    menuItems.forEach(item => {
-      item.addEventListener('click', function () {
-        const section = this.getAttribute('data-section');
+menuItems.forEach(item => {
+  item.addEventListener('click', function () {
+    const section = this.getAttribute('data-section');
 
-        if (section === 'logout') {
-          logoutModal.style.display = 'flex';
-        } else {
-          menuItems.forEach(i => i.classList.remove('active'));
-          this.classList.add('active');
-          mainSection.innerHTML = contentMap[section] || '<p>Section not found.</p>';
-        }
-      });
-    });
+    if (section === 'logout') {
+      logoutModal.style.display = 'flex';
+    } else if (section === 'students') {
+      window.location.href = 'add_users.php';
+    } else if (section === 'teachers') {
+      window.location.href = 'teachers.php';
+    } else {
+      menuItems.forEach(i => i.classList.remove('active'));
+      this.classList.add('active');
+      mainSection.innerHTML = contentMap[section] || '<p>Section not found.</p>';
+    }
+  });
+});
+
 
     function confirmLogout(confirmed) {
       logoutModal.style.display = 'none';
       if (confirmed) {
-        window.location.href = 'Home.php';
+        window.location.href = "loading.php?redirect= Signin.php";
       }
     }
 

@@ -12,31 +12,49 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Check if logged in user is a teacher
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: Signin.php");
+    header("Location: teacherdashboard.php");
     exit();
 }
 
+// Get teacher email from session
+$teacher_email = $_SESSION['user_id'];
+
+// Fetch teacher last name
+$stmt = $conn->prepare("SELECT lName FROM teachers WHERE email = ?");
+$stmt->bind_param("s", $teacher_email);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$teacher_last_name = "Teacher"; // default if not found
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $teacher_last_name = $row['lName'];
+}
+
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Teacher Dashboard</title>
-    <link rel="stylesheet" href="teacher.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="teacher.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 
 <div class="sidebar">
     <div class="logo">
-        <img src="log1.jpg" alt="Lathougs Univ Logo">
+        <img src="log1.jpg" alt="Lathougs Univ Logo" />
         <h2>Lathougs Univ</h2>
     </div>
     <div class="menu">
-        <button class="menu-btn" onclick="loadPage('dashboard')"><span class="icon">🏠</span> Dashboard</button>
+
         <button class="menu-btn" onclick="loadPage('teacherprofile')"><span class="icon">👤</span> Teacher Profile</button>
         <button class="menu-btn" onclick="loadPage('grades')"><span class="icon">📖</span> Grades</button>
         <button class="menu-btn" onclick="loadPage('schedule')"><span class="icon">📅</span> Class Schedule & Subjects</button>
@@ -48,12 +66,13 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     </div>
 </div>
 
+<div class="main-content">
+    <div class="header">
+        <h1>Dashboard</h1>
+        <p>Welcome, <?php echo htmlspecialchars($teacher_last_name); ?>!</p>
+    </div>
+</div>
 
-    <div class="main-content">
-        <div class="header">
-            <h1> DashBoard</h1>
-        </div>
-
-        <script src="teacher.js"></script>
+<script src="teacher.js"></script>
 </body>
 </html>

@@ -8,9 +8,7 @@ function loadPage(page) {
     
     // Navigate to the selected page
     switch (page) {
-        case 'dashboard':
-            window.location.href = 'dashboard.php';
-            break;
+        
         case 'teacherprofile':
             window.location.href = 'teacherprofile.php';
             break;
