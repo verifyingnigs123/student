@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2025 at 10:41 AM
+-- Generation Time: May 22, 2025 at 03:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -30,15 +30,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `account_balance` (
   `id` int(11) NOT NULL,
   `student_id` bigint(50) NOT NULL,
-  `balance` varchar(50) NOT NULL
+  `balance` varchar(50) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `semester` varchar(50) DEFAULT NULL,
+  `school_year` varchar(20) DEFAULT NULL,
+  `grade_level` varchar(10) DEFAULT NULL,
+  `strand` varchar(50) DEFAULT NULL,
+  `date_updated` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `account_balance`
 --
 
-INSERT INTO `account_balance` (`id`, `student_id`, `balance`) VALUES
-(8, 231160010213, '1000.00');
+INSERT INTO `account_balance` (`id`, `student_id`, `balance`, `description`, `semester`, `school_year`, `grade_level`, `strand`, `date_updated`) VALUES
+(18, 231160010104, '200.00', 'Tuition fee', '1st Semester', '2025-2026', 'Grade 11', 'STEM', '2025-05-22 01:20:34');
 
 -- --------------------------------------------------------
 
@@ -112,7 +118,7 @@ CREATE TABLE `permits` (
 --
 
 INSERT INTO `permits` (`permit_id`, `student_id`, `permit_type`, `status`, `issue_date`, `expiration_date`) VALUES
-(4, '231160010213', 'Prelim', 'Approved', '2025-05-12', '2025-10-12');
+(5, '231160010104', 'Prelim', 'Approved', '2024-08-12', '2025-02-12');
 
 -- --------------------------------------------------------
 
@@ -134,7 +140,7 @@ CREATE TABLE `schedules` (
 --
 
 INSERT INTO `schedules` (`id`, `student_id`, `subject`, `day`, `time`, `room`) VALUES
-(20, '231160010213', 'Arts', 'Monday', '1pm to 2pm', 'fgm105');
+(21, '231160010104', 'Arts', 'Monday', '1pm to 2pm', 'fgm105');
 
 -- --------------------------------------------------------
 
@@ -201,7 +207,7 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`id`, `fName`, `mName`, `lName`, `email`, `contact`, `subject`) VALUES
-(1, 'Jim', 'Sho', 'Jamero', 'jamero@gmail.com', '09071787237', 'science');
+(1, 'Jim', '', 'Jamero', 'jamero@gmail.com', '09071787237', 'science');
 
 -- --------------------------------------------------------
 
@@ -283,7 +289,7 @@ ALTER TABLE `teacher_login`
 -- AUTO_INCREMENT for table `account_balance`
 --
 ALTER TABLE `account_balance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `grades`
@@ -301,13 +307,13 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `permits`
 --
 ALTER TABLE `permits`
-  MODIFY `permit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `permit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `schedules`
 --
 ALTER TABLE `schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `students`
