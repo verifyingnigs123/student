@@ -69,7 +69,7 @@ if (isset($_GET['message']) && isset($_GET['type'])) {
 <div class="flex justify-between items-center mb-4">
         <h1 class="text-3xl font-bold">Pending Students Approval</h1>
         <!-- X Button to go back to the dashboard -->
-        <a href="admindashboard.php" class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-red-600">
+        <a href="teacherdashboard.php" class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-red-600">
             X
         </a>
     </div>
