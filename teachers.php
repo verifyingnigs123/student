@@ -67,7 +67,7 @@ if (isset($_GET['edit_id'])) {
 
     <!-- Edit form appears here if editing -->
     <?php if ($edit_teacher): ?>
-      <h3>Edit Teacher ID <?= htmlspecialchars($edit_teacher['id']) ?></h3>
+     <h3 style="margin-top: 30px;">Edit Teacher ID <?= htmlspecialchars($edit_teacher['id']) ?></h3>
       <form method="POST" class="edit-form">
         <input type="hidden" name="update_id" value="<?= htmlspecialchars($edit_teacher['id']) ?>">
         
