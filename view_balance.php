@@ -125,7 +125,6 @@ $studentId = $_SESSION['student_id'];
 <body>
 
 <h2>Your Account</h2>
-<button class="back-btn" onclick="window.history.back();">X</button>
 
 <!-- Show balance button -->
 <button id="showBalanceBtn">View Account Balance</button>

@@ -36,145 +36,147 @@ if ($result->num_rows === 1) {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- FontAwesome for the icon -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
 
-        body {
-            display: flex;
-            min-height: 100vh;
-            background: #f4f4f4;
-            color: #222;
-        }
+body {
+    display: flex;
+    min-height: 100vh;
+    background: #eef2f7; /* Updated background */
+    color: #2c3e50; /* Modern dark gray text */
+}
 
-        /* Sidebar */
-        .sidebar {
-            width: 240px;
-            background: #2c3e50;
-            color: #fff;
-            padding: 20px;
-        }
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    background: #ffffff; /* White sidebar */
+    color: #2c3e50;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+}
 
-        .sidebar h2 {
-            margin-bottom: 30px;
-        }
+.sidebar h2 {
+    margin-bottom: 30px;
+}
 
-        .sidebar a {
-            display: block;
-            color: #fff;
-            padding: 12px 0;
-            text-decoration: none;
-            border-bottom: 1px solid #3f5871;
-        }
+.sidebar a {
+    display: block;
+    color: #2c3e50;
+    padding: 12px 0;
+    text-decoration: none;
+    border-bottom: 1px solid #e0e0e0;
+}
 
-        .sidebar a:hover {
-            background: #34495e;
-        }
+.sidebar a:hover {
+    background: #d0e6ff;
+}
 
-        /* Main content */
-        .main {
-            flex: 1;
-            padding: 30px;
-        }
+/* Main content */
+.main {
+    flex: 1;
+    padding: 30px;
+}
 
-        .card {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            padding: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
 
-        .profile-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-            position: relative;
-        }
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative;
+}
 
-        .profile-header img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 20px;
-            border: 3px solid #ddd;
-        }
+.profile-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    border: 3px solid #ccc;
+}
 
-        .profile-header .btn-edit {
-            margin-left: auto;
-            padding: 8px 16px;
-            background: #3498db;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+.profile-header .btn-edit {
+    margin-left: auto;
+    padding: 8px 16px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
 
-        .profile-header .btn-settings {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 8px;
-            background: #34495e;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-        }
+.profile-header .btn-settings {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 8px;
+    background: #1f3b75;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px 40px;
-        }
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 40px;
+}
 
-        .info-item {
-            background: #f9f9f9;
-            padding: 16px 20px;
-            border-radius: 10px;
-            border: 1px solid #eee;
-        }
+.info-item {
+    background: #f5f8fb;
+    padding: 16px 20px;
+    border-radius: 10px;
+    border: 1px solid #d0d0d0;
+}
 
-        .info-item strong {
-            color: #555;
-            display: block;
-            margin-bottom: 5px;
-        }
+.info-item strong {
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
 
-        @media (max-width: 768px) {
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                display: none;
-            }
-
-            .profile-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .btn-edit {
-                margin-top: 10px;
-            }
-            
-        }
-        .back-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px; /* Move the button to the right side */
-      font-size: 24px;
-      background-color: transparent;
-      border: none;
-      color: #000;
-      cursor: pointer;
+@media (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr;
     }
+
+    .sidebar {
+        display: none;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-edit {
+        margin-top: 10px;
+    }
+}
+
+.back-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    background-color: transparent;
+    border: none;
+    color: #2c3e50;
+    cursor: pointer;
+}
+
     </style>
 </head>
 <body>

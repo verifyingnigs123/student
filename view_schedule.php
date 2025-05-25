@@ -125,7 +125,6 @@ $studentId = $_SESSION['student_id'];
 <body>
 
 <h2>Your Class Schedule</h2>
-<button class="back-btn" onclick="window.history.back();">X</button>
 
 <button id="showScheduleBtn">View Schedule</button>
 

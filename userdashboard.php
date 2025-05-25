@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 <?php
 session_start();
 
@@ -297,7 +304,7 @@ if ($result->num_rows === 1) {
   <div class="main-content" id="main-content">
     <div class="header">
       <button class="burger" onclick="toggleSidebar()">☰</button>
-      <h1><?php echo htmlspecialchars($student['fName'] . ' ' . $student['lName']); ?></h1>
+      <h1>Dashboard</h1>
       <div class="avatar-container">
         <button class="avatar-button" onclick="toggleDropdown()">
           <img src="https://i.pravatar.cc/150?img=3" alt="User Avatar" />
@@ -347,85 +354,64 @@ if ($result->num_rows === 1) {
     }
 
     function loadSection(section, el = null) {
-      const content = document.getElementById('content');
-      const links = document.querySelectorAll('.menu a');
-      links.forEach(link => link.classList.remove('active'));
-      if (el) el.classList.add('active');
+  const content = document.getElementById('content');
+  const links = document.querySelectorAll('.menu a');
+  links.forEach(link => link.classList.remove('active'));
+  if (el) el.classList.add('active');
 
-      let html = '';
-      switch (section) {
-       case 'overview':
-  html = `
-    <h2>📊 Dashboard Overview</h2>
-    <p>Here's a summary of your profile and academic information:</p>
+  switch (section) {
+    case 'overview':
+      fetch('overview.php')
+        .then(response => response.text())
+        .then(data => {
+          content.innerHTML = `<div class="welcome-box">${data}</div>`;
+        });
+      break;
 
-    <div class="overview-section">
-      <div class="overview-card">
-        <h3>📛 Full Name</h3>
-        <p><?php echo htmlspecialchars($student['fName'] . ' ' . $student['lName']); ?></p>
-      </div>
-      <div class="overview-card">
-        <h3>📧 Email</h3>
-        <p><?php echo htmlspecialchars($student['email']); ?></p>
-      </div>
-      <div class="overview-card">
-        <h3>🎂 Birthdate</h3>
-        <p><?php echo htmlspecialchars($student['birthdate']); ?></p>
-      </div>
-      <div class="overview-card">
-        <h3>🏠 Address</h3>
-        <p><?php echo htmlspecialchars($student['street'] . ', ' . $student['city'] . ', ' . $student['state'] . ', ' . $student['country'] . ', ' . $student['zip']); ?></p>
-      </div>
-      <div class="overview-card">
-        <h3>🧾 Student Type</h3>
-        <p><?php echo htmlspecialchars($student['student_type']); ?></p>
-      </div>
-    </div>
+    case 'profile':
+      fetch('student_profile.php')
+        .then(response => response.text())
+        .then(data => {
+          content.innerHTML = `<div class="welcome-box">${data}</div>`;
+        });
+      break;
 
-    <div class="reminders">
-      <h2>📌 Reminders</h2>
-      <ul>
-        <li>📖 Review your grades regularly to monitor your progress.</li>
-        <li>📅 Stay updated with your class schedule.</li>
-        <li>💳 Settle any balances before deadlines to avoid penalties.</li>
-        <li>📝 Always check for exam permit availability before exam week.</li>
-      </ul>
-    </div>
-  `;
-  break;
+    case 'grades':
+      fetch('view_grades.php')
+        .then(response => response.text())
+        .then(data => {
+          content.innerHTML = `<div class="welcome-box">${data}</div>`;
+        });
+      break;
 
-        case 'profile':
-          html = `
-            <h2>Student Profile</h2>
-            <div class="info-grid">
-              <div class="info-item"><strong>Full Name:</strong> <?php echo htmlspecialchars($student['fName'] . ' ' . $student['mName'] . ' ' . $student['lName']); ?></div>
-              <div class="info-item"><strong>Email:</strong> <?php echo htmlspecialchars($student['email']); ?></div>
-              <div class="info-item"><strong>Student Type:</strong> <?php echo htmlspecialchars($student['student_type']); ?></div>
-              <div class="info-item"><strong>LRN:</strong> <?php echo htmlspecialchars($student['student_id']); ?></div>
-              <div class="info-item"><strong>Contact:</strong> <?php echo htmlspecialchars($student['contactNumber']); ?></div>
-              <div class="info-item"><strong>Birthdate:</strong> <?php echo htmlspecialchars($student['birthdate']); ?></div>
-              <div class="info-item"><strong>Age:</strong> <?php echo htmlspecialchars($student['age']); ?></div>
-              <div class="info-item"><strong>Gender:</strong> <?php echo htmlspecialchars($student['gender']); ?></div>
-            </div>
-          `;
-          break;
-        case 'grades':
-          html = `<h2>Grades</h2><p>Your academic performance and results.</p>`;
-          break;
-        case 'schedule':
-          html = `<h2>Schedule & Subjects</h2><p>Your class schedules and enrolled subjects.</p>`;
-          break;
-        case 'balance':
-          html = `<h2>Account & Balance</h2><p>Your account statements and outstanding balance.</p>`;
-          break;
-        case 'permits':
-          html = `<h2>Permits</h2><p>Permits required for exams or activities.</p>`;
-          break;
-        default:
-          html = `<h2>Welcome</h2><p>Select an option from the sidebar to continue.</p>`;
-      }
-      content.innerHTML = `<div class="welcome-box">${html}</div>`;
-    }
+    case 'schedule':
+      fetch('view_schedule.php')
+        .then(response => response.text())
+        .then(data => {
+          content.innerHTML = `<div class="welcome-box">${data}</div>`;
+        });
+      break;
+
+    case 'balance':
+      fetch('view_balance.php')
+        .then(res => res.text())
+        .then(data => {
+          content.innerHTML = `<div class="welcome-box"><h2>Account & Balance</h2>${data}</div>`;
+        });
+      break;
+
+    case 'permits':
+      fetch('view_permits.php')
+        .then(res => res.text())
+        .then(data => {
+          content.innerHTML = `<div class="welcome-box"><h2>Permits</h2>${data}</div>`;
+        });
+      break;
+
+    default:
+      content.innerHTML = `<div class="welcome-box"><h2>Welcome</h2><p>Select an option from the sidebar to continue.</p></div>`;
+  }
+}
 
     function showLogoutModal() {
       document.getElementById('logoutModal').style.display = 'flex';

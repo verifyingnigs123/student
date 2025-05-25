@@ -181,7 +181,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="card">
     <div class="settings-header">
         <h2>Settings</h2>
-        <a href="student_profile.php" class="btn-back">X</a>
+        <a href="userdashboard.php" class="btn-back">X</a>
     </div>
 
     <!-- Edit Profile Section -->
