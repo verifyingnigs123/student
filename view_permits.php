@@ -152,10 +152,11 @@ const table = document.getElementById('permitTable');
 const tbody = table.querySelector('tbody');
 
 // Show modal on load
-window.addEventListener('DOMContentLoaded', () => {
-    modal.style.display = 'block';
-    fetchPermits();
-});
+function showModalAndFetchPermits() {
+  modal.style.display = 'block';
+  fetchPermits();
+}
+
 
 // Close modal
 closeBtn.addEventListener('click', () => {

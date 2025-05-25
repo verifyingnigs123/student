@@ -130,7 +130,7 @@ while ($row = $result->fetch_assoc()) {
         <td>
             <a href='balance.php?edit={$row['student_id']}'>Edit</a> 
             <a href='balance.php?delete={$row['student_id']}' onclick='return confirm(\"Delete this balance?\")'>Delete</a>
-            <button type='button' onclick='generateSOA(\"{$row['student_id']}\", \"{$row['balance']}\", \"{$row['description']}\", \"{$row['semester']}\", \"{$row['school_year']}\", \"{$row['grade_level']}\", \"{$row['strand']}\")'>Generate SOA</button>
+            <button type='button' onclick='generateSOA(\"{$row['student_id']}\", \"{$row['balance']}\", \"{$row['description']}\", \"{$row['semester']}\", \"{$row['school_year']}\", \"{$row['grade_level']}\", \"{$row['strand']}\")'>SOA</button>
         </td>
     </tr>";
 }

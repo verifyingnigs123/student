@@ -133,7 +133,7 @@ if ($result->num_rows === 1) {
         button[type="submit"] {
             width: 100%;
             padding: 0.75rem;
-            background-color: #4CAF50;
+            background-color:#3498db;
             color: white;
             font-weight: bold;
             border: none;

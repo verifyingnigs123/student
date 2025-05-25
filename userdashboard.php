@@ -286,7 +286,7 @@ if ($result->num_rows === 1) {
   <div id="sidebar" class="sidebar">
     <div>
       <div class="logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Academic_Cap.svg/1200px-Academic_Cap.svg.png" alt="Logo" />
+        <img src="log1.jpg" alt="Logo" />
         <h2>Lathougs.univ</h2>
       </div>
       <div class="menu" id="menuLinks">
@@ -298,7 +298,7 @@ if ($result->num_rows === 1) {
         <a href="#" onclick="loadSection('permits', this)"><i class="fas fa-file-alt"></i> Permits</a>
       </div>
     </div>
-    <button class="logout-sidebar-btn" onclick="showLogoutModal()">Logout</button>
+  
   </div>
 
   <div class="main-content" id="main-content">
@@ -376,37 +376,146 @@ if ($result->num_rows === 1) {
         });
       break;
 
-    case 'grades':
-      fetch('view_grades.php')
-        .then(response => response.text())
-        .then(data => {
-          content.innerHTML = `<div class="welcome-box">${data}</div>`;
-        });
-      break;
+case 'grades':
+  fetch('view_grades.php')
+    .then(response => response.text())
+    .then(data => {
+      content.innerHTML = data; // inject HTML including modal & script
+
+      // Extract <script> tags from the fetched data and run their JS code
+      const div = document.createElement('div');
+      div.innerHTML = data;
+      const scripts = div.querySelectorAll('script');
+
+      scripts.forEach(script => {
+        const newScript = document.createElement('script');
+        if (script.src) {
+          newScript.src = script.src; // external script
+        } else {
+          newScript.textContent = script.textContent; // inline script
+        }
+        document.body.appendChild(newScript);
+      });
+
+      // Now call your function to show modal and fetch grades
+      setTimeout(() => {
+        if (typeof showModalAndFetchGrades === 'function') {
+          showModalAndFetchGrades();
+        } else {
+          const modal = document.getElementById('gradesModal');
+          if (modal) modal.style.display = 'block';
+        }
+      }, 100);
+    });
+  break;
+
 
     case 'schedule':
-      fetch('view_schedule.php')
-        .then(response => response.text())
-        .then(data => {
-          content.innerHTML = `<div class="welcome-box">${data}</div>`;
-        });
-      break;
+  fetch('view_schedule.php')
+    .then(response => response.text())
+    .then(data => {
+      content.innerHTML = data; // inject HTML including modal & script
+
+      // Extract <script> tags from the fetched data and run their JS code
+      const div = document.createElement('div');
+      div.innerHTML = data;
+      const scripts = div.querySelectorAll('script');
+
+      scripts.forEach(script => {
+        const newScript = document.createElement('script');
+        if (script.src) {
+          newScript.src = script.src; // external script
+        } else {
+          newScript.textContent = script.textContent; // inline script
+        }
+        document.body.appendChild(newScript);
+      });
+
+      // Call your function to show modal and fetch schedule (if defined)
+      setTimeout(() => {
+        if (typeof showModalAndFetchSchedule === 'function') {
+          showModalAndFetchSchedule();
+        } else {
+          const modal = document.getElementById('scheduleModal');
+          if (modal) modal.style.display = 'block';
+        }
+      }, 100);
+    });
+  break;
+
 
     case 'balance':
-      fetch('view_balance.php')
-        .then(res => res.text())
-        .then(data => {
-          content.innerHTML = `<div class="welcome-box"><h2>Account & Balance</h2>${data}</div>`;
-        });
-      break;
+  fetch('view_balance.php')
+    .then(res => res.text())
+    .then(data => {
+      content.innerHTML = data; // inject full HTML including modal & scripts
 
-    case 'permits':
-      fetch('view_permits.php')
-        .then(res => res.text())
-        .then(data => {
-          content.innerHTML = `<div class="welcome-box"><h2>Permits</h2>${data}</div>`;
-        });
-      break;
+      // Extract <script> tags and run their JS code
+      const div = document.createElement('div');
+      div.innerHTML = data;
+      const scripts = div.querySelectorAll('script');
+
+      scripts.forEach(script => {
+        const newScript = document.createElement('script');
+        if (script.src) {
+          newScript.src = script.src; // external script
+        } else {
+          newScript.textContent = script.textContent; // inline script
+        }
+        document.body.appendChild(newScript);
+      });
+
+      // Optionally call a function to show modal or just display the modal
+      setTimeout(() => {
+        if (typeof showModalAndFetchBalance === 'function') {
+          showModalAndFetchBalance();
+        } else {
+          const modal = document.getElementById('balanceModal');
+          if (modal) modal.style.display = 'block';
+        }
+      }, 100);
+    });
+  break;
+
+   case 'permits':
+  fetch('view_permits.php')
+    .then(res => res.text())
+    .then(data => {
+      content.innerHTML = data;
+
+      // Extract and run scripts in fetched HTML
+      const div = document.createElement('div');
+      div.innerHTML = data;
+      const scripts = div.querySelectorAll('script');
+
+      const scriptPromises = [];
+
+      scripts.forEach(script => {
+        const newScript = document.createElement('script');
+        if (script.src) {
+          newScript.src = script.src;
+          const p = new Promise((resolve) => {
+            newScript.onload = resolve;
+            newScript.onerror = resolve;
+          });
+          scriptPromises.push(p);
+        } else {
+          newScript.textContent = script.textContent;
+        }
+        document.body.appendChild(newScript);
+      });
+
+      Promise.all(scriptPromises).then(() => {
+        // Call modal show + fetch function explicitly
+        if (typeof showModalAndFetchPermits === 'function') {
+          showModalAndFetchPermits();
+        } else {
+          const modal = document.getElementById('permitModal');
+          if (modal) modal.style.display = 'block';
+        }
+      });
+    });
+  break;
 
     default:
       content.innerHTML = `<div class="welcome-box"><h2>Welcome</h2><p>Select an option from the sidebar to continue.</p></div>`;
@@ -424,6 +533,7 @@ if ($result->num_rows === 1) {
     function logout() {
       window.location.href = "loading.php?redirect=Signin.php";
     }
+    
   </script>
 </body>
 </html>

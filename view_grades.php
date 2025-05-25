@@ -109,6 +109,7 @@ $studentId = $_SESSION['student_id'];
             background-color: #0056b3;
             color: white;
             border-radius: 5px;
+            display: none; /* HIDE BUTTON */
         }
 
         #showGradesBtn:hover {
@@ -126,7 +127,7 @@ $studentId = $_SESSION['student_id'];
 
 <h2>Your Grades</h2>
 
-<button id="showGradesBtn">View Grades</button>
+<button id="showGradesBtn">View Grades</button> <!-- hidden -->
 
 <!-- Modal -->
 <div id="gradesModal" class="modal">
@@ -166,10 +167,12 @@ function showModalAndFetchGrades() {
     fetchGrades();
 }
 
+// AUTO show modal and fetch grades on page load
 window.addEventListener('DOMContentLoaded', () => {
-    showModalAndFetchGrades(); // Auto-show modal on page load
+    showModalAndFetchGrades();
 });
 
+// Keep this in case you want to allow manual showing later
 showBtn.addEventListener('click', showModalAndFetchGrades);
 
 closeBtn.addEventListener('click', () => {
