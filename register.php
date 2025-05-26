@@ -24,6 +24,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'zip', 'email', 'contactNumber', 'strand', 'level',
         'semester', 'school_year'
     ];
+       // Check birthdate eligibility (17 or older)
+    $birthdate = $_POST['birthdate'] ?? '';
+    $dob = new DateTime($birthdate);
+    $today = new DateTime();
+    $ageInterval = $dob->diff($today);
+
+    if ($ageInterval->y < 17) {
+        echo "<script>
+                alert('Oopss! Your age does not meet the registration requirements.');
+                window.history.back();
+              </script>";
+        exit;
+    }
 
     // Assign contact number to variable for checking
     $contact_number = $_POST['contactNumber'] ?? '';
