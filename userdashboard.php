@@ -302,7 +302,7 @@ if ($result->num_rows === 1) {
       <h1>Dashboard</h1>
       <div class="avatar-container">
         <button class="avatar-button" onclick="toggleDropdown()">
-          <img src="https://i.pravatar.cc/150?img=3" alt="User Avatar" />
+          <img id="dashboardAvatar" src="uploads/<?php echo htmlspecialchars($student['profile_pic'] ?? 'profile.png'); ?>" alt="User Avatar" />
         </button>
         <div id="dropdownMenu" class="dropdown">
           <a href="#" onclick="loadSection('profile')"><i class="fas fa-user-circle"></i> View Profile</a>
