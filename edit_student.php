@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <button class="back-btn" onclick="window.history.back();">X</button>
+<button class="back-btn" onclick="window.location.href='admindashboard.php';">X</button>
     <title>Edit Student List</title>
     <link rel="stylesheet" href="addstudent.css">
 </head>

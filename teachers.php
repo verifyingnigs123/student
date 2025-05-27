@@ -121,7 +121,7 @@ if (isset($_GET['edit_id'])) {
           <td><?= htmlspecialchars($row['contact']) ?></td>
           <td><?= htmlspecialchars($row['subject']) ?></td>
           <td>
-            <a href="?edit_id=<?= $row['id'] ?>" class="btn btn-edit">Edit</a>
+            <a href="#" class="btn btn-edit" data-id="<?= $row['id'] ?>">Edit</a>
             <a href="?delete_id=<?= $row['id'] ?>" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this teacher?')">Delete</a>
           </td>
         </tr>

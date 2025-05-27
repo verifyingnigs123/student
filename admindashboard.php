@@ -1,3 +1,41 @@
+<?php
+include 'db.php'; // Include your database connection
+
+// DELETE TEACHER if 'delete_id' is present in URL
+if (isset($_GET['delete_id'])) {
+    $delete_id = intval($_GET['delete_id']);
+    $stmt = $conn->prepare("DELETE FROM teachers WHERE id = ?");
+    $stmt->bind_param("i", $delete_id);
+    $stmt->execute();
+    $stmt->close();
+
+    // Redirect to avoid resubmission on refresh
+    header("Location: " . strtok($_SERVER["REQUEST_URI"], '?'));
+    exit;
+}
+
+// UPDATE TEACHER if form submitted via POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_id'])) {
+    $id = intval($_POST['update_id']);
+    $fName = $_POST['fName'];
+    $mName = $_POST['mName'];
+    $lName = $_POST['lName'];
+    $email = $_POST['email'];
+    $contact = $_POST['contact'];
+    $subject = $_POST['subject'];
+
+    $stmt = $conn->prepare("UPDATE teachers SET fName=?, mName=?, lName=?, email=?, contact=?, subject=? WHERE id=?");
+    $stmt->bind_param("ssssssi", $fName, $mName, $lName, $email, $contact, $subject, $id);
+    $stmt->execute();
+    $stmt->close();
+
+    header("Location: " . strtok($_SERVER["REQUEST_URI"], '?'));
+    exit;
+    
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -300,12 +338,30 @@
     .then(response => response.text())
     .then(data => {
       mainSection.innerHTML = data;
+
+      // After content is injected, hook up the edit buttons
+      document.querySelectorAll('.btn-edit').forEach(button => {
+        button.addEventListener('click', function (e) {
+          e.preventDefault();
+          const editId = this.dataset.id;
+
+          fetch(`teachers.php?edit_id=${editId}`)
+            .then(response => response.text())
+            .then(html => {
+              mainSection.innerHTML = html; // Replace content with edit form
+            })
+            .catch(error => {
+              console.error('Failed to load edit form:', error);
+            });
+        });
+      });
     })
     .catch(error => {
       mainSection.innerHTML = '<p>Error loading teacher page.</p>';
       console.error('Error loading teachers:', error);
     });
 }
+
 
         else {
           menuItems.forEach(i => i.classList.remove('active'));
