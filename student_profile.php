@@ -202,7 +202,6 @@ body {
         
 
 <div class="main">
-<button class="back-btn" onclick="window.location.href='userdashboard.php';">X</button>
     <div class="card">
       <div class="profile-header">
     <div class="profile-pic-container">

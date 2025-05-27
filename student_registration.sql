@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2025 at 03:34 AM
+-- Generation Time: May 27, 2025 at 07:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -44,7 +44,7 @@ CREATE TABLE `account_balance` (
 --
 
 INSERT INTO `account_balance` (`id`, `student_id`, `balance`, `description`, `semester`, `school_year`, `grade_level`, `strand`, `date_updated`) VALUES
-(18, 231160010104, '200.00', 'Tuition fee', '1st Semester', '2025-2026', 'Grade 11', 'STEM', '2025-05-22 01:20:34');
+(18, 231160010104, '2000.00', 'Tuition fee', '1st Semester', '2025-2026', 'Grade 11', 'STEM', '2025-05-25 23:55:14');
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,7 @@ CREATE TABLE `grades` (
 
 INSERT INTO `grades` (`id`, `student_id`, `subject`, `grade`) VALUES
 (32, 231160010213, 'Religon', '93'),
-(33, 231160010104, 'Arts', '89');
+(35, 231160010104, 'Arts', '75');
 
 -- --------------------------------------------------------
 
@@ -173,18 +173,18 @@ CREATE TABLE `students` (
   `semester` varchar(20) DEFAULT NULL,
   `school_year` varchar(20) DEFAULT NULL,
   `is_approved` enum('approved','reject') NOT NULL,
-  `registered_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `registered_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `profile_pic` varchar(255) DEFAULT 'profile.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `student_type`, `fName`, `mName`, `lName`, `extName`, `birthdate`, `age`, `place`, `student_id`, `religion`, `gender`, `street`, `city`, `state`, `country`, `zip`, `email`, `contactNumber`, `strand`, `level`, `semester`, `school_year`, `is_approved`, `registered_at`) VALUES
-(7, 'Transferee Student', 'Raph', '', 'Visayas', '', '2003-08-12', 21, 'Polomolok', '231160010213', 'ambot', 'Male', 'Polomolok, South Cotabato', 'Polomolok', 'South Cotabato', 'Philippines', '9504', 'fauzi@gmail.com', '09071787237', 'HUMSS', 'Grade 11', '2nd Semester', '2025-2026', 'approved', '2025-04-23 11:35:58'),
-(10, 'Old Student', 'Justine', '', 'Moril', '', '2004-08-12', 20, '', '231160010215', '', '', '', '', '', '', '', 'ffauzi@gmail.com', '09071787235', 'GAS', 'Grade 11', '1st Semester', '', 'approved', '2025-04-23 14:41:22'),
-(11, 'New Student', 'Johar', '', 'Gogo', '', '2005-08-12', 19, 'Polomolok', '231160010218', 'ambot', 'Male', 'Polomolok, South Cotabato', 'Polomolok', 'South Cotabato', 'Philippines', '9504', 'ffauzi@gmail.com', '09071787231', 'GAS', 'Grade 11', '2nd Semester', '2026-2027', 'approved', '2025-04-23 14:43:39'),
-(31, 'Old Student', 'Benjie', '', 'Glenogo', '', '2003-08-12', 20, '', '231160010104', '', '', '', '', '', '', '', 'benjie@gmail.com', '09359544536', 'TVL', 'Grade 11', '1st Semester', '', 'approved', '2025-05-21 08:04:45');
+INSERT INTO `students` (`id`, `student_type`, `fName`, `mName`, `lName`, `extName`, `birthdate`, `age`, `place`, `student_id`, `religion`, `gender`, `street`, `city`, `state`, `country`, `zip`, `email`, `contactNumber`, `strand`, `level`, `semester`, `school_year`, `is_approved`, `registered_at`, `profile_pic`) VALUES
+(10, 'Old Student', 'Justine', '', 'Moril', '', '2004-08-12', 20, '', '231160010215', '', '', '', '', '', '', '', 'ffauzi@gmail.com', '09071787235', 'GAS', 'Grade 11', '1st Semester', '', 'approved', '2025-04-23 14:41:22', 'profile.png'),
+(11, 'New Student', 'Johar', '', 'Gogo', '', '2005-08-12', 19, 'Polomolok', '231160010218', 'ambot', 'Male', 'Polomolok, South Cotabato', 'Polomolok', 'South Cotabato', 'Philippines', '9504', 'ffauzi@gmail.com', '09071787231', 'GAS', 'Grade 11', '2nd Semester', '2026-2027', 'approved', '2025-04-23 14:43:39', 'profile.png'),
+(31, 'Old Student', 'Benjie', '', 'Glenogo', '', '2003-08-12', 20, '', '231160010104', '', '', '', '', '', '', '', 'benjie@gmail.com', '09359544536', 'TVL', 'Grade 11', '1st Semester', '', 'approved', '2025-05-21 08:04:45', 'profile_6835f4b15f2776.67400817.jpg');
 
 -- --------------------------------------------------------
 
@@ -295,7 +295,7 @@ ALTER TABLE `account_balance`
 -- AUTO_INCREMENT for table `grades`
 --
 ALTER TABLE `grades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `login`
@@ -319,13 +319,13 @@ ALTER TABLE `schedules`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `teacher_login`

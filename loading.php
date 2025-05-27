@@ -43,7 +43,7 @@ $redirectPage = $_GET['redirect'] ?? 'admindashboard.php';
         // Redirect after 2 seconds
         setTimeout(function () {
             window.location.href = "<?php echo htmlspecialchars($redirectPage); ?>";
-        }, 2000);
+        }, 1000);
     </script>
 </head>
 <body>
