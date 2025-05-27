@@ -178,9 +178,7 @@ window.addEventListener('DOMContentLoaded', () => {
 showBtn.addEventListener('click', showModalAndFetchSchedule);
 
 closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-    messageEl.textContent = '';
-    scheduleBody.innerHTML = '';
+    window.location.href = 'userdashboard.php';
 });
 
 window.addEventListener('click', (e) => {

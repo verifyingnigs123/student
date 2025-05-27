@@ -173,10 +173,9 @@ showBtn.addEventListener('click', showModalAndFetchBalance);
 
 
 closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-    messageEl.textContent = '';
-    balanceEl.textContent = '';
+    window.location.href = 'userdashboard.php';
 });
+
 
 window.addEventListener('click', (e) => {
     if (e.target === modal) {

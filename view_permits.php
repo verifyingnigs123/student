@@ -160,11 +160,9 @@ function showModalAndFetchPermits() {
 
 // Close modal
 closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-    message.textContent = '';
-    table.style.display = 'none';
-    tbody.innerHTML = '';
+    window.location.href = 'userdashboard.php';
 });
+
 
 // Close if click outside modal
 window.addEventListener('click', (e) => {

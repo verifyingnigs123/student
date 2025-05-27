@@ -176,9 +176,7 @@ window.addEventListener('DOMContentLoaded', () => {
 showBtn.addEventListener('click', showModalAndFetchGrades);
 
 closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-    messageEl.textContent = '';
-    gradesBody.innerHTML = '';
+    window.location.href = 'userdashboard.php';
 });
 
 window.addEventListener('click', (e) => {
