@@ -299,7 +299,7 @@ if ($result->num_rows === 1) {
   <div class="main-content" id="main-content">
     <div class="header">
       <button class="burger" onclick="toggleSidebar()">☰</button>
-      <h1>Dashboard</h1>
+      <h1>Student Dashboard</h1>
       <div class="avatar-container">
         <button class="avatar-button" onclick="toggleDropdown()">
           <img id="dashboardAvatar" src="uploads/<?php echo htmlspecialchars($student['profile_pic'] ?? 'profile.png'); ?>" alt="User Avatar" />
