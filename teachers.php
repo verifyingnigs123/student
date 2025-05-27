@@ -59,7 +59,6 @@ if (isset($_GET['edit_id'])) {
 <body>
 
   <div class="container">
-    <a href="admindashboard.php" class="close-btn" title="Back to Dashboard">×</a>
 
     <h2>Teacher List</h2>
 

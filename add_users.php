@@ -15,7 +15,6 @@ $result = $conn->query("SELECT * FROM students");
 <body>
 
   <div class="container">
-  <a href="javascript:history.back()" class="close-btn" title="Go Back">×</a>
     <h2>Student List</h2>
 
     <div class="search-bar">

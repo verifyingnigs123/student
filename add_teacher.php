@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
 
   <div class="form-container">
-    <a href="teachers.php" class="back-link">← Back to Teacher List</a>
+    <a href="admindashboard.php" class="back-link">Back</a>
     <h2>Add New Teacher</h2>
 
     <?php if ($successMsg): ?>

@@ -286,10 +286,28 @@
         if (section === 'logout') {
           logoutModal.style.display = 'flex';
         } else if (section === 'students') {
-          window.location.href = 'add_users.php';
-        } else if (section === 'teachers') {
-          window.location.href = 'teachers.php';
-        } else {
+  fetch('add_users.php')
+    .then(response => response.text())
+    .then(data => {
+      mainSection.innerHTML = data;
+    })
+    .catch(error => {
+      mainSection.innerHTML = '<p>Error loading student page.</p>';
+      console.error('Error loading students:', error);
+    });
+} else if (section === 'teachers') {
+  fetch('teachers.php')
+    .then(response => response.text())
+    .then(data => {
+      mainSection.innerHTML = data;
+    })
+    .catch(error => {
+      mainSection.innerHTML = '<p>Error loading teacher page.</p>';
+      console.error('Error loading teachers:', error);
+    });
+}
+
+        else {
           menuItems.forEach(i => i.classList.remove('active'));
           this.classList.add('active');
           mainSection.innerHTML = contentMap[section] || '<p>Section not found.</p>';
