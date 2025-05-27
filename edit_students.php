@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $updateStmt->bind_param("ssssssi", $first_name, $middle_name, $last_name, $strand, $level,$semester, $id);
 
     if ($updateStmt->execute()) {
-        echo "<script>alert('Student Updated Successfully'); window.location.href='add_users.php';</script>";
+        echo "<script>alert('Student Updated Successfully'); window.location.href='teacherdashboard.php';</script>";
     } else {
         echo "Execute failed: (" . $updateStmt->errno . ") " . $updateStmt->error;
     }
