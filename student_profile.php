@@ -46,14 +46,14 @@ if ($result->num_rows === 1) {
 body {
     display: flex;
     min-height: 100vh;
-    background: #eef2f7; /* Updated background */
-    color: #2c3e50; /* Modern dark gray text */
+    background: #eef2f7;
+    color: #2c3e50;
 }
 
-/* Sidebar */
+/* Sidebar (currently unused on mobile, still included for larger viewports) */
 .sidebar {
     width: 240px;
-    background: #ffffff; /* White sidebar */
+    background: #ffffff;
     color: #2c3e50;
     padding: 20px;
     border-right: 1px solid #ccc;
@@ -93,30 +93,53 @@ body {
 .profile-header {
     display: flex;
     align-items: center;
+    gap: 10px;
     margin-bottom: 30px;
     position: relative;
+    flex-wrap: wrap;
 }
 
-.profile-header img {
+.profile-pic-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-pic-container img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 20px;
     border: 3px solid #ccc;
 }
 
-.profile-header .btn-edit {
-    margin-left: auto;
-    padding: 8px 16px;
-    background: #3498db;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8px;
 }
 
-.profile-header .btn-settings {
+.upload-form input[type="file"] {
+    font-size: 12px;
+    padding: 2px;
+}
+
+.upload-form .btn-edit {
+    margin-top: 5px;
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.4;
+    min-width: 0;
+}
+
+.btn-settings {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -160,10 +183,6 @@ body {
         flex-direction: column;
         align-items: flex-start;
     }
-
-    .btn-edit {
-        margin-top: 10px;
-    }
 }
 
 .back-btn {
@@ -185,19 +204,27 @@ body {
 <div class="main">
 <button class="back-btn" onclick="window.location.href='userdashboard.php';">X</button>
     <div class="card">
-        <div class="profile-header">
-            <img src="profile.png" alt="Profile Picture">
-            <div>
-                <h2>
-                    <?php echo htmlspecialchars($student['fName'] . ' ' . $student['mName'] . ' ' . $student['lName']); ?>
-                </h2>
-                <p><?php echo htmlspecialchars($student['email']); ?></p>
-            </div>
-    
-            <button class="btn-settings" onclick="window.location.href='settings.php'">
-                <i class="fas fa-cogs"></i> 
-            </button>
-        </div>
+      <div class="profile-header">
+    <div class="profile-pic-container">
+        <img src="uploads/<?php echo htmlspecialchars($student['profile_pic'] ?? 'profile.png'); ?>" alt="Profile Picture">
+        <form action="upload.php" method="POST" enctype="multipart/form-data" class="upload-form" id="uploadForm">
+    <input type="file" name="profile_pic" accept="image/*" required onchange="document.getElementById('uploadForm').submit();">
+</form>
+
+    </div>
+
+    <div class="profile-info">
+        <h2>
+            <?php echo htmlspecialchars($student['fName'] . ' ' . $student['mName'] . ' ' . $student['lName']); ?>
+        </h2>
+        <p><?php echo htmlspecialchars($student['email']); ?></p>
+    </div>
+
+    <button class="btn-settings" onclick="window.location.href='settings.php'">
+        <i class="fas fa-cogs"></i> 
+    </button>
+</div>
+
 
         <div class="info-grid">
             <div class="info-item"><strong>Student Type</strong><?php echo htmlspecialchars($student['student_type']); ?></div>
