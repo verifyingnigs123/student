@@ -15,6 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
     $sql = "INSERT INTO account_balance (student_id, balance, description, semester, school_year, grade_level, strand)
             VALUES ('$student_id', '$balance', '$description', '$semester', '$school_year', '$grade_level', '$strand')";
     $conn->query($sql);
+     header("Location: teacherdashboard.php");
+    exit;
 }
 
 // UPDATE balance
@@ -29,6 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
 if (isset($_GET['delete'])) {
     $student_id = $_GET['delete'];
     $conn->query("DELETE FROM account_balance WHERE student_id='$student_id'");
+      header("Location: teacherdashboard.php");
+    exit;
 }
 ?>
 

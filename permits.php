@@ -17,7 +17,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
     } else {
         echo "Error: " . $conn->error;
     }
+    header("Location: teacherdashboard.php");
+    exit;
+
+    
 }
+
 
 // UPDATE Permit
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
@@ -33,12 +38,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
     } else {
         echo "Error: " . $conn->error;
     }
+    header("Location: teacherdashboard.php");
+    exit;
 }
 
 // DELETE Permit
 if (isset($_GET['delete'])) {
     $student_id = $_GET['delete'];
     $conn->query("DELETE FROM permits WHERE student_id='$student_id'");
+    header("Location: teacherdashboard.php");
+    exit;
 }
 
 // Fetch permits from the database for display

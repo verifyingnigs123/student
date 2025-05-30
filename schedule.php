@@ -19,6 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
         $sql = "INSERT INTO schedules (student_id, subject, day, time, room)
                 VALUES ('$student_id', '$subject', '$day', '$time', '$room')"; // Modified query to include room
         $conn->query($sql);
+        header("Location: teacherdashboard.php");
+    exit;
     }
 }
 
@@ -41,6 +43,8 @@ if (isset($_POST['update'])) {
         $sql = "UPDATE schedules SET subject='$subject', day='$day', time='$time', room='$room' 
                 WHERE student_id='$student_id' AND subject='$subject'"; // Modified query to include room
         $conn->query($sql);
+        header("Location: teacherdashboard.php");
+    exit;
     }
 }
 
@@ -48,6 +52,8 @@ if (isset($_POST['update'])) {
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
     $conn->query("DELETE FROM schedules WHERE id=$id");
+    header("Location: teacherdashboard.php");
+    exit;
 }
 ?>
 
@@ -114,8 +120,8 @@ function addMore() {
                 <td>{$row['time']}</td>
                 <td>{$row['room']}</td> <!-- Display room data -->
                 <td>
-                    <a href='?edit={$row['student_id']}'>Edit</a> | 
-                    <a href='?delete={$row['id']}' onclick=\"return confirm('Delete this schedule?')\">Delete</a>
+                     <a href='schedule.php?edit=" . $row['student_id'] . "'>Edit</a> | 
+                     <a href='schedule.php?delete=" . $row['id'] . "' onclick=\"return confirm('Delete this schedule?')\">Delete</a>
                 </td>
               </tr>";
     }

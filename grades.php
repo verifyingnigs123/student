@@ -15,6 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
         $stmt->execute();
     }
     $stmt->close();
+    
+     header("Location: teacherdashboard.php");
+    exit;
 }
 
 // UPDATE MULTIPLE
@@ -37,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_all'])) {
     }
     $stmt->close();
 
-    header("Location: grades.php");
+    header("Location: teacherdashboard.php");
     exit;
 }
 
@@ -48,6 +51,9 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $stmt->close();
+
+    header("Location: teacherdashboard.php");
+exit();
 }
 ?>
 
