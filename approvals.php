@@ -24,7 +24,7 @@ if (isset($_GET['approve'])) {
     }
 
     // Redirect back with the success or error message
-    header("Location: approvals.php?message=$message&type=$message_type");
+    header("Location: teacherdashboard.php?message=$message&type=$message_type");
     exit();
 }
 
@@ -45,7 +45,7 @@ if (isset($_GET['reject'])) {
     }
 
     // Redirect back with the success or error message
-    header("Location: approvals.php?message=$message&type=$message_type");
+    header("Location: teacherdashboard.php?message=$message&type=$message_type");
     exit();
 }
 
@@ -60,7 +60,7 @@ if (isset($_GET['message']) && isset($_GET['type'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Approval</title>
+    <title>Teacher Approval</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50 p-6">
@@ -69,9 +69,6 @@ if (isset($_GET['message']) && isset($_GET['type'])) {
 <div class="flex justify-between items-center mb-4">
         <h1 class="text-3xl font-bold">Pending Students Approval</h1>
         <!-- X Button to go back to the dashboard -->
-        <a href="teacherdashboard.php" class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-red-600">
-            X
-        </a>
     </div>
 
     <?php
