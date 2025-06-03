@@ -96,15 +96,16 @@ exit();
     $result = $conn->query("SELECT * FROM grades ORDER BY student_id");
     if ($result) {
         while($row = $result->fetch_assoc()) {
-            echo "<tr>
-                    <td>{$row['student_id']}</td>
-                    <td>{$row['subject']}</td>
-                    <td>{$row['grade']}</td>
-                    <td>
-                        <a href='grades.php?edit_lrn={$row['student_id']}'>Edit</a> |
-                        <a href='grades.php?delete={$row['id']}' onclick=\"return confirm('Delete this grade?')\">Delete</a>
-                    </td>
-                  </tr>";
+      echo "<tr>
+    <td>" . htmlspecialchars($row['student_id']) . "</td>
+    <td>" . htmlspecialchars($row['subject']) . "</td>
+    <td>" . htmlspecialchars($row['grade']) . "</td>
+    <td>
+        <a href=\"#\" class=\"edit-grade\" data-lrn=\"" . htmlspecialchars($row['student_id']) . "\">Edit</a> |
+        <a href='grades.php?delete=" . urlencode($row['id']) . "' onclick=\"return confirm('Delete this grade?')\">Delete</a>
+    </td>
+</tr>";
+
         }
     }
     ?>
@@ -172,6 +173,22 @@ document.getElementById("searchInput").addEventListener("keyup", function () {
         }
     });
 });
+// Delegate click event to the content container for dynamically loaded links
+document.getElementById('content').addEventListener('click', function(e) {
+  if (e.target.classList.contains('edit-grade')) {
+    e.preventDefault();
+    const lrn = e.target.getAttribute('data-lrn');
+
+    fetch(`grades.php?edit_lrn=${encodeURIComponent(lrn)}`)
+      .then(response => response.text())
+      .then(data => {
+        // Replace content with the full grades page but with edit form shown
+        // Or, better, just replace the part that shows the form (you can adjust)
+        this.innerHTML = `<div class="welcome-box">${data}</div>`;
+      });
+  }
+});
+
 
 </script>
 

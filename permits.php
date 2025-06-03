@@ -91,20 +91,27 @@ $permits = $conn->query("SELECT * FROM permits");
 
 <table border="1" cellpadding="5">
     <tr><th>LRN</th><th>Permit Type</th><th>Status</th><th>Issue Date</th><th>Expiration Date</th><th>Actions</th></tr>
-    <?php while($row = $permits->fetch_assoc()) { ?>
-        <tr>
-            <td><?php echo $row['student_id']; ?></td>
-            <td><?php echo $row['permit_type']; ?></td>
-            <td><?php echo $row['status']; ?></td>
-            <td><?php echo $row['issue_date']; ?></td>
-            <td><?php echo $row['expiration_date']; ?></td>
-            <td>
-                <a href="permits.php?edit=<?php echo $row['student_id']; ?>">Edit</a> | 
-                <a href="permits.php?delete=<?php echo $row['student_id']; ?>" onclick="return confirm('Delete this permit?')">Delete</a>
-            </td>
-        </tr>
-    <?php } ?>
+   <?php while($row = $permits->fetch_assoc()) {
+    $student_id = htmlspecialchars($row['student_id']);
+    $permit_type = htmlspecialchars($row['permit_type']);
+    $status = htmlspecialchars($row['status']);
+    $issue_date = htmlspecialchars($row['issue_date']);
+    $expiration_date = htmlspecialchars($row['expiration_date']);
+?>
+<tr>
+    <td><?= $student_id ?></td>
+    <td><?= $permit_type ?></td>
+    <td><?= $status ?></td>
+    <td><?= $issue_date ?></td>
+    <td><?= $expiration_date ?></td>
+    <td>
+        <a href="#" class="edit-permit" data-id="<?= $student_id ?>">Edit</a> |
+        <a href="permits.php?delete=<?= urlencode($row['student_id']) ?>" onclick="return confirm('Delete this permit?')">Delete</a>
+    </td>
+</tr>
+<?php } ?>
 </table>
+
 
 <?php
 // Edit Permit Form
@@ -151,6 +158,23 @@ document.getElementById('searchInput').addEventListener('keyup', function() {
         }
     });
 });
+
+document.getElementById('content').addEventListener('click', function(e) {
+    if (e.target.classList.contains('edit-permit')) {
+        e.preventDefault();
+        const studentId = e.target.getAttribute('data-id');
+
+        fetch(`permits.php?edit=${encodeURIComponent(studentId)}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('content').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error loading edit form:', error);
+            });
+    }
+});
+
 </script>
 
 </body>

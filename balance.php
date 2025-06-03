@@ -25,6 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
     $balance = number_format((float)$_POST['balance'], 2, '.', '');
     $sql = "UPDATE account_balance SET balance='$balance' WHERE student_id='$student_id'";
     $conn->query($sql);
+     header("Location: teacherdashboard.php");
+    exit;
 }
 
 // DELETE balance
@@ -122,22 +124,33 @@ if (isset($_GET['delete'])) {
 <?php
 $result = $conn->query("SELECT * FROM account_balance");
 while ($row = $result->fetch_assoc()) {
+    $student_id = htmlspecialchars($row['student_id']);
+    $balance = number_format($row['balance'], 2);
+    $balance_raw = htmlspecialchars($row['balance']);
+    $description = htmlspecialchars($row['description']);
+    $semester = htmlspecialchars($row['semester']);
+    $school_year = htmlspecialchars($row['school_year']);
+    $grade_level = htmlspecialchars($row['grade_level']);
+    $strand = htmlspecialchars($row['strand']);
+    $date_updated = htmlspecialchars($row['date_updated']);
+    
     echo "<tr>
-        <td>{$row['student_id']}</td>
-        <td>₱" . number_format($row['balance'], 2) . "</td>
-        <td>{$row['description']}</td>
-        <td>{$row['semester']}</td>
-        <td>{$row['school_year']}</td>
-        <td>{$row['grade_level']}</td>
-        <td>{$row['strand']}</td>
-        <td>{$row['date_updated']}</td>
+        <td>{$student_id}</td>
+        <td>₱{$balance}</td>
+        <td>{$description}</td>
+        <td>{$semester}</td>
+        <td>{$school_year}</td>
+        <td>{$grade_level}</td>
+        <td>{$strand}</td>
+        <td>{$date_updated}</td>
         <td>
-            <a href='balance.php?edit={$row['student_id']}'>Edit</a> 
-            <a href='balance.php?delete={$row['student_id']}' onclick='return confirm(\"Delete this balance?\")'>Delete</a>
-            <button type='button' onclick='generateSOA(\"{$row['student_id']}\", \"{$row['balance']}\", \"{$row['description']}\", \"{$row['semester']}\", \"{$row['school_year']}\", \"{$row['grade_level']}\", \"{$row['strand']}\")'>SOA</button>
+            <a href=\"#\" class=\"edit-balance\" data-id=\"{$student_id}\">Edit</a> |
+            <a href='balance.php?delete=" . urlencode($student_id) . "' onclick=\"return confirm('Delete this balance?')\">Delete</a> |
+            <button type='button' onclick='generateSOA(\"{$student_id}\", \"{$balance_raw}\", \"{$description}\", \"{$semester}\", \"{$school_year}\", \"{$grade_level}\", \"{$strand}\")'>SOA</button>
         </td>
     </tr>";
 }
+
 ?>
 </table>
 
@@ -212,6 +225,22 @@ function generateSOA(studentId, balance, description, semester, schoolYear, grad
 function closeSOA() {
     document.getElementById('soaModal').style.display = 'none';
 }
+document.getElementById('content').addEventListener('click', function(e) {
+    if (e.target.classList.contains('edit-balance')) {
+        e.preventDefault();
+        const studentId = e.target.getAttribute('data-id');
+
+        fetch(`balance.php?edit=${encodeURIComponent(studentId)}`)
+            .then(response => response.text())
+            .then(data => {
+                // Replace part of the page or show an edit form - adjust as needed
+                // For demo, replace content with response inside a div
+                this.innerHTML = `<div class="edit-form">${data}</div>`;
+            })
+            .catch(err => console.error('Error loading edit form:', err));
+    }
+});
+
 </script>
 
 </body>

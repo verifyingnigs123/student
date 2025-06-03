@@ -113,17 +113,18 @@ function addMore() {
     <?php
     $result = $conn->query("SELECT * FROM schedules");
     while($row = $result->fetch_assoc()) {
-        echo "<tr>
-                <td>{$row['student_id']}</td>
-                <td>{$row['subject']}</td>
-                <td>{$row['day']}</td>
-                <td>{$row['time']}</td>
-                <td>{$row['room']}</td> <!-- Display room data -->
-                <td>
-                     <a href='schedule.php?edit=" . $row['student_id'] . "'>Edit</a> | 
-                     <a href='schedule.php?delete=" . $row['id'] . "' onclick=\"return confirm('Delete this schedule?')\">Delete</a>
-                </td>
-              </tr>";
+echo "<tr>
+    <td>" . htmlspecialchars($row['student_id']) . "</td>
+    <td>" . htmlspecialchars($row['subject']) . "</td>
+    <td>" . htmlspecialchars($row['day']) . "</td>
+    <td>" . htmlspecialchars($row['time']) . "</td>
+    <td>" . htmlspecialchars($row['room']) . "</td>
+    <td>
+        <a href=\"#\" class=\"edit-schedule\" data-lrn=\"" . htmlspecialchars($row['student_id']) . "\">Edit</a> | 
+        <a href='schedule.php?delete=" . urlencode($row['id']) . "' onclick=\"return confirm('Delete this schedule?')\">Delete</a>
+    </td>
+</tr>";
+
     }
     ?>
 </table>
@@ -184,6 +185,27 @@ document.getElementById('searchInput').addEventListener('keyup', function() {
         }
     });
 });
+
+// Assuming your table or main container has id="content"
+document.getElementById('content').addEventListener('click', function(e) {
+  if (e.target.classList.contains('edit-schedule')) {
+    e.preventDefault();
+    const lrn = e.target.getAttribute('data-lrn');
+
+    fetch(`schedule.php?edit=${encodeURIComponent(lrn)}`)
+      .then(response => response.text())
+      .then(data => {
+        // Replace container content with the fetched edit form
+        this.innerHTML = data;
+      })
+      .catch(err => {
+        console.error('Error loading edit form:', err);
+      });
+  }
+});
+
+
+
 </script>
 
 

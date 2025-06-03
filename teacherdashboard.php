@@ -512,6 +512,104 @@ case 'grades':
     function logout() {
       window.location.href = "loading.php?redirect=Signin.php";
     }
+  function loadSection(section, el = null) {
+  const content = document.getElementById('content');
+  const links = document.querySelectorAll('.menu a');
+  links.forEach(link => link.classList.remove('active'));
+  if (el) el.classList.add('active');
+
+  let url = '';
+
+  switch (section) {
+        case 'profile':
+      url = 'teacherprofile.php';
+      break;
+    case 'grades':
+      url = 'grades.php';
+      break;
+    case 'schedule':
+      url = 'schedule.php';
+      break;
+    case 'balance':
+      url = 'balance.php';
+      break;
+    case 'permits':
+      url = 'permits.php';
+      break;
+    case 'add_user':
+      url = 'teachadd_user.php';
+      break;
+    case 'approval':
+      url = 'approvals.php';
+      break;
+    // add other cases as needed
+  }
+
+  if (!url) return;
+
+  fetch(url)
+    .then(res => res.text())
+    .then(data => {
+      content.innerHTML = `<div class="welcome-box">${data}</div>`;
+
+      // Run inline scripts inside loaded content (if any)
+      const div = document.createElement('div');
+      div.innerHTML = data;
+      const scripts = div.querySelectorAll('script');
+      scripts.forEach(script => {
+        const newScript = document.createElement('script');
+        if (script.src) {
+          newScript.src = script.src;
+        } else {
+          newScript.textContent = script.textContent;
+        }
+        document.body.appendChild(newScript);
+      });
+
+      // Attach event delegation for dynamic edit links inside loaded content
+      content.addEventListener('click', function handler(e) {
+        // Remove this handler to avoid duplicates on reload
+        content.removeEventListener('click', handler);
+
+        // Map section to corresponding edit class prefix & query param
+        const editMap = {
+          grades: {className: 'edit-grade', param: 'edit_lrn'},
+          schedule: {className: 'edit-schedule', param: 'edit_id'},
+          balance: {className: 'edit-balance', param: 'edit_id'},
+          permits: {className: 'edit-permit', param: 'edit_id'},
+          add_user: {className: 'edit-user', param: 'edit_id'},
+          approval: {className: 'edit-approval', param: 'edit_id'},
+        };
+
+        // Find which edit class was clicked (supports multiple sections)
+        for (const key in editMap) {
+          const {className, param} = editMap[key];
+          if (e.target.classList.contains(className)) {
+            e.preventDefault();
+            const id = e.target.getAttribute('data-lrn') || e.target.getAttribute('data-id');
+            fetch(`${key}.php?${param}=${encodeURIComponent(id)}`)
+              .then(res => res.text())
+              .then(html => {
+                content.innerHTML = `<div class="welcome-box">${html}</div>`;
+              });
+            return;
+          }
+        }
+
+        // Fallback: toggle any inline edit forms (optional)
+        if (e.target.classList.contains('edit-button')) {
+          const form = e.target.closest('.item-row').querySelector('.edit-form');
+          if (form) {
+            form.style.display = form.style.display === 'block' ? 'none' : 'block';
+          }
+          return;
+        }
+      }, { once: true });
+    });
+}
+
+
+
     
   </script>
 </body>
