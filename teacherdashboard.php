@@ -295,10 +295,7 @@ $conn->close();
         <a href="#" onclick="loadSection('profile', this)"><i class="fas fa-user"></i> Teacher Profile</a>
         <a href="#" onclick="loadSection('grades', this)"><i class="fas fa-graduation-cap"></i>  Grades</a>
         <a href="#" onclick="loadSection('schedule', this)"><i class="fas fa-calendar-alt"></i> Class Schedule & Subjects</a>
-        <a href="#" onclick="loadSection('balance', this)"><i class="fas fa-wallet"></i> Account & Balance</a>
-        <a href="#" onclick="loadSection('permits', this)"><i class="fas fa-file-alt"></i> Permits</a>
-        <a href="#" onclick="loadSection('add_user', this)"><i class="fas fa-user"></i> Student List</a>
-        <a href="#" onclick="loadSection('approval', this)"><i class="fas fa-check"></i> Approval</a>
+        
       </div>
     </div>
   
@@ -528,19 +525,7 @@ case 'grades':
       url = 'grades.php';
       break;
     case 'schedule':
-      url = 'schedule.php';
-      break;
-    case 'balance':
-      url = 'balance.php';
-      break;
-    case 'permits':
-      url = 'permits.php';
-      break;
-    case 'add_user':
-      url = 'teachadd_user.php';
-      break;
-    case 'approval':
-      url = 'approvals.php';
+      url = 'view_schedule.php';
       break;
     // add other cases as needed
   }

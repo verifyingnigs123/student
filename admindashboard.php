@@ -213,6 +213,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_id'])) {
       <div class="menu-item" data-section="students">
         <i class="fas fa-user-graduate"></i><span>Students</span>
       </div>
+      <div class="menu-item" data-section="classs/chedule">
+        <i class= "fas fa-calendar-alt"></i><span>Class Schedule & Subject</span>
+      </div>
+      <div class="menu-item" data-section="Account/Balance">
+        <i class="fas fa-wallet"></i><span>Account/Balance</span>
+      </div>
+      <div class="menu-item" data-section="permit">
+        <i class="fas fa-file-alt"></i><span>Permit</span>
+      </div>
+      <div class="menu-item" data-section="Approval">
+        <i class="fas fa-check"></i><span>Approval</span>
+      </div>
       <div class="menu-item" data-section="logout">
         <i class="fas fa-sign-out-alt"></i><span>Logout</span>
       </div>
@@ -316,6 +328,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_id'])) {
     menuToggle.addEventListener('click', () => {
       sidebar.classList.toggle('collapsed');
     });
+    
 
     menuItems.forEach(item => {
       item.addEventListener('click', function () {
@@ -333,6 +346,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_id'])) {
       mainSection.innerHTML = '<p>Error loading student page.</p>';
       console.error('Error loading students:', error);
     });
+    
+    } else if (section === 'classs/chedule') {
+  fetch('schedule.php')
+    .then(response => response.text())
+    .then(data => {
+      mainSection.innerHTML = data;
+    })
+    .catch(error => {
+      mainSection.innerHTML = '<p>Error loading student page.</p>';
+      console.error('Error loading students:', error);
+    });
+
+    } else if (section === 'Account/Balance') {
+  fetch('balance.php')
+    .then(response => response.text())
+    .then(data => {
+      mainSection.innerHTML = data;
+    })
+    .catch(error => {
+      mainSection.innerHTML = '<p>Error loading student page.</p>';
+      console.error('Error loading students:', error);
+    });
+
+     } else if (section === 'permit') {
+  fetch('permits.php')
+    .then(response => response.text())
+    .then(data => {
+      mainSection.innerHTML = data;
+    })
+    .catch(error => {
+      mainSection.innerHTML = '<p>Error loading student page.</p>';
+      console.error('Error loading students:', error);
+    });
+
+     } else if (section === 'Approval') {
+  fetch('approvals.php')
+    .then(response => response.text())
+    .then(data => {
+      mainSection.innerHTML = data;
+    })
+    .catch(error => {
+      mainSection.innerHTML = '<p>Error loading student page.</p>';
+      console.error('Error loading students:', error);
+    });
+
+
 } else if (section === 'teachers') {
   fetch('teachers.php')
     .then(response => response.text())
