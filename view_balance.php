@@ -127,7 +127,7 @@ $studentId = $_SESSION['student_id'];
 <h2>Your Account</h2>
 
 <!-- Show balance button -->
-<button id="showBalanceBtn">View Account Balance</button>
+<button id="showBalanceBtn" style="display:none;">View Schedule</button>
 
 <!-- Modal -->
 <div id="balanceModal" class="modal">
@@ -189,7 +189,7 @@ function fetchBalance() {
     messageEl.textContent = 'Loading...';
     balanceEl.textContent = '';
 
-    fetch('view_balance_api.php?student_id=' + encodeURIComponent(studentId))
+    fetch('api/view_balance_api.php?student_id=' + encodeURIComponent(studentId))
     .then(response => response.json())
     .then(data => {
         if (!data.error) {

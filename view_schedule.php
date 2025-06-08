@@ -126,7 +126,7 @@ $studentId = $_SESSION['student_id'];
 
 <h2>Your Class Schedule</h2>
 
-<button id="showScheduleBtn">View Schedule</button>
+<button id="showScheduleBtn" style="display:none;">View Schedule</button>
 
 <!-- Modal -->
 <div id="scheduleModal" class="modal">
@@ -194,7 +194,7 @@ function fetchSchedule() {
     scheduleBody.innerHTML = '';
     scheduleTable.style.display = 'none';
 
-    fetch(`view_schedule_api.php?student_id=${encodeURIComponent(studentId)}`)
+    fetch(`api/view_schedule_api.php?student_id=${encodeURIComponent(studentId)}`)
         .then(response => response.json())
         .then(data => {
             if (!Array.isArray(data) || data.length === 0 || data.error) {

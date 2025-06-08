@@ -192,7 +192,7 @@ function fetchGrades() {
     gradesBody.innerHTML = '';
     gradesTable.style.display = 'none';
 
-    fetch(`view_grades_api.php?student_id=${encodeURIComponent(studentId)}`)
+    fetch(`api/view_grades_api.php?student_id=${encodeURIComponent(studentId)}`)
       .then(response => response.json())
       .then(data => {
         if (!Array.isArray(data) || data.length === 0 || data.error) {

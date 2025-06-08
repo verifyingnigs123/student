@@ -175,7 +175,7 @@ window.addEventListener('click', (e) => {
 });
 
 function fetchPermits() {
-    fetch('view_permits_api.php?student_id=' + encodeURIComponent(studentId))
+    fetch('api/view_permits_api.php?student_id=' + encodeURIComponent(studentId))
         .then(response => response.json())
         .then(data => {
             if (data.error) {
