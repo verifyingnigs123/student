@@ -43,7 +43,15 @@
         <input type="submit" class="btn" value="Log In" name="submit">
       </form>
 
-      <!-- Google Sign-In -->
+
+
+      <div class="Links">
+        <p>Don't have an account?</p>
+        <div class="link-buttons">
+          <button id="signUpButton">Enroll</button>
+        </div>
+      </div>
+            <!-- Google Sign-In -->
       <div style="text-align:center; margin: 20px 0;">
         <div id="g_id_onload"
              data-client_id="268643386697-364udp9bfc4mafis94kd74ctp23iraqm.apps.googleusercontent.com"
@@ -52,7 +60,7 @@
         </div>
 
         <div class="g_id_signin"
-             data-type="standard"
+             data-type="icon"
              data-shape="pill"
              data-theme="outline"
              data-text="sign_in_with"
@@ -61,14 +69,7 @@
         </div>
       </div>
 
-      <div class="Links">
-        <p>Don't have an account?</p>
-        <div class="link-buttons">
-          <button id="signUpButton">Enroll</button>
-        </div>
-      </div>
-
-      <footer style="text-align: center; padding: 5px 0; background-color: #f8f9fa; color: #555; font-size: 14px; margin-top: 20px;">
+      <footer style="text-align: center; padding: 2px 0; background-color: #f8f9fa; color: #555; font-size: 14px; margin-top: 5px;">
         <p>&copy; 2025 Lathoug's University. All rights reserved.</p>
       </footer>
     </div>
