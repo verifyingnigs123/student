@@ -213,18 +213,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_id'])) {
       <div class="menu-item" data-section="students">
         <i class="fas fa-user-graduate"></i><span>Students</span>
       </div>
-      <div class="menu-item" data-section="classs/chedule">
-        <i class= "fas fa-calendar-alt"></i><span>Class Schedule & Subject</span>
-      </div>
-      <div class="menu-item" data-section="Account/Balance">
-        <i class="fas fa-wallet"></i><span>Account/Balance</span>
-      </div>
-      <div class="menu-item" data-section="permit">
-        <i class="fas fa-file-alt"></i><span>Permit</span>
-      </div>
-      <div class="menu-item" data-section="Approval">
-        <i class="fas fa-check"></i><span>Approval</span>
-      </div>
+
       <div class="menu-item" data-section="logout">
         <i class="fas fa-sign-out-alt"></i><span>Logout</span>
       </div>
@@ -297,7 +286,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_id'])) {
     </div>
   </div>
       `, // unchanged for brevity
-      teachers: `...`,  // unchanged for brevity
+      teachers: ``,  // unchanged for brevity
       students: `...`,  // unchanged for brevity
       logout: null
     };
