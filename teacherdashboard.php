@@ -320,7 +320,7 @@ $conn->close();
     </div>
 
     <div class="welcome-box" id="content" style="padding: 20px; background: #f0f4ff; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-  <h2>Welcome, <?php echo "Prof. " . htmlspecialchars($teacher_last_name); ?>! 🎉</h2>
+  <h2>Welcome, <?php echo "Teacher " . htmlspecialchars($teacher_last_name); ?>! 🎉</h2>
   <p style="font-size: 16px; margin-top: 10px;">We're glad to have you back on the platform.</p>
 
   <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.6;">

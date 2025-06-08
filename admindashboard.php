@@ -210,6 +210,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_id'])) {
       <div class="menu-item" data-section="teachers">
         <i class="fas fa-chalkboard-teacher"></i><span>Teachers</span>
       </div>
+
+      <div class="menu-item" data-section="schedule">
+  <i class="fas fa-calendar-alt"></i><span>Schedule</span>
+</div>
+
       <div class="menu-item" data-section="students">
         <i class="fas fa-user-graduate"></i><span>Students</span>
       </div>
@@ -335,50 +340,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_id'])) {
       mainSection.innerHTML = '<p>Error loading student page.</p>';
       console.error('Error loading students:', error);
     });
-    
-    } else if (section === 'classs/chedule') {
-  fetch('schedule.php')
+
+    } else if (section === 'schedule') {
+  fetch('teacher_sched.php')
     .then(response => response.text())
     .then(data => {
       mainSection.innerHTML = data;
     })
     .catch(error => {
-      mainSection.innerHTML = '<p>Error loading student page.</p>';
-      console.error('Error loading students:', error);
+      mainSection.innerHTML = '<p>Error loading schedule page.</p>';
+      console.error('Error loading schedule:', error);
     });
 
-    } else if (section === 'Account/Balance') {
-  fetch('balance.php')
-    .then(response => response.text())
-    .then(data => {
-      mainSection.innerHTML = data;
-    })
-    .catch(error => {
-      mainSection.innerHTML = '<p>Error loading student page.</p>';
-      console.error('Error loading students:', error);
-    });
-
-     } else if (section === 'permit') {
-  fetch('permits.php')
-    .then(response => response.text())
-    .then(data => {
-      mainSection.innerHTML = data;
-    })
-    .catch(error => {
-      mainSection.innerHTML = '<p>Error loading student page.</p>';
-      console.error('Error loading students:', error);
-    });
-
-     } else if (section === 'Approval') {
-  fetch('approvals.php')
-    .then(response => response.text())
-    .then(data => {
-      mainSection.innerHTML = data;
-    })
-    .catch(error => {
-      mainSection.innerHTML = '<p>Error loading student page.</p>';
-      console.error('Error loading students:', error);
-    });
 
 
 } else if (section === 'teachers') {

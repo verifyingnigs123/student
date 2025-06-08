@@ -33,6 +33,19 @@ if ($result->num_rows === 0) {
 
 $teacher = $result->fetch_assoc();
 $stmt->close();
+
+// Fetch sections assigned to this teacher from teacher_schedule
+$schedule_stmt = $conn->prepare("SELECT section FROM teacher_schedule WHERE email = ?");
+$schedule_stmt->bind_param("s", $teacher_email);
+$schedule_stmt->execute();
+$schedule_result = $schedule_stmt->get_result();
+
+$sections = [];
+while ($row = $schedule_result->fetch_assoc()) {
+    $sections[] = $row['section'];
+}
+$schedule_stmt->close();
+
 $conn->close();
 ?>
 
@@ -147,6 +160,16 @@ $conn->close();
             <div class="info-item">
                 <strong>Subject</strong>
                 <?php echo htmlspecialchars($teacher['subject']); ?>
+            </div>
+            <div class="info-item">
+                <strong>Section</strong>
+                <?php
+                if (count($sections) > 0) {
+                    echo htmlspecialchars(implode(", ", $sections));
+                } else {
+                    echo "No section assigned";
+                }
+                ?>
             </div>
         </div>
     </div>
