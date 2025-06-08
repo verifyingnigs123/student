@@ -133,7 +133,7 @@ if (isset($_GET['delete'])) {
             margin-top: 20px;
         }
 a.edit {
-    background-color: green;
+    background-color: darkgreen;
     color: white;
     padding: 6px 12px;
     border-radius: 4px;
