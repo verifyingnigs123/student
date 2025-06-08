@@ -212,7 +212,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_id'])) {
       </div>
 
       <div class="menu-item" data-section="schedule">
-  <i class="fas fa-calendar-alt"></i><span>Schedule</span>
+  <i class="fas fa-calendar-alt"></i><span>Sections</span>
 </div>
 
       <div class="menu-item" data-section="students">
