@@ -26,12 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
   <div class="container">
     <h2>Forgot Password</h2>
-    <p>Please enter your registered email address. We will send you a link to reset your password.</p>
+    <p>Please enter your registered email address. We will send you a OTP to reset your password.</p>
     
     <form method="post" action="process_forgot_password.php">
       <input type="email" name="email" placeholder="Enter your email" required>
       <br><br>
-      <input type="submit" value="Reset Password" class="btn">
+      <input type="submit" value="Submit" class="btn">
     </form>
   </div>
 </body>
